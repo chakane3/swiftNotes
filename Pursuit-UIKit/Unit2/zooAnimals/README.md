@@ -274,7 +274,7 @@ extension CustomCellViewController: UITableViewDataSource {
   ```
   
   
-</details
+</details>
   
   
 ## Sections in our TV 
