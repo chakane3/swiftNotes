@@ -152,46 +152,50 @@ Here we'll display all of our animals in a tableview that uses a subtitle cell
 
 <details>
   <summary>file for setting up our basic cell (subtitle cell)</summary>
-  ```swift
+  
+```swift
+  
   import UIKit
 
-class basicVC: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
-    
-    // bring in data from our model
-    var zooAnimals = [animals]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.dataSource = self
-        loadData()
-        
-    }
-    
-    func loadData() {
-        zooAnimals = animals.zooAnimal
-    }
-}
+  class basicVC: UIViewController {
+      @IBOutlet weak var tableView: UITableView!
 
-extension basicVC: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        zooAnimals.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "animalCell", for: indexPath)
-        let animal = zooAnimals[indexPath.row]
-        cell.textLabel?.text = animal.name
-        cell.detailTextLabel?.text = animal.origin
-        return cell
-    }
-}
-  ```
+      // bring in data from our model
+      var zooAnimals = [animals]() {
+          didSet {  // didSet is a property observer, when zooAnimals is manipulated the changes will reflect in the TV
+              tableView.reloadData()
+          }
+      }
+
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          tableView.dataSource = self
+          loadData()
+
+      }
+
+      func loadData() {
+          zooAnimals = animals.zooAnimal
+      }
+  }
+
+  extension basicVC: UITableViewDataSource {
+      // tell TV how many rows we need
+      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+          zooAnimals.count
+      }
+
+      // tell TV what goes in the cell
+      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell = tableView.dequeueReusableCell(withIdentifier: "animalCell", for: indexPath)
+          let animal = zooAnimals[indexPath.row]
+          cell.textLabel?.text = animal.name
+          cell.detailTextLabel?.text = animal.origin
+          return cell
+      }
+  }
   
-  </details>
+```
+</details>
   
 
