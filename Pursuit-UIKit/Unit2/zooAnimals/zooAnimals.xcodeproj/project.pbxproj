@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		94115384275CFF25007E8189 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94115383275CFF25007E8189 /* AppDelegate.swift */; };
 		94115386275CFF25007E8189 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94115385275CFF25007E8189 /* SceneDelegate.swift */; };
-		94115388275CFF25007E8189 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94115387275CFF25007E8189 /* ViewController.swift */; };
+		94115388275CFF25007E8189 /* basicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94115387275CFF25007E8189 /* basicVC.swift */; };
 		9411538B275CFF25007E8189 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94115389275CFF25007E8189 /* Main.storyboard */; };
 		9411538D275CFF27007E8189 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9411538C275CFF27007E8189 /* Assets.xcassets */; };
 		94115390275CFF27007E8189 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9411538E275CFF27007E8189 /* LaunchScreen.storyboard */; };
+		941153B8275D0AD1007E8189 /* zooAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941153B7275D0AD1007E8189 /* zooAnimal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		94115380275CFF25007E8189 /* zooAnimals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zooAnimals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94115383275CFF25007E8189 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94115385275CFF25007E8189 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		94115387275CFF25007E8189 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		94115387275CFF25007E8189 /* basicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = basicVC.swift; sourceTree = "<group>"; };
 		9411538A275CFF25007E8189 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9411538C275CFF27007E8189 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9411538F275CFF27007E8189 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94115391275CFF27007E8189 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		941153B7275D0AD1007E8189 /* zooAnimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zooAnimal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +60,12 @@
 			children = (
 				94115383275CFF25007E8189 /* AppDelegate.swift */,
 				94115385275CFF25007E8189 /* SceneDelegate.swift */,
-				94115387275CFF25007E8189 /* ViewController.swift */,
+				94115387275CFF25007E8189 /* basicVC.swift */,
 				94115389275CFF25007E8189 /* Main.storyboard */,
 				9411538C275CFF27007E8189 /* Assets.xcassets */,
 				9411538E275CFF27007E8189 /* LaunchScreen.storyboard */,
 				94115391275CFF27007E8189 /* Info.plist */,
+				941153B7275D0AD1007E8189 /* zooAnimal.swift */,
 			);
 			path = zooAnimals;
 			sourceTree = "<group>";
@@ -138,9 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94115388275CFF25007E8189 /* ViewController.swift in Sources */,
+				94115388275CFF25007E8189 /* basicVC.swift in Sources */,
 				94115384275CFF25007E8189 /* AppDelegate.swift in Sources */,
 				94115386275CFF25007E8189 /* SceneDelegate.swift in Sources */,
+				941153B8275D0AD1007E8189 /* zooAnimal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
