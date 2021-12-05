@@ -199,4 +199,81 @@ Here we'll display all of our animals in a tableview that uses a subtitle cell
 ```
 </details>
   
+## Configure our customCell
+This file helps us with creating a custom UI for our TV cell.
+
+<details>
+  <summary>UITableViewCell file for configuring custom cell</summary>
+  
+```swift
+
+import UIKit
+
+class animalCell: UITableViewCell {
+
+    @IBOutlet weak var animalImage: UIImageView!
+    @IBOutlet weak var animalName: UILabel!
+    @IBOutlet weak var animalClassification: UILabel!
+    @IBOutlet weak var animalDescription: UILabel!
+    
+    func configureCell(for animal: animals) {
+        animalImage.image = UIImage(named: animal.imageNumber.description)
+        animalName.text = animal.name
+        animalDescription.text = animal.origin
+        animalClassification.text = animal.classification
+    }
+}
+
+```
+  </details>
+  
+<details>
+  <summary>file for setting up our custom cell</summary>
+  
+  ```swift
+  
+  import UIKit
+
+class CustomCellViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    
+    var zooAnimal = [animals]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        loadData()
+    }
+    
+    func loadData() {
+        zooAnimal = animals.zooAnimal
+    }
+}
+
+extension CustomCellViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        zooAnimal.count
+    }
+    
+    
+    // Here we need to create our cell as? animalCell to enable us to use our configure cell function to setup our UI
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "animalCell", for: indexPath) as? animalCell else {
+            fatalError("Cannot reach animalCell")
+        }
+        let animal = zooAnimal[indexPath.row]
+        cell.configureCell(for: animal)
+        return cell
+    }
+}
+  
+  ```
+  
+  
+</details
+  
 
