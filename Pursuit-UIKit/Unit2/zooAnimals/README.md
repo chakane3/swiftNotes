@@ -147,4 +147,7 @@ The second view has a table view containing the list of animals in a custom cell
 The third view has a table view containing the list of animals in a custom cell and those cells are sectioned.
 <img src="/Pursuit-UIKit/Unit2/zooAnimals/Assets/zooAnimalUI.png">
   
+## Setting up our subtitle cell
+Here we'll display all of our animals in a tableview that uses a subtitle cell
+  
 
