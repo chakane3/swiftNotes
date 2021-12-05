@@ -1,6 +1,7 @@
 # Multiple MVC - ZooAnimals
 
-Here we have a a data model containing information about zoo animals. In our assets we have pictures of these aniamls. The goal is the display the animals on a list using a table view and create sections. 
+Here we have a a data model containing information about zoo animals. In our assets we have pictures of these aniamls. The goal is the display the animals on a list using a table view and create sections.<br>
+We will use 3 view controllers, 1 model file, and 1 UITableViewCell file to configure our custom TV cell.
 
 # The model
 The first thing we want to do is create our ZooAnimal data. 
