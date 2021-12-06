@@ -34,7 +34,7 @@ class homeViewController: UIViewController {
         view hierarchy and doesnt mean that something will appear at this function.
     */
     override func viewWillAppear(_ animated: Bool) {
-        print("homeViewController - viewWillAppear")
+        print("homeViewController - viewWillAppear", "isAnimated: \(animated)")
     }
     
     /*
@@ -48,7 +48,7 @@ class homeViewController: UIViewController {
         and does not mean that the content view is visible.
     */
     override func viewDidAppear(_ animated: Bool) {
-        print("homeViewController - viewDidAppear")
+        print("homeViewController - viewDidAppear", "isAnimated: \(animated)")
     }
     
     
@@ -62,16 +62,22 @@ class homeViewController: UIViewController {
         view hierarchy.
     */
     override func viewWillDisappear(_ animated: Bool) {
-        print("homeViewController - viewWillDisappear")
+        print("homeViewController - viewWillDisappear", "isAnimated: \(animated)")
     }
     
     /*
         This function is called after the view controller's content view has been removed from the apps view hierarchy.
      
-        We use this method to perform additional teardown activities. 
+        We use this method to perform additional teardown activities.
     */
     override func viewDidDisappear(_ animated: Bool) {
-        print("homeViewController - viewDidDisappear")
+        print("homeViewController - viewDidDisappear", "isAnimated: \(animated)")
+    }
+    
+    
+    // This function may get called multiple times
+    override func viewWillLayoutSubviews() {
+        print("homeViewController - willLayoutSubviews")
     }
 
 }

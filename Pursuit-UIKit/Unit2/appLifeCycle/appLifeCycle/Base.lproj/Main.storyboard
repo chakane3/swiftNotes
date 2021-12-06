@@ -38,10 +38,10 @@
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="86.383928571428569"/>
         </scene>
-        <!--View Controller-->
+        <!--Controls View Controller-->
         <scene sceneID="yAZ-yZ-iuV">
             <objects>
-                <viewController id="XIy-R2-CSa" sceneMemberID="viewController">
+                <viewController id="XIy-R2-CSa" customClass="controlsViewController" customModule="appLifeCycle" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i1P-ct-RT2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,6 +54,9 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XRf-Gg-g2W">
                                 <rect key="frame" x="357" y="181" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchToggled:" destination="XIy-R2-CSa" eventType="valueChanged" id="eC0-C0-beQ"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You clicked 0 many times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="anc-fQ-FVy">
                                 <rect key="frame" x="8" y="227" width="296" height="22"/>
@@ -63,6 +66,9 @@
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Vzj-T2-dYL">
                                 <rect key="frame" x="312" y="222" width="94" height="32"/>
+                                <connections>
+                                    <action selector="stepperChanged:" destination="XIy-R2-CSa" eventType="valueChanged" id="0bm-OA-PWf"/>
+                                </connections>
                             </stepper>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HID-mw-vfh">
                                 <rect key="frame" x="142" y="269" width="131" height="32"/>
@@ -70,14 +76,31 @@
                                     <segment title="Cat"/>
                                     <segment title="Dog"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="XIy-R2-CSa" eventType="valueChanged" id="u4l-XN-qwo"/>
+                                </connections>
                             </segmentedControl>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-Wi-ErQ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-Wi-ErQ">
                                 <rect key="frame" x="0.0" y="320" width="414" height="215"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="414" id="38d-yd-xC9"/>
                                     <constraint firstAttribute="height" constant="215" id="cpo-mT-JxK"/>
                                 </constraints>
                             </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uXI-ED-h9H">
+                                <rect key="frame" x="18" y="566" width="378" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="XIy-R2-CSa" eventType="valueChanged" id="Y8b-an-VeZ"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wb-97-g5e">
+                                <rect key="frame" x="186" y="603" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WNX-cP-UIk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -102,6 +125,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UcN-s2-vdP"/>
+                    <connections>
+                        <outlet property="imageView" destination="6wC-Wi-ErQ" id="BKk-J7-ZCr"/>
+                        <outlet property="segmentedControl" destination="HID-mw-vfh" id="8eX-Zy-Iuq"/>
+                        <outlet property="sliderControl" destination="uXI-ED-h9H" id="t9X-Mg-hmk"/>
+                        <outlet property="sliderLabel" destination="6wb-97-g5e" id="dsH-gK-rf6"/>
+                        <outlet property="stepperControl" destination="Vzj-T2-dYL" id="GCE-mA-41E"/>
+                        <outlet property="stepperLabel" destination="anc-fQ-FVy" id="q2s-bH-MLq"/>
+                        <outlet property="switchControl" destination="XRf-Gg-g2W" id="RjJ-nm-Epq"/>
+                        <outlet property="switchLabel" destination="Gr1-mF-iCm" id="3Vm-xp-LKf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gO1-lB-RrI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
