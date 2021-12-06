@@ -36,7 +36,43 @@ class homeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         print("homeViewController - viewWillAppear")
     }
-
+    
+    /*
+        This function is called after the VC's content view has been added to the apps
+        view hierarchy.
+     
+        We use this method to trigger operations that need to occur as soon as the view is presented onscreen,
+        such as fetching data or showing animation.
+     
+        Ultimately this view indicates that the content view has been added to the apps hierarchy
+        and does not mean that the content view is visible.
+    */
+    override func viewDidAppear(_ animated: Bool) {
+        print("homeViewController - viewDidAppear")
+    }
+    
+    
+    /*
+        This function is called just before the content view is removed from the app's view hierarchy.
+     
+        We use this method to perform cleanup tasks like comitting changes or resigning the first
+        responder status.
+     
+        This method is only called when the content view is "about" to be removed from the apps
+        view hierarchy.
+    */
+    override func viewWillDisappear(_ animated: Bool) {
+        print("homeViewController - viewWillDisappear")
+    }
+    
+    /*
+        This function is called after the view controller's content view has been removed from the apps view hierarchy.
+     
+        We use this method to perform additional teardown activities. 
+    */
+    override func viewDidDisappear(_ animated: Bool) {
+        print("homeViewController - viewDidDisappear")
+    }
 
 }
 
