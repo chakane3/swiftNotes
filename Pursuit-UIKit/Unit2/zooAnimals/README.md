@@ -1,6 +1,7 @@
 # Multiple MVC - ZooAnimals
 
-Here we have a a data model containing information about zoo animals. In our assets we have pictures of these aniamls. The goal is the display the animals on a list using a table view and create sections. 
+Here we have a a data model containing information about zoo animals. In our assets we have pictures of these aniamls. The goal is the display the animals on a list using a table view and create sections.<br>
+We will use 3 view controllers, 1 model file, and 1 UITableViewCell file to configure our custom TV cell.
 
 # The model
 The first thing we want to do is create our ZooAnimal data. 
@@ -149,5 +150,191 @@ The third view has a table view containing the list of animals in a custom cell 
   
 ## Setting up our subtitle cell
 Here we'll display all of our animals in a tableview that uses a subtitle cell
-  
 
+<details>
+  <summary>file for setting up our basic cell (subtitle cell)</summary>
+  
+```swift
+  
+  import UIKit
+
+  class basicVC: UIViewController {
+      @IBOutlet weak var tableView: UITableView!
+
+      // bring in data from our model
+      var zooAnimals = [animals]() {
+          didSet {  // didSet is a property observer, when zooAnimals is manipulated the changes will reflect in the TV
+              tableView.reloadData()
+          }
+      }
+
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          tableView.dataSource = self
+          loadData()
+
+      }
+
+      func loadData() {
+          zooAnimals = animals.zooAnimal
+      }
+  }
+
+  extension basicVC: UITableViewDataSource {
+      // tell TV how many rows we need
+      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+          zooAnimals.count
+      }
+
+      // tell TV what goes in the cell
+      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell = tableView.dequeueReusableCell(withIdentifier: "animalCell", for: indexPath)
+          let animal = zooAnimals[indexPath.row]
+          cell.textLabel?.text = animal.name
+          cell.detailTextLabel?.text = animal.origin
+          return cell
+      }
+  }
+  
+```
+</details>
+  
+## Configure our customCell
+This file helps us with creating a custom UI for our TV cell.
+
+<details>
+  <summary>UITableViewCell file for configuring custom cell</summary>
+  
+```swift
+
+import UIKit
+
+class animalCell: UITableViewCell {
+
+    @IBOutlet weak var animalImage: UIImageView!
+    @IBOutlet weak var animalName: UILabel!
+    @IBOutlet weak var animalClassification: UILabel!
+    @IBOutlet weak var animalDescription: UILabel!
+    
+    func configureCell(for animal: animals) {
+        animalImage.image = UIImage(named: animal.imageNumber.description)
+        animalName.text = animal.name
+        animalDescription.text = animal.origin
+        animalClassification.text = animal.classification
+    }
+}
+
+```
+  </details>
+  
+<details>
+  <summary>file for setting up our custom cell</summary>
+  
+  ```swift
+  
+  import UIKit
+
+class CustomCellViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    
+    var zooAnimal = [animals]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        loadData()
+    }
+    
+    func loadData() {
+        zooAnimal = animals.zooAnimal
+    }
+}
+
+extension CustomCellViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        zooAnimal.count
+    }
+    
+    
+    // Here we need to create our cell as? animalCell to enable us to use our configure cell function to setup our UI
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "animalCell", for: indexPath) as? animalCell else {
+            fatalError("Cannot reach animalCell")
+        }
+        let animal = zooAnimal[indexPath.row]
+        cell.configureCell(for: animal)
+        return cell
+    }
+}
+  
+  ```
+  
+  
+</details>
+  
+  
+## Sections in our TV 
+<details>
+  <summary>file for setting up sections in our TV</summary>
+  
+  ```swift
+  
+import UIKit
+
+class sectionsVC: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    
+    // This time we want an array of arrays
+    // each array inside out array contains animals from its classification
+    var zooAnimals = [[animals]]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        zooAnimals = animals.classificationSections()
+    }
+
+}
+
+extension sectionsVC: UITableViewDataSource {
+    
+    // how many sections do we have?
+    func numberOfSections(in tableView: UITableView) -> Int {
+        zooAnimals.count
+    }
+    
+    // how many rows per section?
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        zooAnimals[section].count
+    }
+    
+    // configure our UI
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "animalCell", for: indexPath) as? animalCell else {
+            fatalError("could not reach animalCell")
+        }
+        let animal = zooAnimals[indexPath.section][indexPath.row]
+        cell.configureCell(for: animal)
+        return cell
+    }
+    
+    // what is the title for each section?
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return zooAnimals[section].first?.classification
+    }
+}
+  
+  ```
+  
+  </details>
+  
+ ## bonus
+  Implement a detail view controller when a user clicks on a cell
