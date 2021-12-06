@@ -14,3 +14,15 @@ Whenever we run our app, the first thing that gets called is our viewDidLoad(). 
 ## The UI
 Our UI will look like this<br>
 <img src="/Pursuit-UIKit/Unit2/appLifeCycle/Assets/appLifeCycle.png">
+
+## Controls VC
+Here well implement the UI in our VC<br>
+Heres what were implementing<br>
+<ul>
+  <li>2 labels</li>
+  <li>1 switch</li>
+  <li>1 stepper</li>
+  <li>1 slider</li>
+  <li>1 segmented control</li>
+  <li>1 UIImageView</li>
+</ul>
