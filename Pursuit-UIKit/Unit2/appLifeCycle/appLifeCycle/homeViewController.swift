@@ -21,11 +21,12 @@ class homeViewController: UIViewController {
     }
     
     
-    /*
-        This is called before the view controller's content is added to the app's view hierarchy.This method is used to trigger any operations that need to occur before the content view is presented onscreen.
+    
+    // This is called before the view controller's content is added to the app's view hierarchy.
+    // This method is used to trigger any operations that need to occur before the content view is presented onscreen.
      
-        This method ultimately indicates that the content view is "about" to be added to the apps view hierarchy and doesnt mean that something will appear at this function.
-    */
+    // This method ultimately indicates that the content view is "about" to be added to the apps view hierarchy and doesnt mean that something will appear at this function.
+    
     override func viewWillAppear(_ animated: Bool) {
         print("homeViewController - viewWillAppear")
     }
