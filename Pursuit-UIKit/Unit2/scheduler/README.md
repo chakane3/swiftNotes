@@ -145,5 +145,15 @@ class PersistenceHelper {
   ```
 </details>
 
+## Creating an Event
+We need to use our event model to fill in a date and name and then use it to add to our tableview
+<details>
+  <summary>CreateEventController</summary>
+  
+  ```swift
+  ok
+  ```
+</details>
+
 
 
