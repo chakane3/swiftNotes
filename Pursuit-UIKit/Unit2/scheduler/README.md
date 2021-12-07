@@ -11,7 +11,14 @@ We use a<br>
   <li>The VC has a bar button item to a new VC</li>
   <li>date picker in a seperate VC</li>
   <li>text field in the seperate VC with a post button</li>
-<ul>
-<img src="/Pursuit-UIKit/Unit2/scheduler/Assets/schedulerUI.png">
+</ul>
+<img src="/Pursuit-UIKit/Unit2/scheduler/Assets/schedulerUI.png"></img>
+
+## Data Persistence
+
+<details>
+  <summary>Exten FileManager</summary>
+</details>
+
 
 
