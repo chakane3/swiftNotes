@@ -12,5 +12,6 @@ We use a<br>
   <li>date picker in a seperate VC</li>
   <li>text field in the seperate VC with a post button</li>
 <ul>
+<img src="/Pursuit-UIKit/Unit2/scheduler/Assets/schedulerUI.png">
 
 
