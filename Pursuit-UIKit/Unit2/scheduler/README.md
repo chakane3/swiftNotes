@@ -186,6 +186,6 @@ extension createEventViewController: UITextFieldDelegate {
   ```
 </details>
 
-## The Main View, putting it all together
+# The Main View, putting it all together
 
 
