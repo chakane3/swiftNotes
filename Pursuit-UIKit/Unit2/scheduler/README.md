@@ -2,7 +2,7 @@
 
 We'll create an app to have a user create new events with a date and time and add it to our existing table view. We go over CRUD operations which modify our "schedules.plist". The .plist file is used to save data the user generated on the app. This is similar to settings on an app.
 
-## The UI
+## #1 The UI
 We use a<br>
 <ul>
   <li>VC embedded in a nav controller</li>
@@ -14,7 +14,7 @@ We use a<br>
 </ul>
 <img src="/Pursuit-UIKit/Unit2/scheduler/Assets/schedulerUI.png"></img>
 
-## Event Model (what does an event look like?
+## #2 Event Model (what does an event look like?
 Our event will have a name and a date
 
 ```swift
@@ -26,7 +26,7 @@ struct Event: Codable {
 
 ```
 
-## Data Persistence
+## #3 Data Persistence
 
 <details>
   <summary>Extend FileManager</summary>
@@ -145,7 +145,7 @@ class PersistenceHelper {
   ```
 </details>
 
-## Creating an Event
+## #4 Creating an Event
 We need to use our event model to fill in a date and name and then use it to add to our tableview
 <details>
   <summary>CreateEventController</summary>
@@ -186,5 +186,6 @@ extension createEventViewController: UITextFieldDelegate {
   ```
 </details>
 
+## The Main View, putting it all together
 
 
