@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Schedule List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="scheduler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ScheduleListViewController" customModule="scheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="99H-1i-fU5" detailTextLabel="2dY-rz-OKH" style="IBUITableViewCellStyleSubtitle" id="e2o-C0-Tm7">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="eventCell" textLabel="99H-1i-fU5" detailTextLabel="2dY-rz-OKH" style="IBUITableViewCellStyleSubtitle" id="e2o-C0-Tm7">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e2o-C0-Tm7" id="4F5-xx-emE">
@@ -52,28 +52,38 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="TNv-Yu-Jp1">
-                        <barButtonItem key="leftBarButtonItem" title="edit" id="41N-Ax-Lqq"/>
+                        <barButtonItem key="leftBarButtonItem" title="edit" id="41N-Ax-Lqq">
+                            <connections>
+                                <action selector="editButtonPressed:" destination="BYZ-38-t0r" id="HQW-AM-lcT"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="cIK-n2-8Y6">
                             <connections>
                                 <segue destination="oz9-pG-Uqm" kind="show" id="PtK-mG-irV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="t1K-a6-pjG" id="oEt-Ss-wos"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="849" y="98"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Event View Controller-->
         <scene sceneID="8Qn-or-UYK">
             <objects>
-                <viewController id="oz9-pG-Uqm" sceneMemberID="viewController">
+                <viewController id="oz9-pG-Uqm" customClass="createEventViewController" customModule="scheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1ph-BG-GfU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ouu-TV-gqZ">
                                 <rect key="frame" x="47" y="340" width="320" height="216"/>
+                                <connections>
+                                    <action selector="datePickerChanged:" destination="oz9-pG-Uqm" eventType="valueChanged" id="BV4-w4-YZd"/>
+                                </connections>
                             </datePicker>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="create event" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cdb-PG-JrI">
                                 <rect key="frame" x="20" y="298" width="374" height="34"/>
@@ -84,6 +94,9 @@
                                 <rect key="frame" x="152" y="564" width="110" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Create Event"/>
+                                <connections>
+                                    <action selector="addNewEvent:" destination="eFA-b4-GLu" eventType="touchUpInside" id="eBk-aT-GNg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cGO-MV-E9J"/>
@@ -100,8 +113,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Gh0-Ud-j0b"/>
+                    <connections>
+                        <outlet property="datePicker" destination="ouu-TV-gqZ" id="Na2-OS-2Tz"/>
+                        <outlet property="eventField" destination="cdb-PG-JrI" id="5VZ-b1-lsg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lWj-kC-8J3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="eFA-b4-GLu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1663.7681159420292" y="97.767857142857139"/>
         </scene>
