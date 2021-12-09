@@ -13,6 +13,8 @@
 		94A063B62761905100D21154 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94A063B42761905100D21154 /* Main.storyboard */; };
 		94A063B82761905300D21154 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94A063B72761905300D21154 /* Assets.xcassets */; };
 		94A063BB2761905300D21154 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94A063B92761905300D21154 /* LaunchScreen.storyboard */; };
+		94A063C32761936900D21154 /* topStoriesTechnology.json in Resources */ = {isa = PBXBuildFile; fileRef = 94A063C22761936900D21154 /* topStoriesTechnology.json */; };
+		94A063C52761965500D21154 /* NewsHeadline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A063C42761965500D21154 /* NewsHeadline.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		94A063B72761905300D21154 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94A063BA2761905300D21154 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94A063BC2761905300D21154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94A063C22761936900D21154 /* topStoriesTechnology.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = topStoriesTechnology.json; sourceTree = "<group>"; };
+		94A063C42761965500D21154 /* NewsHeadline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHeadline.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +61,14 @@
 			isa = PBXGroup;
 			children = (
 				94A063AE2761905100D21154 /* AppDelegate.swift */,
+				94A063C22761936900D21154 /* topStoriesTechnology.json */,
 				94A063B02761905100D21154 /* SceneDelegate.swift */,
 				94A063B22761905100D21154 /* ViewController.swift */,
 				94A063B42761905100D21154 /* Main.storyboard */,
 				94A063B72761905300D21154 /* Assets.xcassets */,
 				94A063B92761905300D21154 /* LaunchScreen.storyboard */,
 				94A063BC2761905300D21154 /* Info.plist */,
+				94A063C42761965500D21154 /* NewsHeadline.swift */,
 			);
 			path = stories;
 			sourceTree = "<group>";
@@ -126,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94A063BB2761905300D21154 /* LaunchScreen.storyboard in Resources */,
+				94A063C32761936900D21154 /* topStoriesTechnology.json in Resources */,
 				94A063B82761905300D21154 /* Assets.xcassets in Resources */,
 				94A063B62761905100D21154 /* Main.storyboard in Resources */,
 			);
@@ -138,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94A063C52761965500D21154 /* NewsHeadline.swift in Sources */,
 				94A063B32761905100D21154 /* ViewController.swift in Sources */,
 				94A063AF2761905100D21154 /* AppDelegate.swift in Sources */,
 				94A063B12761905100D21154 /* SceneDelegate.swift in Sources */,
