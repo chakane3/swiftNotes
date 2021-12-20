@@ -14,6 +14,8 @@
 		94A4FA04277035A20070B2E0 /* tddTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A4FA03277035A20070B2E0 /* tddTests.swift */; };
 		94A4FA0E277035A20070B2E0 /* tddUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A4FA0D277035A20070B2E0 /* tddUITests.swift */; };
 		94A4FA10277035A20070B2E0 /* tddUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A4FA0F277035A20070B2E0 /* tddUITestsLaunchTests.swift */; };
+		94A4FA1D27703E360070B2E0 /* testWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 94A4FA1C27703E360070B2E0 /* testWeather.json */; };
+		94A4FA1F27703F6D0070B2E0 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A4FA1E27703F6D0070B2E0 /* WeatherModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		94A4FA09277035A20070B2E0 /* tddUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tddUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A4FA0D277035A20070B2E0 /* tddUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tddUITests.swift; sourceTree = "<group>"; };
 		94A4FA0F277035A20070B2E0 /* tddUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tddUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		94A4FA1C27703E360070B2E0 /* testWeather.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testWeather.json; sourceTree = "<group>"; };
+		94A4FA1E27703F6D0070B2E0 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				94A4F9F5277035A20070B2E0 /* Assets.xcassets */,
 				94A4F9F7277035A20070B2E0 /* Main.storyboard */,
 				94A4F9FA277035A20070B2E0 /* tdd.entitlements */,
+				94A4FA1C27703E360070B2E0 /* testWeather.json */,
+				94A4FA1E27703F6D0070B2E0 /* WeatherModel.swift */,
 			);
 			path = tdd;
 			sourceTree = "<group>";
@@ -226,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94A4F9F6277035A20070B2E0 /* Assets.xcassets in Resources */,
+				94A4FA1D27703E360070B2E0 /* testWeather.json in Resources */,
 				94A4F9F9277035A20070B2E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94A4F9F4277035A00070B2E0 /* ViewController.swift in Sources */,
+				94A4FA1F27703F6D0070B2E0 /* WeatherModel.swift in Sources */,
 				94A4F9F2277035A00070B2E0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
