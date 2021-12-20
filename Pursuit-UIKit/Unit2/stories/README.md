@@ -3120,10 +3120,358 @@ When we want our data from our json file, we need to turn it into a swift model.
 For example, our data it a dictionary, whic holds key value pairs, and those values could also be dictionaries{} or even lists{}.
 
 <details>
-  <summary>File to collect an array of headlines</summary>
+  <summary>newsModel</summary>
   
   ```swift
+ 
+//
+//  NewsHeadline.swift
+//  stories
+//
+//  Created by Chakane Shegog on 12/8/21.
+//
+
+import Foundation
+
+// codable is a protocol that allows us to encode or decode our json amonst other things
+struct HeadlinesData: Codable {
+    let results: [NewsHeadline]
+}
+
+struct NewsHeadline: Codable {
+    let title: String
+    let abstract: String
+    let byline: String
+    let multimedia: [MultiMedia]
+}
+
+struct MultiMedia: Codable {
+    let url: String
+    let caption: String
+    let format: String
+}
+
+extension NewsHeadline {
+    var thumbImage: MultiMedia? {
+        return multimedia.filter {$0.format == "thumbLarge"}.first
+    }
+    
+    var superJumpo: MultiMedia? {
+        return multimedia.filter {$0.format == "superJumpo"}.first
+    }
+}
+
+
+extension HeadlinesData {
+    // this function returns an array of [NewsHeadlines]
+    static func getHeadlines() -> [NewsHeadline] {
+        var headlines = [NewsHeadline]()
+        
+        // this is a url which is a path for our json file
+        guard let fileUrl = Bundle.main.url(forResource: "topStoriesTechnology", withExtension: "json") else {
+            fatalError("could not locate json file")
+        }
+        
+        do {
+            let data = try Data(contentsOf: fileUrl)
+            let topStoriesData = try JSONDecoder().decode(HeadlinesData.self, from: data)
+            headlines = topStoriesData.results
+        } catch {
+            fatalError("ok, contents failed to load\(error)")
+        }
+        return headlines
+    }
+}
   ```
 
 </details
 
+## Image Client
+### URLSession
+ We use a URLSession object to coordinate network and data transfer tasks. This is an API given to us by Swift  for downloading/uploading data. We use this to download data in the background. Theres different types of URLSession Tasks; where, within a session you create tasks that optionally upload or retrieve data from a server as a file on disk, or as one or more NSData objects in memory. With theURLSession API we generally get 4 types of tasks:
+ <ul>
+ <li>Data tasks send and receive data using NSData objects.</li>
+ <li>Upload tasks are similar to data tasks, but they also send data and support background uploads while the app isnt running.</li>
+ <li>Download tasks get data in the form of a file and supports background downloads and uploads while the app isnt running.</li>
+ <li>WebSocket tasks exchange message over TCP and TLS using the WebSocket protocol.</li>
+ </ul>
+ 
+ <details>
+ <summary>ImageClient</summary>
+ ```swift
+ 
+// completion handlers are used to run code after a specific task has been completed
+struct ImageClient {
+    
+// An escaping closure, the functions returns before the closure gets its value
+static  func fetchImage(for urlString: String, completion: @escaping (Result<UIImage?, Error>) -> ()) { // the completion captures the image () -> () "takes in a result, does nothing"
+        
+        // check if we have a valid url
+        guard let url = URL(string: urlString) else {
+            print("bad url \(urlString)")
+            return
+        }
+        
+        // create a data task using the URLSesson()
+        // This wont return an image like we would think
+        // this is because its an asynchrounous network call
+        // the call relies on the network.
+        let dataTask = URLSession.shared.dataTask(with: url) {
+            (data, response, error) in // here we have a trailing closure
+            
+            // check for errors
+            if let error = error {
+                print("error: \(error)")
+            }
+            
+            // check for valid status code: 200-299
+            // check for valid MIME type of image/jpeg
+            
+            // check function definition
+            if let data = data {
+                // use data to make an image
+                let image = UIImage(data: data)
+                
+                // then use completion handler to capture the result of the image
+                completion(.success(image))
+            }
+        }
+        dataTask.resume() // this invokes a network request
+    }
+}
+
+ ```
+ </details>
+ 
+ ## Detail Controller
+ 
+ <details>
+  <summary>detailController</summary>
+  
+  ```swift
+  
+//  NewsDetailController.swift
+//  TopStories
+//
+//  Created by Chakane Shegog on 9/15/21.
+//  Copyright © 2021 Alex Paul. All rights reserved.
+//
+
+import UIKit
+
+class NewsDetailController: UIViewController {
+    @IBOutlet weak var headlineImageView: UIImageView!
+    @IBOutlet weak var bylineLabel: UILabel!
+    @IBOutlet weak var headlineAbstractLabel: UITextView!
+    
+    var newsHeadline: NewsHeadline?
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateUI()
+    }
+    
+    
+    func updateUI() {
+        guard let headline = newsHeadline else {
+            fatalError("nil found, check prepare for segue")
+        }
+        navigationItem.title = headline.title
+        headlineAbstractLabel.text = headline.abstract
+        bylineLabel.text = headline.byline
+        
+        // update image
+        if let superJumboImage = headline.superJumbo {
+            ImageClient.fetchImage(for: superJumboImage.url) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error: \(error)")
+                    
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        self.headlineImageView.image = image
+                    }
+                }
+            }
+        }
+    }
+}
+
+  ```
+  
+ </details>
+ 
+ ## configure cell in tableview
+ <details>
+  <summary>headlineCell</summary>
+  
+  ```swift
+import UIKit
+
+class HeadlineCell: UITableViewCell {
+
+    @IBOutlet weak var headlineImageView: UIImageView!
+    @IBOutlet weak var headlineTitleLabel: UILabel!
+    @IBOutlet weak var bylineLabel: UILabel!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // change the corner radius here
+        headlineImageView.layer.cornerRadius = 4
+    }
+    
+    func configureCell(for headline: NewsHeadline) {
+        headlineTitleLabel.text = headline.title
+        bylineLabel.text = headline.byline
+        
+        // get image
+        if let thumbImage = headline.thumbImage {
+            
+            // memory management? (ARC)
+            // weak vs unowned?
+            ImageClient.fetchImage(for: thumbImage.url) { [unowned self] (result) in // unowned self guarantees the image will be there
+                switch result {
+                case .success(let image):  // besure to update UI elements on the main thread // fixes purple error
+                    DispatchQueue.main.async {
+                        self.headlineImageView.image = image
+                    }
+                    
+                    
+                case .failure(let error):
+                    print("configureCell image error - \(error)")
+                }
+            }
+        }
+    }
+}
+
+  ```
+  
+ </details>
+ 
+ ## the main view controller
+ <details>
+  <summary>newsFeedController</summary>
+  
+  ```swift
+  //
+//  TopStoriesViewController.swift
+//  TopStories
+//
+//  Created by Chakane Shegog on 9/9/21.
+//  Copyright © 2021 Alex Paul. All rights reserved.
+//
+
+import UIKit
+
+enum SearchScope {
+    case title
+    case abstract
+}
+
+class NewsFeedController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var currentScope = SearchScope.title  // i the value of this is 0
+    var searchQuery = "" {
+        didSet {
+            switch currentScope {
+            case .title:
+                headlines = HeadlinesData.getHeadlines().filter {$0.title.lowercased().contains(searchQuery.lowercased())}
+            case .abstract:
+                headlines = HeadlinesData.getHeadlines().filter {$0.abstract.lowercased().contains(searchQuery.lowercased())}
+                
+            }
+        }
+    }
+    
+    // create data for the table view
+    var headlines = [NewsHeadline]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        loadData()
+        searchBar.delegate = self
+    }
+    
+    func loadData(){
+        headlines = HeadlinesData.getHeadlines()
+    }
+    
+    func filterHeadlines(for searchText: String) {
+        guard !searchText.isEmpty else {return}
+        // we will get our headlines, then filter by title which well lowercase,
+        // if that title contains anything in the user searchText we will return/change our headlines data for the tableView
+        headlines = HeadlinesData.getHeadlines().filter {$0.title.lowercased().contains(searchText.lowercased())}
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // get destination view controller
+        // get the indexPath the user selected from the table
+        guard let newsDetailController = segue.destination as? NewsDetailController, let indexPath = tableView.indexPathForSelectedRow else {
+            fatalError("could not retrieve an instance of NDC, verify class name in the identify inspector")
+        }
+        let headline = headlines[indexPath.row]
+        newsDetailController.newsHeadline = headline
+    }
+}
+
+extension NewsFeedController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return headlines.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "headlineCell", for: indexPath) as? HeadlineCell else {
+            fatalError("couldent dequeue a headline cell")
+        }
+        let headline = headlines[indexPath.row]
+        cell.configureCell(for: headline)
+        return cell
+    }
+}
+
+extension NewsFeedController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180
+    }
+}
+
+extension NewsFeedController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // dismiss the keyboard
+        searchBar.resignFirstResponder()
+    }
+    
+    // realtime searching & what if the search was empty
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else { // if the search text is empty use loadData() to reset the table view
+            loadData()
+            return
+        }
+        searchQuery = searchText
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        switch selectedScope {
+        case 0:
+            currentScope = .title
+            break
+        case 1:
+            currentScope = .abstract
+            break
+        default:
+            print("not a valid scope")
+        }
+    }
+}
+  ```
+  
+ </details>
+ 
