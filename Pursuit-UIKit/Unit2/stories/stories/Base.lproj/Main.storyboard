@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--News Feed Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="stories" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="NewsFeedController" customModule="stories" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="86.383928571428569"/>
         </scene>
-        <!--View Controller-->
+        <!--News Detail Controller-->
         <scene sceneID="tIR-ZL-3pZ">
             <objects>
-                <viewController id="Rqc-2Q-hYb" sceneMemberID="viewController">
+                <viewController id="Rqc-2Q-hYb" customClass="NewsDetailController" customModule="stories" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uSx-eT-mds">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,16 +87,25 @@
                                     <constraint firstAttribute="height" constant="322" id="aAq-iG-qB4"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By: Cade Metz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOR-vt-Ho1">
+                                <rect key="frame" x="20" y="861" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="J2j-fP-5CK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="OBf-bu-fEy" firstAttribute="top" secondItem="J2j-fP-5CK" secondAttribute="top" constant="8" id="60k-si-ti4"/>
+                            <constraint firstItem="nOR-vt-Ho1" firstAttribute="bottom" secondItem="J2j-fP-5CK" secondAttribute="bottom" constant="20" id="6e1-8v-TNR"/>
                             <constraint firstItem="J2j-fP-5CK" firstAttribute="trailing" secondItem="8og-eF-uFm" secondAttribute="trailing" constant="20" id="6ib-mx-OeF"/>
                             <constraint firstItem="8og-eF-uFm" firstAttribute="leading" secondItem="J2j-fP-5CK" secondAttribute="leading" constant="20" id="CYq-ff-h3i"/>
                             <constraint firstItem="OBf-bu-fEy" firstAttribute="leading" secondItem="J2j-fP-5CK" secondAttribute="leading" constant="20" id="EYT-A5-tzh"/>
                             <constraint firstItem="8og-eF-uFm" firstAttribute="top" secondItem="OBf-bu-fEy" secondAttribute="bottom" constant="8" id="M1v-iR-wqG"/>
                             <constraint firstItem="J2j-fP-5CK" firstAttribute="trailing" secondItem="OBf-bu-fEy" secondAttribute="trailing" constant="20" id="VHp-XA-LyR"/>
+                            <constraint firstItem="nOR-vt-Ho1" firstAttribute="leading" secondItem="J2j-fP-5CK" secondAttribute="leading" constant="20" id="xi0-qR-KGZ"/>
+                            <constraint firstAttribute="trailing" secondItem="nOR-vt-Ho1" secondAttribute="trailing" constant="20" id="xwi-sf-Ekv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TVJ-R7-t6Z"/>

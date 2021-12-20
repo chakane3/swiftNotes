@@ -30,12 +30,29 @@ extension NewsHeadline {
         return multimedia.filter {$0.format == "thumbLarge"}.first
     }
     
-    var superJumpo: MultiMedia? {
-        return multimedia.filter {$0.format == "superJumpo"}.first
+    var superJumbo: MultiMedia? {
+        return multimedia.filter {$0.format == "superJumbo"}.first
     }
 }
 
 
 extension HeadlinesData {
-    
+    // this function returns an array of [NewsHeadlines]
+    static func getHeadlines() -> [NewsHeadline] {
+        var headlines = [NewsHeadline]()
+        
+        // this is a url which is a path for our json file
+        guard let fileUrl = Bundle.main.url(forResource: "topStoriesTechnology", withExtension: "json") else {
+            fatalError("could not locate json file")
+        }
+        
+        do {
+            let data = try Data(contentsOf: fileUrl)
+            let topStoriesData = try JSONDecoder().decode(HeadlinesData.self, from: data)
+            headlines = topStoriesData.results
+        } catch {
+            fatalError("ok, contents failed to load\(error)")
+        }
+        return headlines
+    }
 }
