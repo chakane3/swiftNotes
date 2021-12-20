@@ -8,4 +8,5 @@ In this repo are all the projects to help me document my learning
 | <a href="https://github.com/chakane3/swiftNotes/tree/main/Pursuit-UIKit/Unit2/appLifeCycle">appLifeCycle</a>  | Create an app that demonstrates app lifecycle methods. We also implement a slider, stepper, and switch. |
 | <a href="https://github.com/chakane3/swiftNotes/tree/main/Pursuit-UIKit/Unit2/scheduler">Modifying table views/Data Persistence</a> | Create an app to have a user create a new entry on our TV and be able to exit the app and go back in to see the data the user saved. |
 | <a href="https://github.com/chakane3/swiftNotes/tree/main/Pursuit-UIKit/Unit2/stories">topstories</a> | Create an app to parse local JSON, more on tableViews and searchbar methods; filtering, segues | 
+| <a href="https://github.com/chakane3/swiftNotes/tree/main/Pursuit-UIKit/Unit2/tdd">Unit Testing</a> | test driven development |
 | ™ | ™ |
