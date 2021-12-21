@@ -2,7 +2,7 @@
 //  tddTests.swift
 //  tddTests
 //
-//  Created by Chakane Shegog on 12/19/21.
+//  Created by Chakane Shegog on 12/20/21.
 //
 
 import XCTest
@@ -10,24 +10,34 @@ import XCTest
 
 class tddTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testLoadWeather() {
+        // Arrange
+        let weatherData = getTestWeatherJSONData()
+
+        // Act
+        var allWeathers = [Weather]()
+
+        do {
+            allWeathers = try Weather.getAllWeathers(from: weatherData)
+        } catch {
+            print(error)
+        }
+
+        // Assert
+        XCTAssertTrue(allWeathers.count == 3, "Was expecting 3 weather structs, but received \(allWeathers.count)")
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    // function to get our local json data using app Bundle
+    private func getTestWeatherJSONData() -> Data {
+        guard let pathToData = Bundle.main.path(forResource: "testWeather", ofType: "json") else {
+            fatalError("testWeather.json file not found")
+        }
+        let internalUrl = URL(fileURLWithPath: pathToData)
+        do {
+            let data = try Data(contentsOf: internalUrl)
+            return data
+        } catch {
+            fatalError("An error occurred: \(error)")
         }
     }
-
 }
