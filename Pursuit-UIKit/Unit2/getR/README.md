@@ -113,5 +113,62 @@ enum NetworkError: Error, CustomStringConvertible {
   
 # Intro to app
 We will use this endpoint to request 10 programming jokes: https://v2.jokeapi.dev/joke/Programming?type=twopart&amount=10
-  
+## Add to our Network Error and JokeAPI file
+<details>
+  <summary>Joke Error</summary>
+        
+```swift
+// helps catch errors in either our NetworkError enum, and jsonDecodingError(Error)
+enum JokeError: Error, CustomStringConvertible {
+    case networkError(NetworkError)
+    case jsonDecodingError(Error)
+    var description: String {
+        switch self {
+        case let .networkError(networkError):
+            return "Network Error: \(networkError)"
+            
+        case let .jsonDecodingError(decodingError):
+            return "Decoding Error: \(decodingError)"
+        }
+    }
+}
+```
+</details>
+    
+<details>
+    <summary>Joke API</summary>
+    
+```swift
+import Foundation
+
+class JokeAPI {
+    static let manager = JokeAPI()
+    
+    func getJokes(completionHandler: @escaping (Result<[Joke], JokeError>) -> Void) {
+        NetworkHelper.manager.getData(from: jokesEndpoint) { (result) in
+            switch result {
+            case let .success(data):
+                do {
+                    let jokes = try JSONDecoder().decode([Joke].self, from: data)
+                    completionHandler(.success(jokes))
+                } catch {
+                    completionHandler(.failure(.jsonDecodingError(error)))
+                }
+            case let .failure(NetworkError):
+                completionHandler(.failure(.networkError(NetworkError)))
+            }
+        }
+    }
+    
+    // private properties
+    private let jokesEndpoint = "https://v2.jokeapi.dev/joke/Programming?type=twopart&amount=10"
+    private init() {}
+}
+```
+</details>
+
+ ## Implementing our JokeAPI
+ 
+ ```swift
+ ```
   
