@@ -9,4 +9,5 @@ In this repo are all the projects to help me document my learning
 | <a href="https://github.com/chakane3/swiftNotes/tree/main/Pursuit-UIKit/Unit2/scheduler">Modifying table views/Data Persistence</a> | Create an app to have a user create a new entry on our TV and be able to exit the app and go back in to see the data the user saved. |
 | <a href="https://github.com/chakane3/swiftNotes/tree/main/Pursuit-UIKit/Unit2/stories">topstories</a> | Create an app to parse local JSON, more on tableViews and searchbar methods; filtering, segues | 
 | <a href="https://github.com/chakane3/swiftNotes/tree/main/Pursuit-UIKit/Unit2/tdd">Unit Testing</a> | test driven development |
+|<a href="https://github.com/chakane3/swiftNotes/tree/main/Pursuit-UIKit/Unit2/getR">network requests pt1</a> | singleton design pattern, closures, URLSession and creating a wrapper class for it. Example app is to fetch jokes from an api |
 | ™ | ™ |
