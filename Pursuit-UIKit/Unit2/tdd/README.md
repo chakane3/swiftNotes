@@ -128,3 +128,23 @@ This model will give us data object for weather metrics.
   <summary></summary>
 </details>
 
+# Testing
+Theres 3 parts to a unit test
+<ul>
+<li>Arrange</li>
+	<ul>
+	<li>Do any setup that you need</li>
+	<li>Load the json from the bundle</li>
+	</ul>
+<li>Act</li>
+	<ul>
+	<li>Call the function you want to test</li>
+	<li>We'll "act" by calling the getAllWeathers(from:) method we made in our model.</li>
+	</ul>
+<li>Assert</li>
+	<ul>
+	<li>Make an assertion which tests is our expectations are true</li>
+	<li>We'll assert that theres 3 structs in the array we generated</li>
+	</ul>
+</ul>
+
