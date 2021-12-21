@@ -16,6 +16,10 @@
 		945A9BFF277258B8004F40B7 /* getRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945A9BFE277258B8004F40B7 /* getRTests.swift */; };
 		945A9C09277258B8004F40B7 /* getRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945A9C08277258B8004F40B7 /* getRUITests.swift */; };
 		945A9C0B277258B8004F40B7 /* getRUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945A9C0A277258B8004F40B7 /* getRUITestsLaunchTests.swift */; };
+		945A9C1827725D29004F40B7 /* networkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945A9C1727725D29004F40B7 /* networkError.swift */; };
+		945A9C1A27725EBB004F40B7 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945A9C1927725EBB004F40B7 /* NetworkHelper.swift */; };
+		945A9C1D2772682A004F40B7 /* JokeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945A9C1C2772682A004F40B7 /* JokeModel.swift */; };
+		945A9C1F27726A4A004F40B7 /* JokeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945A9C1E27726A4A004F40B7 /* JokeAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		945A9C04277258B8004F40B7 /* getRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = getRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		945A9C08277258B8004F40B7 /* getRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getRUITests.swift; sourceTree = "<group>"; };
 		945A9C0A277258B8004F40B7 /* getRUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getRUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		945A9C1727725D29004F40B7 /* networkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = networkError.swift; sourceTree = "<group>"; };
+		945A9C1927725EBB004F40B7 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		945A9C1C2772682A004F40B7 /* JokeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeModel.swift; sourceTree = "<group>"; };
+		945A9C1E27726A4A004F40B7 /* JokeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +114,10 @@
 				945A9BF0277258B8004F40B7 /* Assets.xcassets */,
 				945A9BF2277258B8004F40B7 /* LaunchScreen.storyboard */,
 				945A9BF5277258B8004F40B7 /* Info.plist */,
+				945A9C1727725D29004F40B7 /* networkError.swift */,
+				945A9C1927725EBB004F40B7 /* NetworkHelper.swift */,
+				945A9C1C2772682A004F40B7 /* JokeModel.swift */,
+				945A9C1E27726A4A004F40B7 /* JokeAPI.swift */,
 			);
 			path = getR;
 			sourceTree = "<group>";
@@ -259,6 +271,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				945A9BEC277258B6004F40B7 /* ViewController.swift in Sources */,
+				945A9C1827725D29004F40B7 /* networkError.swift in Sources */,
+				945A9C1D2772682A004F40B7 /* JokeModel.swift in Sources */,
+				945A9C1F27726A4A004F40B7 /* JokeAPI.swift in Sources */,
+				945A9C1A27725EBB004F40B7 /* NetworkHelper.swift in Sources */,
 				945A9BE8277258B6004F40B7 /* AppDelegate.swift in Sources */,
 				945A9BEA277258B6004F40B7 /* SceneDelegate.swift in Sources */,
 			);
