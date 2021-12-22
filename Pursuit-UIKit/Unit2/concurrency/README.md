@@ -179,3 +179,5 @@ class NetworkHelper {
 }
   ```
 </details>
+  
+ Then we'll add an extension to UIImage view so it can implement a UIActivityIndicator View to show the user something is downloading. 
