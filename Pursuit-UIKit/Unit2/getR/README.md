@@ -223,13 +223,13 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "jokeCell", for: indexPath)
+    
+    // TODO: return entire data set
         let joke = jokes[0]
-  
-        
         cell.textLabel?.text = joke.jokes[indexPath.row].setup
         cell.detailTextLabel?.text = joke.jokes[indexPath.row].delivery
         return cell
     }
 }
 ```
-  
+ 
