@@ -13,6 +13,7 @@ enum NetworkError: Error, CustomStringConvertible {
     case noURLResponse
     case noData
     case badURLResponse(Int)
+    case networkClientError(Error)
     
     var description: String {
         switch self {
@@ -21,6 +22,7 @@ enum NetworkError: Error, CustomStringConvertible {
         case .noURLResponse: return "No URLResponse"
         case .noData: return "no data"
         case let .badURLResponse(statusCode): return "Bad status code: \(statusCode)"
+        case let .networkClientError(error): return "Network Client error: \(error)"
         }
     }
 }

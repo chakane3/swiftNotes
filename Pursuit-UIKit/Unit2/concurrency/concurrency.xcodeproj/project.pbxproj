@@ -19,6 +19,7 @@
 		942730842773B978005FE721 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730832773B978005FE721 /* NetworkError.swift */; };
 		942730862773BA6A005FE721 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730852773BA6A005FE721 /* NetworkHelper.swift */; };
 		9427308A2773BDA6005FE721 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730892773BDA6005FE721 /* UIImageView+Extensions.swift */; };
+		9427308C2773CCBF005FE721 /* PlanetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427308B2773CCBF005FE721 /* PlanetCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		942730832773B978005FE721 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		942730852773BA6A005FE721 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		942730892773BDA6005FE721 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		9427308B2773CCBF005FE721 /* PlanetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		942730512773AE06005FE721 /* concurrency */ = {
 			isa = PBXGroup;
 			children = (
+				9427308B2773CCBF005FE721 /* PlanetCell.swift */,
 				942730882773BD65005FE721 /* Extensions */,
 				942730872773BD3F005FE721 /* Supporting Files */,
 				942730822773B953005FE721 /* NetworkServices */,
@@ -297,6 +300,7 @@
 				942730862773BA6A005FE721 /* NetworkHelper.swift in Sources */,
 				942730532773AE06005FE721 /* AppDelegate.swift in Sources */,
 				942730552773AE06005FE721 /* SceneDelegate.swift in Sources */,
+				9427308C2773CCBF005FE721 /* PlanetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
