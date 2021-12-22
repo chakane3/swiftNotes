@@ -279,7 +279,7 @@ class PlanetCell: UITableViewCell {
   <details>
     <summary>VC</summary>
     
-    ```swift
+```swift
 
 import UIKit
 
@@ -307,6 +307,7 @@ class ViewController: UIViewController {
                       "https://apod.nasa.gov/apod/image/1911/RhoOph_WISE_960.jpg",
                       "https://apod.nasa.gov/apod/image/1911/ngc5907_gabany_rcl1024.jpg", // 11/16/19
     ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -335,5 +336,6 @@ extension ViewController: UITableViewDelegate {
     }
 }
     ```
-  </details>
+  
+</details>
   
