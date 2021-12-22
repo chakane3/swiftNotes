@@ -222,4 +222,4 @@ extension UIImageView {
 </details>
   
 ## The UI
-<img src="swiftNotes/Pursuit-UIKit/Unit2/concurrency/Assets/UI.png">
+<img src="/Pursuit-UIKit/Unit2/zooAnimals/Assets/UI.png">
