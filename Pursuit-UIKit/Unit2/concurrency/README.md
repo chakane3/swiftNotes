@@ -228,7 +228,8 @@ extension UIImageView {
   <details>
     <summary>PlanetCell</summary>
     
-    ```swift
+    
+```swift
     
 import UIKit
 
@@ -271,6 +272,6 @@ class PlanetCell: UITableViewCell {
     }
 }
     
-```
-  </details>
+``` 
+</details>
   
