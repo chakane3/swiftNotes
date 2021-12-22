@@ -280,7 +280,8 @@ class PlanetCell: UITableViewCell {
     <summary>VC</summary>
     
     ```swift
-    import UIKit
+
+import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
