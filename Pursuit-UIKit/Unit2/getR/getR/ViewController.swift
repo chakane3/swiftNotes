@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     // jokes data
-    var jokes = [Joke]() {
+    var jokes = [Jokes]() {
         didSet {
             tableView.reloadData()
         }
@@ -21,7 +21,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         configureJokesTV()
         loadJokes()
-        print(jokes)
     }
     
     // private methods
@@ -37,7 +36,8 @@ class ViewController: UIViewController {
                 guard let self = self else { return }
                 switch result {
                 case let .success(fetchedJokes):
-                    dump(fetchedJokes)
+//                    dump(fetchedJokes)
+                    self.jokes = [fetchedJokes]
                 
                 case let .failure(error):
                     let alertVC = UIAlertController(title: "Error", message: "Error fetching the jokes occured: \(error.description)", preferredStyle: .alert)
@@ -58,9 +58,11 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "jokeCell", for: indexPath)
-        let joke = jokes[indexPath.row]
-        cell.textLabel?.text = joke.setup
-        cell.detailTextLabel?.text = joke.delivery
+        let joke = jokes[0]
+  
+        
+        cell.textLabel?.text = joke.jokes[indexPath.row].setup
+        cell.detailTextLabel?.text = joke.jokes[indexPath.row].delivery
         return cell
     }
 }

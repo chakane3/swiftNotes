@@ -17,3 +17,12 @@ struct Joke: Codable {
     let setup: String
     let delivery: String
 }
+
+//extension Jokes {
+//    // parse our Joke into [Joke] objects
+//    static func getJokes() -> [Joke] {
+//        var headlines = [Joke]()
+//        
+//        
+//    }
+//}

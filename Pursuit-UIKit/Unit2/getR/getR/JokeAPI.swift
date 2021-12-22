@@ -10,12 +10,13 @@ import Foundation
 class JokeAPI {
     static let manager = JokeAPI()
     
-    func getJokes(completionHandler: @escaping (Result<[Joke], JokeError>) -> Void) {
+    func getJokes(completionHandler: @escaping (Result<Jokes, JokeError>) -> Void) {
         NetworkHelper.manager.getData(from: jokesEndpoint) { (result) in
             switch result {
             case let .success(data):
                 do {
-                    let jokes = try JSONDecoder().decode([Joke].self, from: data)
+                    let jokes = try JSONDecoder().decode(Jokes.self, from: data)
+                    
                     completionHandler(.success(jokes))
                 } catch {
                     completionHandler(.failure(.jsonDecodingError(error)))
