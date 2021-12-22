@@ -64,4 +64,30 @@ DispatchQueue.main.sync {
     print(1)
 }
 //Crashes
+// This crashes because we tell swift to dispatch to the main queue synchronously. This will stop executing commands on the main queue but in order to continue execution, we need to run the code we've dispatched. We'll be stuck forever here so the program is aborted. This is known as deadlock
+```
+
+## Using GCD (example2)
+
+```swift
+class ViewController: UIViewController {
+
+    @IBOutlet weak var imageView: UIImageView!
+
+    func loadImage() {
+        let urlStr = "https://apod.nasa.gov/apod/image/1711/OrionDust_Battistella_1824.jpg"
+        guard let url = URL(string: urlStr) else { return }
+        let data = try! Data(contentsOf: url)
+        let onlineImage = UIImage(data: data)
+        print("setting image")
+        self.imageView.image = onlineImage
+        print("just dispatched back to main queue")
+    }
+
+    @IBAction func loadImageButtonPressed(_ sender: UIButton) {
+        loadImage()
+        print("just called load image")
+        sender.isEnabled = false
+    }
+}
 ```
