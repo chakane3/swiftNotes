@@ -264,4 +264,145 @@ struct RecipeAPI {
     
 # Testing our Network Request
 Recall the unit testing project
+<details>
+<summary>Unit test for network connection and count of return data</summary>
+
+```swift
+    import XCTest
+@testable import Recipies
+
+class RecipiesTests: XCTestCase {
     
+    // This test checks out our network connection
+    func testSearchChristmasCookies() {
+        
+        // arrgane
+        // come up with a possible search query such as Chicken, or Beef, etc
+        // addingPercentEncoding makes encodes the query (i.e spaces) to make it "url friendly"
+        let searchQuery = "tacos".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let exp = XCTestExpectation(description: "search found")
+        let recipeEndpoint = "https://api.edamam.com/search?q=\(searchQuery)&app_id=\(SecretKey.appID)&app_key=\(SecretKey.appKey)&from0&to=50"
+        
+        let request = URLRequest(url: URL(string: recipeEndpoint)!)
+        NetworkHelper.shared.performDataTask(with: request) { (result) in
+            switch result {
+            case.failure(let appError):
+                XCTFail("app error: \(appError)")
+            
+            case .success(let data):
+                // assert
+                exp.fulfill() // assert will never get called without this
+                XCTAssertGreaterThan(data.count, 600000, "data should be bigger than 600k bytes or \(data.count)")
+            }
+        }
+        // if we dont get our data in 5 seconds or less we just assume something is wrong
+        wait(for: [exp], timeout: 5.0)
+    }
+    
+    // This test checks if we can get 50 recipes back
+    func testFetchRecipes() {
+        //arrage
+        let expectedRecipeCount = 50
+        let exp = XCTestExpectation(description: "recipes found")
+        let searchQuery = "tacos".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        
+        // act
+        RecipeAPI.fetchRecipe(for: searchQuery) { (result) in
+            switch result {
+            case .failure(let appError):
+                XCTFail("appError: \(appError)")
+                
+                
+            case .success(let recipes):
+                exp.fulfill()
+                XCTAssertEqual(recipes.count, expectedRecipeCount)
+            }
+        }
+        wait(for: [exp], timeout: 5.0)
+    }
+}
+
+```
+</details>
+    
+# Extension to UIImageView
+<details>
+    <summary>extension file</summary>
+    
+```swift
+import Foundation
+import UIKit
+
+// we need to create an extension on UIImageView to have it implement our URLSession wrapper class
+
+extension UIImageView {
+    func getImage(with urlString: String, completion: @escaping (Result<UIImage, AppError>) -> ()) {
+        
+        // UIActivityIndicatorView is used to indicate to the user that a download is in progress
+        // we do this by using a subview
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .orange
+        activityIndicator.startAnimating()
+        activityIndicator.center = center
+        addSubview(activityIndicator)
+        
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.badURL(urlString)))
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        NetworkHelper.shared.performDataTask(with: request) { [weak activityIndicator] (result) in
+            DispatchQueue.main.async {
+                activityIndicator?.stopAnimating()
+            }
+            switch result {
+            case .failure(let appError):
+                completion(.failure(.networkClientError(appError)))
+                
+            case .success(let data):
+                if let image = UIImage(data: data) {
+                    completion(.success(image))
+                }
+            }
+        }
+    }
+}
+```
+</details>
+    
+# File for our tableview cell UI configuration
+<details>
+    <summary>RecipeCell</summary>
+```swift
+    import UIKit
+
+class RecipeCell: UITableViewCell {
+    @IBOutlet weak var recipeLabel: UILabel!
+    @IBOutlet weak var recipeImageView: UIImageView!
+    
+    func configureCell(for recipe: Recipe) {
+        recipeLabel.text = recipe.label
+        
+        // set the image for Recipe
+        // we need to use a capture list ([weak self] or [unowned self]) to break strong reference cycles
+        recipeImageView.getImage(with: recipe.image) { [weak self] (result) in
+            switch result {
+            case .failure:
+                DispatchQueue.main.async {
+                    self?.recipeImageView.image = UIImage(systemName: "exclamationmark.triangle")
+                }
+            case .success(let image):
+                // right now were in the global/background thread
+                // were on those threads because we have an async call which are done in the
+                // background thread and we need to dispatch our UI data to the main thread
+                DispatchQueue.main.async {
+                    self?.recipeImageView.image = image
+                }
+            }
+        }
+    }
+}
+```
+</details>
