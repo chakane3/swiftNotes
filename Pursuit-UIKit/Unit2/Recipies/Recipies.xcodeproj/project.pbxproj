@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9427309A2773F2D7005FE721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730992773F2D7005FE721 /* AppDelegate.swift */; };
 		9427309C2773F2D7005FE721 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427309B2773F2D7005FE721 /* SceneDelegate.swift */; };
-		9427309E2773F2D7005FE721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427309D2773F2D7005FE721 /* ViewController.swift */; };
+		9427309E2773F2D7005FE721 /* RecipeSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9427309D2773F2D7005FE721 /* RecipeSearchController.swift */; };
 		942730A12773F2D7005FE721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9427309F2773F2D7005FE721 /* Main.storyboard */; };
 		942730A32773F2DA005FE721 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 942730A22773F2DA005FE721 /* Assets.xcassets */; };
 		942730A62773F2DA005FE721 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 942730A42773F2DA005FE721 /* LaunchScreen.storyboard */; };
@@ -21,6 +21,8 @@
 		942730D42773FE34005FE721 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730D32773FE34005FE721 /* AppError.swift */; };
 		942730D62773FE8A005FE721 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730D52773FE8A005FE721 /* NetworkHelper.swift */; };
 		942730D8277402D9005FE721 /* RecipeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730D7277402D9005FE721 /* RecipeAPI.swift */; };
+		94A71A83277416BB00DE41EB /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A71A82277416BB00DE41EB /* UIImageView+Extensions.swift */; };
+		94A71A8527741A5100DE41EB /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A71A8427741A5100DE41EB /* RecipeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +46,7 @@
 		942730962773F2D7005FE721 /* Recipies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		942730992773F2D7005FE721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9427309B2773F2D7005FE721 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9427309D2773F2D7005FE721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9427309D2773F2D7005FE721 /* RecipeSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchController.swift; sourceTree = "<group>"; };
 		942730A02773F2D7005FE721 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		942730A22773F2DA005FE721 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		942730A52773F2DA005FE721 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,8 @@
 		942730D32773FE34005FE721 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		942730D52773FE8A005FE721 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		942730D7277402D9005FE721 /* RecipeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAPI.swift; sourceTree = "<group>"; };
+		94A71A82277416BB00DE41EB /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		94A71A8427741A5100DE41EB /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		942730982773F2D7005FE721 /* Recipies */ = {
 			isa = PBXGroup;
 			children = (
+				94A71A812774167B00DE41EB /* Extensions */,
 				942730D12773FE0A005FE721 /* Network Services */,
 				942730CC2773F612005FE721 /* Secrets */,
 				942730CB2773F340005FE721 /* Models */,
@@ -151,7 +156,8 @@
 		942730CA2773F335005FE721 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9427309D2773F2D7005FE721 /* ViewController.swift */,
+				9427309D2773F2D7005FE721 /* RecipeSearchController.swift */,
+				94A71A8427741A5100DE41EB /* RecipeCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -180,6 +186,14 @@
 				942730D7277402D9005FE721 /* RecipeAPI.swift */,
 			);
 			path = "Network Services";
+			sourceTree = "<group>";
+		};
+		94A71A812774167B00DE41EB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				94A71A82277416BB00DE41EB /* UIImageView+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,9 +328,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				942730D62773FE8A005FE721 /* NetworkHelper.swift in Sources */,
-				9427309E2773F2D7005FE721 /* ViewController.swift in Sources */,
+				9427309E2773F2D7005FE721 /* RecipeSearchController.swift in Sources */,
 				942730CE2773F62A005FE721 /* Secrets.swift in Sources */,
+				94A71A83277416BB00DE41EB /* UIImageView+Extensions.swift in Sources */,
 				942730D42773FE34005FE721 /* AppError.swift in Sources */,
+				94A71A8527741A5100DE41EB /* RecipeCell.swift in Sources */,
 				942730D8277402D9005FE721 /* RecipeAPI.swift in Sources */,
 				942730D02773F97E005FE721 /* RecipeModel.swift in Sources */,
 				9427309A2773F2D7005FE721 /* AppDelegate.swift in Sources */,
