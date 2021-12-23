@@ -325,7 +325,7 @@ class RecipiesTests: XCTestCase {
 ```
 </details>
     
-## Extension to UIImageView
+# Extension to UIImageView
 <details>
     <summary>extension file</summary>
     
@@ -372,7 +372,7 @@ extension UIImageView {
 ```
 </details>
     
-## File for our tableview cell UI configuration
+# File for our tableview cell UI configuration
 <details>
     <summary>RecipeCell</summary>
 ```swift
