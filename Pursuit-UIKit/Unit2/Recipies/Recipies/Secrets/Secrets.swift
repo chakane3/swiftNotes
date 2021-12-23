@@ -8,6 +8,6 @@
 import Foundation
 
 struct SecretKey {
-    let appID = "981b3be6"
-    let appKey = "cad9975c876fa2c3b37657ca47348e50"
+    static let appID = "981b3be6"
+    static let appKey = "cad9975c876fa2c3b37657ca47348e50"
 }
