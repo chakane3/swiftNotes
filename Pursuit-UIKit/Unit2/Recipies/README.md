@@ -126,3 +126,6 @@ We have to modify it so we can give it some arguments to get the data we want. T
 
 We would need a model that has a list of hits. Each hit has a recipe in which we only need the label and image.
 
+## The UI
+<img
+
