@@ -375,6 +375,7 @@ extension UIImageView {
 # File for our tableview cell UI configuration
 <details>
     <summary>RecipeCell</summary>
+    
 ```swift
     import UIKit
 
@@ -404,14 +405,18 @@ class RecipeCell: UITableViewCell {
         }
     }
 }
+    
 ```
+    
 </details>
     
-# VC
+# Recipe ViewController
+    
 <details>
     <summary>View controller</summary>
     
 ```swift
+    
 import UIKit
 
 class RecipeSearchController: UIViewController {
