@@ -324,3 +324,85 @@ class RecipiesTests: XCTestCase {
 
 ```
 </details>
+    
+## Extension to UIImageView
+<details>
+    <summary>extension file</summary>
+    
+```swift
+import Foundation
+import UIKit
+
+// we need to create an extension on UIImageView to have it implement our URLSession wrapper class
+
+extension UIImageView {
+    func getImage(with urlString: String, completion: @escaping (Result<UIImage, AppError>) -> ()) {
+        
+        // UIActivityIndicatorView is used to indicate to the user that a download is in progress
+        // we do this by using a subview
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .orange
+        activityIndicator.startAnimating()
+        activityIndicator.center = center
+        addSubview(activityIndicator)
+        
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.badURL(urlString)))
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        
+        NetworkHelper.shared.performDataTask(with: request) { [weak activityIndicator] (result) in
+            DispatchQueue.main.async {
+                activityIndicator?.stopAnimating()
+            }
+            switch result {
+            case .failure(let appError):
+                completion(.failure(.networkClientError(appError)))
+                
+            case .success(let data):
+                if let image = UIImage(data: data) {
+                    completion(.success(image))
+                }
+            }
+        }
+    }
+}
+```
+</details>
+    
+## File for our tableview cell UI configuration
+<details>
+    <summary>RecipeCell</summary>
+```swift
+    import UIKit
+
+class RecipeCell: UITableViewCell {
+    @IBOutlet weak var recipeLabel: UILabel!
+    @IBOutlet weak var recipeImageView: UIImageView!
+    
+    func configureCell(for recipe: Recipe) {
+        recipeLabel.text = recipe.label
+        
+        // set the image for Recipe
+        // we need to use a capture list ([weak self] or [unowned self]) to break strong reference cycles
+        recipeImageView.getImage(with: recipe.image) { [weak self] (result) in
+            switch result {
+            case .failure:
+                DispatchQueue.main.async {
+                    self?.recipeImageView.image = UIImage(systemName: "exclamationmark.triangle")
+                }
+            case .success(let image):
+                // right now were in the global/background thread
+                // were on those threads because we have an async call which are done in the
+                // background thread and we need to dispatch our UI data to the main thread
+                DispatchQueue.main.async {
+                    self?.recipeImageView.image = image
+                }
+            }
+        }
+    }
+}
+```
+</details>
