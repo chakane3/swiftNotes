@@ -6,8 +6,8 @@ To use your key in swift you need to create a swift object for it. In our case w
 
 ```swift
 struct SecretKey {
-    static let addId = "981b3be6"
-    static let appKey = "cad9975c876fa2c3b37657ca47348e50"
+    static let addId = "YOUR_APP_ID"
+    static let appKey = "YOUR_SECRET_KEY"
 }
 ```
 
