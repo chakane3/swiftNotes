@@ -16,6 +16,8 @@
 		942730B12773F2DA005FE721 /* RecipiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730B02773F2DA005FE721 /* RecipiesTests.swift */; };
 		942730BB2773F2DA005FE721 /* RecipiesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730BA2773F2DA005FE721 /* RecipiesUITests.swift */; };
 		942730BD2773F2DA005FE721 /* RecipiesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730BC2773F2DA005FE721 /* RecipiesUITestsLaunchTests.swift */; };
+		942730CE2773F62A005FE721 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730CD2773F62A005FE721 /* Secrets.swift */; };
+		942730D02773F97E005FE721 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942730CF2773F97E005FE721 /* RecipeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		942730B62773F2DA005FE721 /* RecipiesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipiesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		942730BA2773F2DA005FE721 /* RecipiesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipiesUITests.swift; sourceTree = "<group>"; };
 		942730BC2773F2DA005FE721 /* RecipiesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipiesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		942730CD2773F62A005FE721 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		942730CF2773F97E005FE721 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 		942730982773F2D7005FE721 /* Recipies */ = {
 			isa = PBXGroup;
 			children = (
+				942730CC2773F612005FE721 /* Secrets */,
 				942730CB2773F340005FE721 /* Models */,
 				942730CA2773F335005FE721 /* Controllers */,
 				942730C92773F311005FE721 /* Support Files */,
@@ -147,8 +152,17 @@
 		942730CB2773F340005FE721 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				942730CF2773F97E005FE721 /* RecipeModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		942730CC2773F612005FE721 /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				942730CD2773F62A005FE721 /* Secrets.swift */,
+			);
+			path = Secrets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,6 +297,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9427309E2773F2D7005FE721 /* ViewController.swift in Sources */,
+				942730CE2773F62A005FE721 /* Secrets.swift in Sources */,
+				942730D02773F97E005FE721 /* RecipeModel.swift in Sources */,
 				9427309A2773F2D7005FE721 /* AppDelegate.swift in Sources */,
 				9427309C2773F2D7005FE721 /* SceneDelegate.swift in Sources */,
 			);
