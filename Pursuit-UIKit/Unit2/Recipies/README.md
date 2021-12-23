@@ -126,3 +126,142 @@ We have to modify it so we can give it some arguments to get the data we want. T
 
 We would need a model that has a list of hits. Each hit has a recipe in which we only need the label and image.
 
+## The UI
+<img src="/Pursuit-UIKit/Unit2/Recipies/Assets/UI.png"></img>
+
+## Network Services
+
+<details>
+    <summary>Errors enum</summary>
+    
+```swift
+import Foundation
+
+enum AppError: Error {
+    case badURL(String)
+    case noResponse
+    case networkClientError(Error)
+    case noData
+    case decodingError(Error)
+    case badStatusCode(Int)
+    case badMimeType(String)
+}    
+```
+</details>
+
+<details>
+    <summary>URSession wrapper</summary>
+    
+```swift
+import Foundation
+
+// this is a different implementation of our URLSession wrapper (check github network request part 1)
+class NetworkHelper {
+    // singleton - this creates a shared instance of the network helper
+    static let shared = NetworkHelper()
+    
+    private var session: URLSession
+    
+    // we create a private initializer to prevent our instance of URLSession to be used outside this file.
+    private init() {
+        session = URLSession(configuration: .default)
+    }
+    
+    // This function takes in a request of type URLRequest
+    // Theres a closure of type: (Result<Data, AppError>) -> ())
+    // Result is a built in enum in swift which represents .success or .failure as an associated value
+    // We'll take in the URL, then call the completion handler passing in data or return a app error/ network error
+    
+    func performDataTask(with request: URLRequest, completion: @escaping (Result<Data, AppError>) -> ()) {
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            
+            // check for network client error
+            if let error = error  {
+                completion(.failure(.networkClientError(error)))
+            }
+            
+            // downcast URLResponse (response) to HTTPURLResponse to get
+            // access to the statusCode property on HTTPURLResponse
+            guard let urlResponse = response as? HTTPURLResponse else {
+                completion(.failure(.noResponse))
+                return
+            }
+            
+            // unwrap out data object
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            // check our status code
+            switch urlResponse.statusCode {
+            case 200...299: break
+            default:
+                completion(.failure(.badStatusCode(urlResponse.statusCode)))
+                return
+            }
+            
+            // if nothing went wrong, capture our data
+            completion(.success(data))
+        }
+        dataTask.resume()
+    }
+}
+
+```
+</details>
+    
+<details>
+    <summary>RecipeAPI</summary>
+    
+```swift
+import Foundation
+
+struct RecipeAPI {
+    
+    // this function takes in a search query of type string. This is what the user will enter in.
+    // It uses a completion handler to handle the network request as we compile our data
+    static func fetchRecipe(for searchQuery: String, completion: @escaping (Result<[Recipe], AppError>) -> ()) {
+        
+        // enables urls to have spaces
+        let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "or not"
+        
+        let recipeEndpoint = "https://api.edamam.com/search?q=\(searchQuery)&app_id=\(SecretKey.appID)&app_key=\(SecretKey.appKey)&from0&to=50"
+        
+        guard let url = URL(string: recipeEndpoint) else {
+            completion(.failure(.badURL(recipeEndpoint)))
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        NetworkHelper.shared.performDataTask(with: request) { (result) in
+            switch result {
+            case .failure(let appError):
+                completion(.failure(.networkClientError(appError)))
+            
+            case .success(let data):
+                do {
+                    let searchResults = try JSONDecoder().decode(RecipeSearch.self, from: data)
+                    
+                    // at this point we have the data that we need
+                    // we use our search results to create an array of recipies
+                    // we use "map" to transform our hits array into a [recipes] array
+                    // this is another example of a closure
+                    let recipes = searchResults.hits.map {$0.recipe}
+                    
+                    // capture the array of recipes in the completion handler
+                    completion(.success(recipes))
+                } catch {
+                    completion(.failure(.decodingError(error)))
+                }
+            }
+        }
+    }
+}
+
+```
+</details>
+    
+# Testing our Network Request
+Recall the unit testing project
+    
