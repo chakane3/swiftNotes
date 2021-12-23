@@ -406,3 +406,90 @@ class RecipeCell: UITableViewCell {
 }
 ```
 </details>
+    
+# VC
+<details>
+    <summary>View controller</summary>
+    
+```swift
+import UIKit
+
+class RecipeSearchController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    // setup our recipes data
+    var recipes = [Recipe]() {
+        didSet {
+            // we need this because URLSession goes to the background
+            // whenever we come from the background thread to update UI we use DispatchQueue
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        searchBar.delegate = self
+        searchRecipe(searchQuery: "tacos")
+        
+        // set the navigation bar title
+        navigationItem.title = "Recipe Search"
+    }
+    
+    // search function that takes in  a searchQuery and calls fetch recipe to make our network request for that query
+    func searchRecipe(searchQuery: String) {
+        RecipeAPI.fetchRecipe(for: searchQuery, completion: { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+                print("app error: \(appError)")
+                
+            // this puts us in the background thread
+            case .success(let recipes):
+                self?.recipes = recipes
+            }
+        })
+    }
+}
+
+extension RecipeSearchController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recipes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "foodCell", for: indexPath) as? RecipeCell else {
+            fatalError("check identity inspector or RecipeCell")
+        }
+        let recipe = recipes[indexPath.row]
+        cell.configureCell(for: recipe)
+        return cell
+    }
+}
+
+
+extension RecipeSearchController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 400
+    }
+}
+
+extension RecipeSearchController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // dismiss they keyboard when the user clicks on the search button
+        searchBar.resignFirstResponder()
+        
+        // unwrap searchBar.text
+        guard let searchText = searchBar.text else {
+            print("missing search text")
+            return
+        }
+        searchRecipe(searchQuery: searchText)
+    }
+}
+ 
+```
+</details>
