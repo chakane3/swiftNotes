@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		947459F4277ECB32000B707A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947459F3277ECB32000B707A /* AppDelegate.swift */; };
 		947459F6277ECB32000B707A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947459F5277ECB32000B707A /* SceneDelegate.swift */; };
-		947459F8277ECB32000B707A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947459F7277ECB32000B707A /* ViewController.swift */; };
 		947459FB277ECB32000B707A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 947459F9277ECB32000B707A /* Main.storyboard */; };
 		947459FD277ECB32000B707A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 947459FC277ECB32000B707A /* Assets.xcassets */; };
 		94745A00277ECB32000B707A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 947459FE277ECB32000B707A /* LaunchScreen.storyboard */; };
 		94745A0B277ECB32000B707A /* MusixMatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A0A277ECB32000B707A /* MusixMatchTests.swift */; };
 		94745A15277ECB32000B707A /* MusixMatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A14277ECB32000B707A /* MusixMatchUITests.swift */; };
 		94745A17277ECB32000B707A /* MusixMatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A16277ECB32000B707A /* MusixMatchUITestsLaunchTests.swift */; };
+		94745A26277ECFEE000B707A /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A25277ECFEE000B707A /* NetworkRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 		947459F0277ECB32000B707A /* MusixMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusixMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		947459F3277ECB32000B707A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		947459F5277ECB32000B707A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		947459F7277ECB32000B707A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		947459FA277ECB32000B707A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		947459FC277ECB32000B707A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		947459FF277ECB32000B707A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		94745A10277ECB32000B707A /* MusixMatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusixMatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94745A14277ECB32000B707A /* MusixMatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusixMatchUITests.swift; sourceTree = "<group>"; };
 		94745A16277ECB32000B707A /* MusixMatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusixMatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		94745A25277ECFEE000B707A /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +99,8 @@
 		947459F2277ECB32000B707A /* MusixMatch */ = {
 			isa = PBXGroup;
 			children = (
-				947459F3277ECB32000B707A /* AppDelegate.swift */,
-				947459F5277ECB32000B707A /* SceneDelegate.swift */,
-				947459F7277ECB32000B707A /* ViewController.swift */,
-				947459F9277ECB32000B707A /* Main.storyboard */,
-				947459FC277ECB32000B707A /* Assets.xcassets */,
-				947459FE277ECB32000B707A /* LaunchScreen.storyboard */,
+				94745A24277ECFD6000B707A /* NetworkRequest */,
+				94745A23277ECFB3000B707A /* Sources */,
 				94745A01277ECB32000B707A /* Info.plist */,
 			);
 			path = MusixMatch;
@@ -125,6 +121,26 @@
 				94745A16277ECB32000B707A /* MusixMatchUITestsLaunchTests.swift */,
 			);
 			path = MusixMatchUITests;
+			sourceTree = "<group>";
+		};
+		94745A23277ECFB3000B707A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				947459F3277ECB32000B707A /* AppDelegate.swift */,
+				947459F5277ECB32000B707A /* SceneDelegate.swift */,
+				947459F9277ECB32000B707A /* Main.storyboard */,
+				947459FC277ECB32000B707A /* Assets.xcassets */,
+				947459FE277ECB32000B707A /* LaunchScreen.storyboard */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		94745A24277ECFD6000B707A /* NetworkRequest */ = {
+			isa = PBXGroup;
+			children = (
+				94745A25277ECFEE000B707A /* NetworkRequest.swift */,
+			);
+			path = NetworkRequest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,8 +274,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				947459F8277ECB32000B707A /* ViewController.swift in Sources */,
 				947459F4277ECB32000B707A /* AppDelegate.swift in Sources */,
+				94745A26277ECFEE000B707A /* NetworkRequest.swift in Sources */,
 				947459F6277ECB32000B707A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
