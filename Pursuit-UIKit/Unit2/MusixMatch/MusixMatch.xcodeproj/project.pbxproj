@@ -16,6 +16,7 @@
 		94745A15277ECB32000B707A /* MusixMatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A14277ECB32000B707A /* MusixMatchUITests.swift */; };
 		94745A17277ECB32000B707A /* MusixMatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A16277ECB32000B707A /* MusixMatchUITestsLaunchTests.swift */; };
 		94745A26277ECFEE000B707A /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A25277ECFEE000B707A /* NetworkRequest.swift */; };
+		94745A29277ED456000B707A /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A28277ED456000B707A /* SecretKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		94745A14277ECB32000B707A /* MusixMatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusixMatchUITests.swift; sourceTree = "<group>"; };
 		94745A16277ECB32000B707A /* MusixMatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusixMatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		94745A25277ECFEE000B707A /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		94745A28277ED456000B707A /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		947459F2277ECB32000B707A /* MusixMatch */ = {
 			isa = PBXGroup;
 			children = (
+				94745A27277ED448000B707A /* Secrets */,
 				94745A24277ECFD6000B707A /* NetworkRequest */,
 				94745A23277ECFB3000B707A /* Sources */,
 				94745A01277ECB32000B707A /* Info.plist */,
@@ -141,6 +144,14 @@
 				94745A25277ECFEE000B707A /* NetworkRequest.swift */,
 			);
 			path = NetworkRequest;
+			sourceTree = "<group>";
+		};
+		94745A27277ED448000B707A /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				94745A28277ED456000B707A /* SecretKey.swift */,
+			);
+			path = Secrets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				947459F4277ECB32000B707A /* AppDelegate.swift in Sources */,
+				94745A29277ED456000B707A /* SecretKey.swift in Sources */,
 				94745A26277ECFEE000B707A /* NetworkRequest.swift in Sources */,
 				947459F6277ECB32000B707A /* SceneDelegate.swift in Sources */,
 			);
