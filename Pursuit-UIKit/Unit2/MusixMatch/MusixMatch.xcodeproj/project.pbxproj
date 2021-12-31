@@ -17,6 +17,8 @@
 		94745A17277ECB32000B707A /* MusixMatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A16277ECB32000B707A /* MusixMatchUITestsLaunchTests.swift */; };
 		94745A26277ECFEE000B707A /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A25277ECFEE000B707A /* NetworkRequest.swift */; };
 		94745A29277ED456000B707A /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A28277ED456000B707A /* SecretKey.swift */; };
+		94745A2C277ED93B000B707A /* GetArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A2B277ED93B000B707A /* GetArtist.swift */; };
+		94745A31277EE20C000B707A /* ArtistSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94745A30277EE20C000B707A /* ArtistSearchController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		94745A16277ECB32000B707A /* MusixMatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusixMatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		94745A25277ECFEE000B707A /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		94745A28277ED456000B707A /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
+		94745A2B277ED93B000B707A /* GetArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtist.swift; sourceTree = "<group>"; };
+		94745A30277EE20C000B707A /* ArtistSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistSearchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,9 @@
 		947459F2277ECB32000B707A /* MusixMatch */ = {
 			isa = PBXGroup;
 			children = (
+				94745A32277EE7A5000B707A /* TableViewCell */,
+				94745A2D277EE1E2000B707A /* Controllers */,
+				94745A2A277ED6C9000B707A /* Models */,
 				94745A27277ED448000B707A /* Secrets */,
 				94745A24277ECFD6000B707A /* NetworkRequest */,
 				94745A23277ECFB3000B707A /* Sources */,
@@ -152,6 +159,29 @@
 				94745A28277ED456000B707A /* SecretKey.swift */,
 			);
 			path = Secrets;
+			sourceTree = "<group>";
+		};
+		94745A2A277ED6C9000B707A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				94745A2B277ED93B000B707A /* GetArtist.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		94745A2D277EE1E2000B707A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				94745A30277EE20C000B707A /* ArtistSearchController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		94745A32277EE7A5000B707A /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,8 +315,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94745A31277EE20C000B707A /* ArtistSearchController.swift in Sources */,
 				947459F4277ECB32000B707A /* AppDelegate.swift in Sources */,
 				94745A29277ED456000B707A /* SecretKey.swift in Sources */,
+				94745A2C277ED93B000B707A /* GetArtist.swift in Sources */,
 				94745A26277ECFEE000B707A /* NetworkRequest.swift in Sources */,
 				947459F6277ECB32000B707A /* SceneDelegate.swift in Sources */,
 			);

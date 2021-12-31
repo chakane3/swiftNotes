@@ -9,28 +9,22 @@ import XCTest
 @testable import MusixMatch
 
 class MusixMatchTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    
+    func testArtistQuery() {
+        let name = "John".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "nil"
+        let testEndpoint = "http://api.musixmatch.com/ws/1.1/artist.search?q_artist=\(name)&page_size=5&apikey=\(SecretKey.privateKey)"
+        let exp = XCTestExpectation(description: "data found!")
+        
+        NetworkRequest.shared.getData(from: testEndpoint) { (result) in
+            switch result {
+            case .failure(let networkError):
+                XCTFail("\(networkError)")
+            case .success(let data):
+                exp.fulfill()
+                XCTAssertGreaterThan(data.count, 2000)
+            }
         }
+        wait(for: [exp], timeout: 5.0)
     }
-
 }

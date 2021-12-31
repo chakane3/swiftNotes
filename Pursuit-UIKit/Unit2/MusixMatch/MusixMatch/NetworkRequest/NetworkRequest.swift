@@ -14,6 +14,7 @@ enum Errors: Error {
     case badURLResponse(Int)
     case responseError(Error)
     case noURLResponse
+    case networkClientError(Error) // no internet connection
 }
 
 class NetworkRequest {
@@ -43,8 +44,9 @@ class NetworkRequest {
         let dataTask = self.session.dataTask(with: url) { (data, response, error) in
             
             // used for any errors that can occur
+            // such as a client network error
             if let error = error {
-                completionHandler(.failure(.responseError(error)))
+                completionHandler(.failure(.networkClientError(error)))
                 return
             }
             
