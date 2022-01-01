@@ -36,6 +36,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Lgn-df-BWb" kind="show" id="HCf-ox-2Fr"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -64,7 +67,52 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1023.1884057971015" y="93.75"/>
+            <point key="canvasLocation" x="886" y="94"/>
+        </scene>
+        <!--Album list + search-->
+        <scene sceneID="OM2-Fn-kRA">
+            <objects>
+                <viewController id="Lgn-df-BWb" customClass="AlbumSearchController" customModule="MusixMatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="42U-7W-ET7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="FVt-83-bAy">
+                                <rect key="frame" x="0.0" y="191" width="414" height="671"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="e1Q-c8-hUy">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e1Q-c8-hUy" id="FYp-rJ-TwC">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="dG0-Ef-FQw">
+                                <rect key="frame" x="0.0" y="140" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bHk-8Y-cyy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FVt-83-bAy" firstAttribute="bottom" secondItem="bHk-8Y-cyy" secondAttribute="bottom" id="3BF-jS-tYw"/>
+                            <constraint firstItem="FVt-83-bAy" firstAttribute="leading" secondItem="bHk-8Y-cyy" secondAttribute="leading" id="Imf-MS-8t8"/>
+                            <constraint firstItem="dG0-Ef-FQw" firstAttribute="top" secondItem="bHk-8Y-cyy" secondAttribute="top" id="JPG-Os-rUj"/>
+                            <constraint firstItem="FVt-83-bAy" firstAttribute="trailing" secondItem="bHk-8Y-cyy" secondAttribute="trailing" id="XR1-mo-eAt"/>
+                            <constraint firstItem="dG0-Ef-FQw" firstAttribute="trailing" secondItem="bHk-8Y-cyy" secondAttribute="trailing" id="bVU-7m-kfF"/>
+                            <constraint firstItem="FVt-83-bAy" firstAttribute="top" secondItem="dG0-Ef-FQw" secondAttribute="bottom" id="c8K-LY-Xkx"/>
+                            <constraint firstItem="dG0-Ef-FQw" firstAttribute="leading" secondItem="bHk-8Y-cyy" secondAttribute="leading" id="rvg-TE-ymW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Album list + search" id="aFW-6f-3a9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tc2-rd-Rnx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1672" y="94"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HH0-7O-4jT">

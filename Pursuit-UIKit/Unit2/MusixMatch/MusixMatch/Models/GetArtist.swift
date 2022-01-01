@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct Artists: Codable {
     let message: MessageBody
 }
@@ -21,7 +20,7 @@ struct ArtistsList: Codable {
 }
 
 struct Artist: Codable {
-    let artist: [ArtistInfo]
+    let artist: ArtistInfo
 }
 
 struct ArtistInfo: Codable {
@@ -32,9 +31,9 @@ struct ArtistInfo: Codable {
 
 
 extension Artists {
-    static func fetchArtists(for name: String, completionHandler: @escaping (Result<[ArtistInfo], Errors>) -> ()) {
+    static func fetchArtists(for name: String, completionHandler: @escaping (Result<[Artist], Errors>) -> ()) {
         let name = name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "nil"
-        let artistEndpoint = "http://api.musixmatch.com/ws/1.1/artist.search?q_artist=\(name)&page_size=5&apikey=\(SecretKey.privateKey)"
+        let artistEndpoint = "http://api.musixmatch.com/ws/1.1/artist.search?q_artist=\(name)&page_size=25&apikey=\(SecretKey.privateKey)"
         NetworkRequest.shared.getData(from: artistEndpoint) { (result) in
             switch result {
             case .failure(let networkError):
@@ -44,8 +43,8 @@ extension Artists {
                 
                 // decode our json
                 do {
-                    let artistInformation = try JSONDecoder().decode(Artist.self, from: data)
-                    completionHandler(.success(artistInformation.artist))
+                    let artistInformation = try JSONDecoder().decode(Artists.self, from: data)
+                    completionHandler(.success(artistInformation.message.body.artist_list))
                 } catch {
                     completionHandler(.failure(.decodingError(error)))
                 }

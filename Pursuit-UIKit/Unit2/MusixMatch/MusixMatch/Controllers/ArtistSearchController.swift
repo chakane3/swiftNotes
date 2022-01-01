@@ -13,7 +13,7 @@ class ArtistSearchController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var artists = [ArtistInfo]() {
+    var artists = [Artist]() {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -43,6 +43,15 @@ class ArtistSearchController: UIViewController {
             }
         })
     }
+    
+    // send over our artistID to a the artistAlbumSearch view controller view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let albumSearchController = segue.destination as? AlbumSearchController, let indexPath = tableView.indexPathForSelectedRow else {
+            fatalError("could not get an instance of albumSeachController, verify class name in the identify inspector")
+        }
+        let artistID = artists[indexPath.row]
+        albumSearchController.artistID = artistID.artist.artist_id
+    }
 }
 
 // MARK: - Tableview datasource methods
@@ -55,7 +64,8 @@ extension ArtistSearchController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "artistCell", for: indexPath)
         
         let artist = artists[indexPath.row]
-        cell.textLabel?.text = artist.artist_name
+        cell.textLabel?.text = artist.artist.artist_name
+        print(artist.artist.artist_id)
         return cell
     }
 }
@@ -74,3 +84,4 @@ extension ArtistSearchController: UISearchBarDelegate {
         loadData(for: searchText)
     }
 }
+
