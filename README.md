@@ -13,4 +13,4 @@ In this repo are all the projects to help me document my learning
 | <a href="https://github.com/chakane3/swiftNotes/tree/main/Pursuit-UIKit/Unit2/concurrency">concurrency-GCD</a> | Intro to combine framework, concurrency, granf central dispatch. App to load images |
 | <a href="https://github.com/chakane3/swiftNotes/tree/main/Pursuit-UIKit/Unit2/Recipies">Recipies</a> | Implement topics from previous projects: search bar, network requests, APIKeys, concurrency, etc | [<a href="https://github.com/chakane3/takeHome">takeHome</a>, <a href="https://github.com/chakane3/swiftNotes/tree/main/Pursuit-UIKit/Unit2/MusixMatch">MusicxMatch</a>, <a href="https://github.com/chakane3/MetMobile">MetAPI"</a>  ] |
 | ™ | ™ |
-| Intermediate topics| Data Persistence, Collection Views, UIImagePickerViewController, Stacks, Generics, Queues, Recursion, Animation ||
+| Intermediate topics| Data Persistence, Collection Views, UIImagePickerViewController, Data structures intro, Animation ||
