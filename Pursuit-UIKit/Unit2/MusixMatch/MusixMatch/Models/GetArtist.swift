@@ -17,7 +17,7 @@ struct MessageBody: Codable {
 }
 
 struct ArtistsList: Codable {
-    let artist_list: Artist
+    let artist_list: [Artist]
 }
 
 struct Artist: Codable {
@@ -44,13 +44,12 @@ extension Artists {
                 
                 // decode our json
                 do {
-                    let artistInformation = try JSONDecoder().decode(Artists.self, from: data)
-                    completionHandler(.success(artistInformation.message.body.artist_list.artist))
+                    let artistInformation = try JSONDecoder().decode(Artist.self, from: data)
+                    completionHandler(.success(artistInformation.artist))
                 } catch {
                     completionHandler(.failure(.decodingError(error)))
                 }
             }
         }
-        
     }
 }

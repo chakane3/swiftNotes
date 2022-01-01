@@ -14,7 +14,7 @@ enum Errors: Error {
     case badURLResponse(Int)
     case responseError(Error)
     case noURLResponse
-    case networkClientError(Error) // no internet connection
+    case networkClientError(Error) // no internet connection0
 }
 
 class NetworkRequest {
