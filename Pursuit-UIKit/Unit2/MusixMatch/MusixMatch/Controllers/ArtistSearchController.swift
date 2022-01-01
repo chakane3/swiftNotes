@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum SearchScope {
+    case albumName
+    case releaseDate
+}
+
 class ArtistSearchController: UIViewController {
     
     // MARK: - Outlets and Properties

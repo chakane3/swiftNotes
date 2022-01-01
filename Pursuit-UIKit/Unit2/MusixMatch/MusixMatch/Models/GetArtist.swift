@@ -8,10 +8,10 @@
 import Foundation
 
 struct Artists: Codable {
-    let message: MessageBody
+    let message: ArtistMessageBody
 }
 
-struct MessageBody: Codable {
+struct ArtistMessageBody: Codable {
     let body: ArtistsList
 }
 
@@ -31,7 +31,10 @@ struct ArtistInfo: Codable {
 
 
 extension Artists {
+    // the input here is a string
     static func fetchArtists(for name: String, completionHandler: @escaping (Result<[Artist], Errors>) -> ()) {
+        
+        
         let name = name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "nil"
         let artistEndpoint = "http://api.musixmatch.com/ws/1.1/artist.search?q_artist=\(name)&page_size=25&apikey=\(SecretKey.privateKey)"
         NetworkRequest.shared.getData(from: artistEndpoint) { (result) in
