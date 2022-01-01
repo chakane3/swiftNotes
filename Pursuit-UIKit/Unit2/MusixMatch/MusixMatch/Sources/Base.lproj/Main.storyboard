@@ -123,6 +123,7 @@
                                             <outlet property="albumArtist" destination="Um0-WV-h7U" id="cDu-JM-SoR"/>
                                             <outlet property="albumName" destination="F8e-vI-5Eu" id="lEQ-fK-3aI"/>
                                             <outlet property="albumReleaseDate" destination="D21-Cl-k8b" id="jcl-1P-Bfc"/>
+                                            <segue destination="Kbz-Q7-DVp" kind="show" id="4xT-ps-ijO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -166,15 +167,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Aup-VP-1dI">
-                                <rect key="frame" x="0.0" y="171" width="414" height="691"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="dGL-ZS-NOS">
+                                <rect key="frame" x="0.0" y="140" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Aup-VP-1dI">
+                                <rect key="frame" x="0.0" y="191" width="414" height="671"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="tRZ-4k-ugv">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tRZ-4k-ugv" id="Awx-SS-T4e">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="izN-W6-fRj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dGL-ZS-NOS" firstAttribute="top" secondItem="izN-W6-fRj" secondAttribute="top" id="1uD-gH-0dX"/>
+                            <constraint firstItem="Aup-VP-1dI" firstAttribute="top" secondItem="dGL-ZS-NOS" secondAttribute="bottom" id="4IM-gn-cV9"/>
+                            <constraint firstItem="Aup-VP-1dI" firstAttribute="trailing" secondItem="izN-W6-fRj" secondAttribute="trailing" id="8LF-u3-5L9"/>
+                            <constraint firstItem="dGL-ZS-NOS" firstAttribute="trailing" secondItem="izN-W6-fRj" secondAttribute="trailing" id="A1X-cp-HL9"/>
+                            <constraint firstItem="dGL-ZS-NOS" firstAttribute="leading" secondItem="izN-W6-fRj" secondAttribute="leading" id="DjA-CB-Ta2"/>
+                            <constraint firstItem="Aup-VP-1dI" firstAttribute="bottom" secondItem="izN-W6-fRj" secondAttribute="bottom" id="LPv-01-2NW"/>
+                            <constraint firstItem="Aup-VP-1dI" firstAttribute="leading" secondItem="izN-W6-fRj" secondAttribute="leading" id="lTz-qh-yKb"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="1kn-cg-PbG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cr1-C7-uYa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
