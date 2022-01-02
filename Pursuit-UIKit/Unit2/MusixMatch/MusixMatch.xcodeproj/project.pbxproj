@@ -25,7 +25,6 @@
 		94AB397727801474000B2295 /* GetArtistAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB397627801474000B2295 /* GetArtistAlbum.swift */; };
 		94AB397B278014B0000B2295 /* AlbumSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB397A278014B0000B2295 /* AlbumSearchController.swift */; };
 		94AB397D2780208E000B2295 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB397C2780208E000B2295 /* AlbumCell.swift */; };
-		94AB397F278033CC000B2295 /* AlbumDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB397E278033CC000B2295 /* AlbumDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +67,6 @@
 		94AB397627801474000B2295 /* GetArtistAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtistAlbum.swift; sourceTree = "<group>"; };
 		94AB397A278014B0000B2295 /* AlbumSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSearchController.swift; sourceTree = "<group>"; };
 		94AB397C2780208E000B2295 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
-		94AB397E278033CC000B2295 /* AlbumDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,7 +188,6 @@
 			children = (
 				94745A30277EE20C000B707A /* ArtistSearchController.swift */,
 				94AB397A278014B0000B2295 /* AlbumSearchController.swift */,
-				94AB397E278033CC000B2295 /* AlbumDetailController.swift */,
 				946209CF2781296900CFB031 /* TrackListController.swift */,
 			);
 			path = Controllers;
@@ -347,7 +344,6 @@
 				94745A26277ECFEE000B707A /* NetworkRequest.swift in Sources */,
 				946209D227812F8200CFB031 /* GetAlbumTracks.swift in Sources */,
 				947459F6277ECB32000B707A /* SceneDelegate.swift in Sources */,
-				94AB397F278033CC000B2295 /* AlbumDetailController.swift in Sources */,
 				94AB397D2780208E000B2295 /* AlbumCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

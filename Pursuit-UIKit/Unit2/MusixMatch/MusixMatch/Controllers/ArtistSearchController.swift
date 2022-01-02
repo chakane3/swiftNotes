@@ -65,7 +65,6 @@ extension ArtistSearchController: UITableViewDataSource {
         
         let artist = artists[indexPath.row]
         cell.textLabel?.text = artist.artist.artist_name
-        print(artist.artist.artist_id)
         return cell
     }
 }
