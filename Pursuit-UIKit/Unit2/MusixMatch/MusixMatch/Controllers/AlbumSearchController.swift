@@ -95,11 +95,11 @@ class AlbumSearchController: UIViewController {
     
     // send albumID to albumDetail ViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let albumDetailVC = segue.destination as? AlbumDetailController, let indexPath = tableView.indexPathForSelectedRow else {
+        guard let trackListVC = segue.destination as? TrackListController, let indexPath = tableView.indexPathForSelectedRow else {
             fatalError("identty inspector on detail controller")
         }
         let album = albums[indexPath.row]
-        albumDetailVC.albumID = album.album.album_id
+        trackListVC.albumID = album.album.album_id
     }
 }
 
@@ -154,6 +154,6 @@ extension AlbumSearchController: UITableViewDataSource {
 
 extension AlbumSearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 100
     }
 }
