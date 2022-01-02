@@ -16,7 +16,6 @@ class TrackListController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-            
         }
     }
     
@@ -41,6 +40,7 @@ class TrackListController: UIViewController {
 }
 
 extension TrackListController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tracks.count
     }
@@ -51,6 +51,7 @@ extension TrackListController: UITableViewDataSource {
         }
         let track = tracks[indexPath.row]
         cell.configureCell(for: track)
+        navigationItem.title = track.track.album_name
         return cell
     }
 }

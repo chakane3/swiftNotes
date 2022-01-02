@@ -148,6 +148,7 @@ extension AlbumSearchController: UITableViewDataSource {
         }
         let album = albums[indexPath.row]
         cell.configureCell(for: album)
+        navigationItem.title = album.album.artist_name
         return cell
     }
 }
