@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9463783D27832DD300223FE2 /* DogAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9463783C27832DD300223FE2 /* DogAPIClient.swift */; };
+		9463784027832E1800223FE2 /* DogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9463783F27832E1800223FE2 /* DogModel.swift */; };
+		9463784227832F7B00223FE2 /* DogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9463784127832F7B00223FE2 /* DogCell.swift */; };
 		9486267527817ED00041849D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9486267427817ED00041849D /* AppDelegate.swift */; };
 		9486267727817ED00041849D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9486267627817ED00041849D /* SceneDelegate.swift */; };
 		9486267927817ED00041849D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9486267827817ED00041849D /* ViewController.swift */; };
@@ -38,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9463783C27832DD300223FE2 /* DogAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogAPIClient.swift; sourceTree = "<group>"; };
+		9463783F27832E1800223FE2 /* DogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogModel.swift; sourceTree = "<group>"; };
+		9463784127832F7B00223FE2 /* DogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCell.swift; sourceTree = "<group>"; };
 		9486267127817ED00041849D /* CollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9486267427817ED00041849D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9486267627817ED00041849D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,10 +86,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9463783B27832D9F00223FE2 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				9486267D27817ED10041849D /* Assets.xcassets */,
+				9486267A27817ED00041849D /* Main.storyboard */,
+				9486267627817ED00041849D /* SceneDelegate.swift */,
+				9486267427817ED00041849D /* AppDelegate.swift */,
+				9486267F27817ED10041849D /* LaunchScreen.storyboard */,
+			);
+			path = "Source Files";
+			sourceTree = "<group>";
+		};
+		9463783E27832E0E00223FE2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9463783F27832E1800223FE2 /* DogModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		9486266827817ED00041849D = {
 			isa = PBXGroup;
 			children = (
-				9486267327817ED00041849D /* CollectionView */,
+				9463783E27832E0E00223FE2 /* Models */,
+				948626A427817FC10041849D /* Network Request */,
+				9486267327817ED00041849D /* Views */,
+				9463783B27832D9F00223FE2 /* Source Files */,
+				948626A92781847B0041849D /* ImgKitExtension */,
+				9486268227817ED10041849D /* Info.plist */,
 				9486268A27817ED10041849D /* CollectionViewTests */,
 				9486269427817ED10041849D /* CollectionViewUITests */,
 				9486267227817ED00041849D /* Products */,
@@ -100,20 +131,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9486267327817ED00041849D /* CollectionView */ = {
+		9486267327817ED00041849D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				948626A92781847B0041849D /* ImgKitExtension */,
-				948626A427817FC10041849D /* Network Request */,
-				9486267427817ED00041849D /* AppDelegate.swift */,
-				9486267627817ED00041849D /* SceneDelegate.swift */,
 				9486267827817ED00041849D /* ViewController.swift */,
-				9486267A27817ED00041849D /* Main.storyboard */,
-				9486267D27817ED10041849D /* Assets.xcassets */,
-				9486267F27817ED10041849D /* LaunchScreen.storyboard */,
-				9486268227817ED10041849D /* Info.plist */,
+				9463784127832F7B00223FE2 /* DogCell.swift */,
 			);
-			path = CollectionView;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		9486268A27817ED10041849D /* CollectionViewTests */ = {
@@ -137,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				948626A727817FEC0041849D /* NetworkRequest.swift */,
+				9463783C27832DD300223FE2 /* DogAPIClient.swift */,
 			);
 			path = "Network Request";
 			sourceTree = "<group>";
@@ -282,7 +307,10 @@
 			files = (
 				9486267927817ED00041849D /* ViewController.swift in Sources */,
 				9486267527817ED00041849D /* AppDelegate.swift in Sources */,
+				9463784227832F7B00223FE2 /* DogCell.swift in Sources */,
+				9463783D27832DD300223FE2 /* DogAPIClient.swift in Sources */,
 				948626AB278184910041849D /* UIImage+Extensions.swift in Sources */,
+				9463784027832E1800223FE2 /* DogModel.swift in Sources */,
 				948626A827817FEC0041849D /* NetworkRequest.swift in Sources */,
 				9486267727817ED00041849D /* SceneDelegate.swift in Sources */,
 			);

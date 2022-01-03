@@ -31,7 +31,7 @@ extension UIImageView {
         
         let request = URLRequest(url: url)
         
-        NetworkRequest.shared.performDataTask(with: request) { [weak activityIndicator, weak self] (result) in
+        NetworkRequest.shared.performDataTask(with: request) { [weak activityIndicator] (result) in
             DispatchQueue.main.async {
                 activityIndicator?.stopAnimating()
             }
@@ -41,7 +41,7 @@ extension UIImageView {
                 completion(.failure(.networkClientError(appError)))
             case .success(let data):
                 if let image = UIImage(data: data) {
-                    completion(.success(data))
+                    completion(.success(image))
                 }
             }
         }
