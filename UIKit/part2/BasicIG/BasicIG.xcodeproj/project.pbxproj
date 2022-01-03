@@ -17,6 +17,9 @@
 		942E325A2782A95100B83690 /* BasicIGUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942E32592782A95100B83690 /* BasicIGUITests.swift */; };
 		942E325C2782A95100B83690 /* BasicIGUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942E325B2782A95100B83690 /* BasicIGUITestsLaunchTests.swift */; };
 		942E32712782AED900B83690 /* ImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942E32702782AED900B83690 /* ImageObject.swift */; };
+		942E32732782B39E00B83690 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942E32722782B39E00B83690 /* FileManager+Extensions.swift */; };
+		942E32752782B47C00B83690 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942E32742782B47C00B83690 /* Persistence.swift */; };
+		942E32772782B83E00B83690 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942E32762782B83E00B83690 /* ImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		942E32592782A95100B83690 /* BasicIGUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicIGUITests.swift; sourceTree = "<group>"; };
 		942E325B2782A95100B83690 /* BasicIGUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicIGUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		942E32702782AED900B83690 /* ImageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageObject.swift; sourceTree = "<group>"; };
+		942E32722782B39E00B83690 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
+		942E32742782B47C00B83690 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		942E32762782B83E00B83690 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +157,8 @@
 		942E326B2782ADC400B83690 /* DataPersistence */ = {
 			isa = PBXGroup;
 			children = (
+				942E32722782B39E00B83690 /* FileManager+Extensions.swift */,
+				942E32742782B47C00B83690 /* Persistence.swift */,
 			);
 			path = DataPersistence;
 			sourceTree = "<group>";
@@ -158,6 +166,7 @@
 		942E326C2782ADDA00B83690 /* TVCell */ = {
 			isa = PBXGroup;
 			children = (
+				942E32762782B83E00B83690 /* ImageCell.swift */,
 			);
 			path = TVCell;
 			sourceTree = "<group>";
@@ -303,7 +312,10 @@
 			files = (
 				942E323D2782A95000B83690 /* ViewController.swift in Sources */,
 				942E32392782A95000B83690 /* AppDelegate.swift in Sources */,
+				942E32732782B39E00B83690 /* FileManager+Extensions.swift in Sources */,
+				942E32752782B47C00B83690 /* Persistence.swift in Sources */,
 				942E32712782AED900B83690 /* ImageObject.swift in Sources */,
+				942E32772782B83E00B83690 /* ImageCell.swift in Sources */,
 				942E323B2782A95000B83690 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

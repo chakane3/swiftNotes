@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct ImageObject: Codable {
+    let imageData: Data
+    let date: Date
+    
+    // UUIS() is a universally unique value that can be used to identify types, interfaces, and other items.
+    var identifier = UUID().uuidString
+}
