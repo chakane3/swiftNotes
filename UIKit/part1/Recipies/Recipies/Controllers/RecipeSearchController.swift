@@ -82,4 +82,3 @@ extension RecipeSearchController: UISearchBarDelegate {
         searchRecipes(searchQuery: searchText)
     }
 }
-
