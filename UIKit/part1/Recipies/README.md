@@ -127,7 +127,7 @@ We have to modify it so we can give it some arguments to get the data we want. T
 We would need a model that has a list of hits. Each hit has a recipe in which we only need the label and image.
 
 ## The UI
-<img src="/Pursuit-UIKit/Unit2/Recipies/Assets/UI.png"></img>
+<img src="https://github.com/chakane3/swiftNotes/blob/main/UIKit/part1/Recipies/Assets/UI.png"></img>
 
 ## Network Services
 
