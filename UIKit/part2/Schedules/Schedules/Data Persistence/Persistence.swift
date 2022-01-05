@@ -38,7 +38,7 @@ class Persistence {
     }
     
     // reordering
-    public static func reorderEvnets(events: [Event]) {
+    public static func reorderEvents(events: [Event]) {
         self.events = events
         try? save()
     }

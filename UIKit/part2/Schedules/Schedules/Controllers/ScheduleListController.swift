@@ -4,129 +4,135 @@
 //
 //  Created by Chakane Shegog on 1/3/22.
 //
-
 import UIKit
 
 class ScheduleListController: UIViewController {
-    weak var tableView: UITableView!
+  
+  @IBOutlet weak var tableView: UITableView!
+  
+  // data - an array of events
+  var events = [Event]()
+  
+  var isEditingTableView = false {
+    didSet { // property observer
+      // toggle editing mode of table view
+      tableView.isEditing = isEditingTableView
+      
+      // toggle bar button item's title between "Edit" and "Done"
+      navigationItem.leftBarButtonItem?.title = isEditingTableView ? "Done" : "Edit"
+    }
+  }
+  
+  lazy var dateFormatter:  DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "EEEE, MMM d, yyyy, hh:mm a"
+    formatter.timeZone = .current
+    return formatter
+  }()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    loadEvents()
+    tableView.dataSource = self
     
-    // array of events
-    var events = [Event]()
+    // print path to documents directory
+    print(FileManager.getDocumentsDirectory())
+  }
+  
+  private func loadEvents() {
+    do {
+      events = try Persistence.loadEvents()
+    } catch {
+      print("error loading events: \(error)")
+    }
+  }
+  
+  private func deleteEvent(indexPath: IndexPath) {
+    do {
+      try Persistence.delete(event: indexPath.row)
+    } catch {
+      print("error deleting event: \(error)")
+    }
+  }
+  
+  @IBAction func addNewEvent(segue: UIStoryboardSegue) {
+    // caveman debugging
     
-    var isEditingTableView = false {
-        didSet {
-            // toggle editing mode of the table view
-            tableView.isEditing = isEditingTableView
-            
-            // toggle bar button item;s title between edit and done
-            navigationItem.leftBarButtonItem?.title = isEditingTableView ? "Done" : "Edit"
-        }
+    // get a reference to the CreateEventController instance
+    guard let createEventController = segue.source as? CreateEventController,
+      let createdEvent = createEventController.event else {
+        fatalError("failed to access CreateEventController")
     }
     
-    lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, MMM, yyyy, hh:mm a"
-        formatter.timeZone = .current
-        return formatter
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadEvents()
-        tableView.dataSource = self
+    // persist (save) event to documents directory
+    do {
+      try Persistence.create(event: createdEvent) // adds event at the of array
+    } catch {
+      print("error saving event with error: \(error)")
     }
     
-    private func loadEvents() {
-        do {
-            events = try Persistence.loadEvents()
-        } catch {
-            print("error loading events: \(error)")
-        }
-    }
+    // insert new event into our events array
+    events.append(createdEvent)
     
-    private func deleteEvent(indexPath: IndexPath) {
-        do {
-            try Persistence.delete(event: indexPath.row)
-        } catch {
-            print("error deleting event: \(error)")
-        }
-    }
+    // create an indexPath to be inserted into the table view
+    let indexPath = IndexPath(row: events.count - 1, section: 0) // will represent top of table view
     
-    @IBAction func addNewEvent(segue: UIStoryboardSegue) {
-        
-        // get reference to the CreateEventController instance
-        guard let createEventController = segue.source as? CreateEventController, let createdEvent = createEventController.event else {
-            fatalError("failed to access CreateEventController")
-        }
-        
-        // persist event to documents directory
-        do {
-            try Persistence.create(event: createdEvent)
-        } catch {
-            print("error saving event: \(error)")
-        }
-        
-        // insert a new array into our events array
-        events.append(createdEvent)
-        
-        // create an index path to be inserted into the table view
-        let indexPath = IndexPath(row: events.count - 1, section: 0) // represents the top of the table view
-        
-        // we need to update the table view by using the indexPath to insert the event into the table view
-        tableView.insertRows(at: [indexPath], with: .automatic)
-    }
-    
-    
-    @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
-        isEditingTableView.toggle()
-    }
+    // 2. we need to update the table view
+    // use indexPath to insert into table view
+    tableView.insertRows(at: [indexPath], with: .automatic)
+  }
+  
+  @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
+    isEditingTableView.toggle() // changes a boolean value
+  }
 }
 
 extension ScheduleListController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return events.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
+    let event = events[indexPath.row]
+    cell.textLabel?.text = event.name
+    cell.detailTextLabel?.text = dateFormatter.string(from: event.date)
+    return cell
+  }
+  
+  // MARK:- deleting rows in a table view
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    switch editingStyle {
+    case .insert:
+      // only gets called if "insertion control" exist and gets selected
+      print("inserting....")
+    case .delete:
+      print("deleting..")
+      // 1. remove item for the data model e.g events
+      events.remove(at: indexPath.row) // remove event from events array
+      
+      deleteEvent(indexPath: indexPath)
+      
+      // 2. update the table view
+      tableView.deleteRows(at: [indexPath], with: .automatic)
+    default:
+      print("......")
     }
+  }
+  
+  // MARK:- reordering rows in a table view
+  func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    let eventToMove = events[sourceIndexPath.row] // save the event being moved
+    events.remove(at: sourceIndexPath.row)
+    events.insert(eventToMove, at: destinationIndexPath.row)
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
-        let event = events[indexPath.row]
-        cell.textLabel?.text = event.name
-        cell.detailTextLabel?.text = dateFormatter.string(from: event.date)
-        return cell
+    // re-save array in docuemnts directory
+    Persistence.reorderEvents(events: events)
+    do {
+      events = try Persistence.loadEvents()
+      tableView.reloadData()
+    } catch {
+      print("error loading events: \(error)")
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        switch editingStyle {
-        case .insert:
-            // this only gets called if "insertion control" exists and gets selected
-            print("inserting...")
-        case .delete:
-            print("deleting...")
-            
-            // remove the item from the data model
-            events.remove(at: indexPath.row)
-            deleteEvent(indexPath: indexPath)
-            
-            // update the table view
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        default:
-            print("...")
-        }
-    }
-    
-    // function for reordering
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let eventToMove = events[sourceIndexPath.row] // save the event being moved
-        events.remove(at: sourceIndexPath.row)
-        events.insert(eventToMove, at: destinationIndexPath.row)
-        
-        // re-save array in documents directory
-        Persistence.reorderEvnets(events: events)
-        do {
-            events = try Persistence.loadEvents()
-            tableView.reloadData()
-        } catch {
-            print("error loading events: \(error)")
-        }
-    }
+  }
 }

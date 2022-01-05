@@ -69,7 +69,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="328-HE-XhQ" id="UlU-B0-4uI"/>
+                        <outlet property="tableView" destination="328-HE-XhQ" id="DPG-gv-Odd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
