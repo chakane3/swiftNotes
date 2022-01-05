@@ -19,8 +19,12 @@ class Persistence {
     
     // array of events
     private static var events = [Event]()
+    
+    // setup the name of the file
     private static let filename = "schedules.plist"
     
+    
+    // this function wrties data to the plist file.
     private static func save() throws {
         let url = FileManager.pathToDocumentsDirectory(with: filename)
         
@@ -44,6 +48,7 @@ class Persistence {
     }
     
     // save item to documents directory
+    // this function help create a new entry in our file
     static func create(event: Event) throws {
         // append the new event to the events array
         events.append(event)
