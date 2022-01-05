@@ -34,8 +34,8 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="252"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJ0-Uf-hkn">
-                                                            <rect key="frame" x="20" y="107.5" width="374" height="37"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                            <rect key="frame" x="20" y="114.5" width="374" height="23"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
