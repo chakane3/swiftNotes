@@ -11,6 +11,6 @@ struct ImageObject: Codable {
     let imageData: Data
     let date: Date
     
-    // UUIS() is a universally unique value that can be used to identify types, interfaces, and other items.
-    var identifier = UUID().uuidString
+    // UUID() is a universally unique value that can be used to identify types, interfaces, and other items.
+    let identifier = UUID().uuidString
 }
