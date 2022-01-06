@@ -113,7 +113,7 @@
 				948626A427817FC10041849D /* Network Request */,
 				9486267327817ED00041849D /* Views */,
 				9463783B27832D9F00223FE2 /* Source Files */,
-				948626A92781847B0041849D /* ImgKitExtension */,
+				948626A92781847B0041849D /* Extensions */,
 				9486268227817ED10041849D /* Info.plist */,
 				9486268A27817ED10041849D /* CollectionViewTests */,
 				9486269427817ED10041849D /* CollectionViewUITests */,
@@ -166,12 +166,12 @@
 			path = "Network Request";
 			sourceTree = "<group>";
 		};
-		948626A92781847B0041849D /* ImgKitExtension */ = {
+		948626A92781847B0041849D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				948626AA278184910041849D /* UIImage+Extensions.swift */,
 			);
-			path = ImgKitExtension;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

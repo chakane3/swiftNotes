@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DogCell: UITableViewCell {
+class DogCell: UICollectionViewCell {
     @IBOutlet weak var dogImageView: UIImageView!
     
     public func configureCell(with dogImage: DogImage) {
