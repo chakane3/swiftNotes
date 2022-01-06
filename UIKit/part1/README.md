@@ -11,3 +11,8 @@ Using URLSession is highly asynchronous. We mainly use completion handlers which
 
 # URLRequest
 This encapsulates 2 properties of a "load request": (1) The URL to load, (2) The policies used to load it. URLRequest includes HTTP methods and headers.
+
+# Persistence
+We use UserDefaults to save a users data onto the app. UserDefaults is a class that provides a programmatic interface for interacting with the defaults system. This will let the user customize their preferences on the app. This class provides convienient methods for accessing common types such as floats, doubles, integers, Bools, and URLs.
+
+When you download an app onto your phone it comes with a set of files. The one we are interested in here is {appBundleName}.plist where we can store info in a key value lookup. To read from NSUserDefaults, we need to get a reference to it. This is done using a method that returns a reference to an object capable of interacting with NsUserDefaults data store. 
