@@ -21,6 +21,8 @@
 		94F211042786764C0079C2F2 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F211032786764C0079C2F2 /* UIImageView+Extensions.swift */; };
 		94F2110727867D180079C2F2 /* RandomUserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2110627867D180079C2F2 /* RandomUserList.swift */; };
 		94F2110A278683010079C2F2 /* RandomUserTVDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F21109278683010079C2F2 /* RandomUserTVDetail.swift */; };
+		94F2110C2786CA190079C2F2 /* RandomUserCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2110B2786CA190079C2F2 /* RandomUserCollection.swift */; };
+		94F2110E2786CB300079C2F2 /* RandomUserCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2110D2786CB300079C2F2 /* RandomUserCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		94F211032786764C0079C2F2 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		94F2110627867D180079C2F2 /* RandomUserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserList.swift; sourceTree = "<group>"; };
 		94F21109278683010079C2F2 /* RandomUserTVDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserTVDetail.swift; sourceTree = "<group>"; };
+		94F2110B2786CA190079C2F2 /* RandomUserCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserCollection.swift; sourceTree = "<group>"; };
+		94F2110D2786CB300079C2F2 /* RandomUserCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				94F2110627867D180079C2F2 /* RandomUserList.swift */,
+				94F2110B2786CA190079C2F2 /* RandomUserCollection.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				94F21109278683010079C2F2 /* RandomUserTVDetail.swift */,
+				94F2110D2786CB300079C2F2 /* RandomUserCollectionCell.swift */,
 			);
 			path = DetailControllers;
 			sourceTree = "<group>";
@@ -321,12 +327,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94F2110C2786CA190079C2F2 /* RandomUserCollection.swift in Sources */,
 				94F2110A278683010079C2F2 /* RandomUserTVDetail.swift in Sources */,
 				94F211012786747B0079C2F2 /* RandomUserAPI.swift in Sources */,
 				94F210C927866E390079C2F2 /* AppDelegate.swift in Sources */,
 				94F2110727867D180079C2F2 /* RandomUserList.swift in Sources */,
 				94F211042786764C0079C2F2 /* UIImageView+Extensions.swift in Sources */,
 				94F210FB27866ED00079C2F2 /* NetworkRequest.swift in Sources */,
+				94F2110E2786CB300079C2F2 /* RandomUserCollectionCell.swift in Sources */,
 				94F210CB27866E390079C2F2 /* SceneDelegate.swift in Sources */,
 				94F210FF278673380079C2F2 /* RandomUser.swift in Sources */,
 			);

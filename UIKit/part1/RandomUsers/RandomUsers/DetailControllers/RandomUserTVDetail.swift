@@ -19,8 +19,8 @@ class RandomUserTVDetail: UIViewController {
     }
     
     func updateUI() {
-        textField.text = "\(randomUser?.name.first ?? "")  \(randomUser?.name.last ?? "")"
-        textField.text = "\n\(randomUser?.location.city ?? ""), \(randomUser?.location.state ?? "") \(randomUser?.location.country ?? "")"
+        textField.text += "\(randomUser?.name.first ?? "")  \(randomUser?.name.last ?? "")"
+        textField.text += "\n\(randomUser?.location.city ?? ""), \(randomUser?.location.state ?? "") \(randomUser?.location.country ?? "")"
         
         // use our UIImaveView extension to make a request for image data
         imageView.getImage(with: randomUser?.picture.medium ?? "") { (result) in
