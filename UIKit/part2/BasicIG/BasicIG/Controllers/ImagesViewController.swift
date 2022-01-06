@@ -10,7 +10,7 @@ import AVFoundation
 
 class ImagesViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
-    private var imageObjets = [ImageObject]()
+    private var imageObjects = [ImageObject]()
     private let imagePickerController = UIImagePickerController()
     private let dataPersistence = PersistenceHelper(filename: "images.plist")
     
@@ -22,12 +22,15 @@ class ImagesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        imagePickerController.delegate = self
+        loadImageObjects()
     }
     
     private func loadImageObjects() {
         do {
-            imageObjets = try dataPersistence.loadItems()
+            imageObjects = try dataPersistence.loadItems()
         } catch {
             print("loading objects error: \(error)")
         }
@@ -56,7 +59,7 @@ class ImagesViewController: UIViewController {
         let imageObject = ImageObject(imageData: resizedImageData, date: Date())
         
         // insert new image object into image objects
-        imageObjets.insert(imageObject, at: 0)
+        imageObjects.insert(imageObject, at: 0)
         
         // create an index path for insertion into collection view
         let indexPath = IndexPath(row: 0, section: 0)
@@ -78,7 +81,7 @@ class ImagesViewController: UIViewController {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { [weak self] alertAction in
-            self?.showImageController(isCameraSelected: false) // 2
+            self?.showImageController(isCameraSelected: true) // 2
         }
         
         let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default) { [weak self] alertAction in
@@ -111,7 +114,7 @@ class ImagesViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension ImagesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageObjets.count
+        return imageObjects.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -120,7 +123,7 @@ extension ImagesViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCell else {
             fatalError("could not downcast to an ImageCell")
         }
-        let imageObject = imageObjets[indexPath.row]
+        let imageObject = imageObjects[indexPath.row]
         cell.configureCell(imageObject: imageObject)
         
         // (5) create custom delegation - set delegate object similar to tableview.delegate = self
@@ -163,15 +166,40 @@ extension ImagesViewController: ImageCellDelegate {
         guard let indexPath = collectionView.indexPath(for: imageCell) else {
             return
         }
+        
+        // present an action sheet
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] alertAction in
+            self?.deleteImageObject(indexPath: indexPath)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
     }
     
-    // present an action sheet
-    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//    let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] alertAction in
-//        self?.deleteImageObject(indexPath: indexPath)
-//    }
-//    let cancelAction UIAlertAction(title: "Cancel", style: .cancel)
-//    alertController.addAction(deleteAction)
-//    alertController.addAction(cancelAction)
-//    present(alertController, animated: true)
+    
+
+    
+    private func deleteImageObject(indexPath: IndexPath) {
+        dataPersistence.sync(items: imageObjects)
+        do {
+            imageObjects = try dataPersistence.loadItems()
+        } catch {
+            print("loading error: \(error)")
+        }
+        
+        // delete imageObject from imageObjects
+        imageObjects.remove(at: indexPath.row)
+        
+        // delete cell from collection view
+        collectionView.deleteItems(at: [indexPath])
+        
+        do {
+            // delete image object from documents directory
+            try dataPersistence.delete(item: indexPath.row)
+        } catch {
+            print("error deleting item: \(error)")
+        }
+    }
 }

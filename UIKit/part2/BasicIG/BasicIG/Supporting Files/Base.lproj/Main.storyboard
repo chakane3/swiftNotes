@@ -20,7 +20,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gq3-8i-34v">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem image="plus" catalog="system" width="502.5" id="qql-i6-IfR"/>
+                                    <barButtonItem image="plus" catalog="system" width="502.5" id="qql-i6-IfR">
+                                        <connections>
+                                            <action selector="addPictureButtonPressed:" destination="BYZ-38-t0r" id="9EE-oL-Ixl"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AgL-cx-6T7">
@@ -34,24 +38,27 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="tm0-Kz-EcG" customClass="ImageCell" customModule="BasicIG" customModuleProvider="target">
-                                        <rect key="frame" x="31" y="0.0" width="352" height="335"/>
+                                        <rect key="frame" x="72" y="0.0" width="270" height="280"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hBy-lI-RzI">
-                                            <rect key="frame" x="0.0" y="0.0" width="352" height="335"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="270" height="280"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hpp-Px-Bxi">
-                                                    <rect key="frame" x="0.0" y="1" width="352" height="332.5"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q6r-hj-oPf">
+                                                    <rect key="frame" x="0.0" y="0.0" width="270" height="280"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hpp-Px-Bxi" firstAttribute="leading" secondItem="hBy-lI-RzI" secondAttribute="leading" id="cOt-hD-HaT"/>
-                                                <constraint firstItem="hpp-Px-Bxi" firstAttribute="top" secondItem="hBy-lI-RzI" secondAttribute="top" id="iJV-XC-K4q"/>
-                                                <constraint firstAttribute="trailing" secondItem="hpp-Px-Bxi" secondAttribute="trailing" id="vgg-Yf-nLY"/>
-                                                <constraint firstAttribute="bottom" secondItem="hpp-Px-Bxi" secondAttribute="bottom" id="xDg-SL-CBa"/>
+                                                <constraint firstItem="Q6r-hj-oPf" firstAttribute="top" secondItem="hBy-lI-RzI" secondAttribute="top" id="0BP-pu-pOh"/>
+                                                <constraint firstItem="Q6r-hj-oPf" firstAttribute="leading" secondItem="hBy-lI-RzI" secondAttribute="leading" id="YiQ-6E-LBm"/>
+                                                <constraint firstAttribute="trailing" secondItem="Q6r-hj-oPf" secondAttribute="trailing" id="f5G-72-hVv"/>
+                                                <constraint firstAttribute="bottom" secondItem="Q6r-hj-oPf" secondAttribute="bottom" id="rF2-Jl-T33"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="352" height="335"/>
+                                        <size key="customSize" width="270" height="280"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="Q6r-hj-oPf" id="TPJ-Ag-QIZ"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -78,7 +85,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
