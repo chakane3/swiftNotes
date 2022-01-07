@@ -328,3 +328,101 @@ public class NetworkRequest {
 We use UserDefaults to save a users data onto the app. UserDefaults is a class that provides a programmatic interface for interacting with the defaults system. This will let the user customize their preferences on the app. This class provides convienient methods for accessing common types such as floats, doubles, integers, Bools, and URLs.
 
 When you download an app onto your phone it comes with a set of files. The one we are interested in here is {appBundleName}.plist where we can store info in a key value lookup. To read from NSUserDefaults, we need to get a reference to it. This is done using a method that returns a reference to an object capable of interacting with NsUserDefaults data store. 
+
+To let the user add their own prefrences we can do this.
+
+```swift
+import Function
+
+extension FileManager {
+
+    // this function grabs the users path to the documents directory
+    static func getDocumentsDirectory() -> URL {
+        return FileManager.default.urls(for: .documentsDirectory, in: .userDomainMask)[0]
+    }
+    
+    // this function appends the the plist file to the users directory
+    static func pathToDocumentsDirectory(with filename: String) -> URL {
+        return getDocumentsDirectory().appendingPathComponent(filename)
+    }
+}
+```
+
+```swift
+enum DataPersistenceError: Error {
+    case savingError(Error)
+    case fileDoesNotExist(String)
+    case noData
+    case decodingError(Error)
+    case deletingError(Error)
+}
+
+class Persistence {
+    
+    // Array of events
+    private static var dataArr = [SettingsModel]()
+    private static let filename = "userSettings.plist"
+    
+    // This function writes data to the plist file
+    private static func save() throws {
+        let url = FileManager.pathToDocumentsDirectory(with: filename)
+        
+        do {
+            // The "dataArr" property will be converted into a Data array.
+            // Then we'll write the Data object to the documents directory.
+            let data = try PropertyListEncoder().encode(dataArr)
+            try data.write(to: url, options: .atomic)
+        } catch {
+            
+            // If we cant encode dataArr we will run into an error in saving
+            throw DataPersistenceError.savingError(error)
+        }
+    }
+    
+    // reordering
+    public static func reorderData(dataArr: [SettingsModel]) {
+        self.dataArr = dataArr
+        try? save()
+    }
+    
+    // Save the item to the documents directory
+    // This function will help create a new entry in our file
+    static func create(dataArr: SettingsModel) throws {
+    
+        // append the new event to the events array
+        dataArr.append(event)
+         
+        do {
+            try save()
+        } catch {
+            throw DataPersistence.savingError(error)
+    }
+    
+    // load items from the documents directory
+    static func loadData() throws -> [SettingsModel] {
+    
+        // we need access to the filename URL that we're reading from
+        let url = FileManager.pathToDocumentsDirectory(with: filename)
+        
+        // check if the file exists
+        if FileManager.default.fileExists(atPath: url.path) {
+            if let data = FileManager.default.contents(atPath: url.path) {
+                do {
+                    dataArr = try PropertyListDecoder().decode([SettingsModel].self, from: data)
+                } catch {
+                    throw DataPersistenceError.decodingError(error)
+                }
+            } else {
+                throw DataPersistenceError.noData
+            }
+        } else {
+        throw DataPersisTenceError.fileDoesNotExist(filename)
+    }
+    return dataArr
+}
+```
+
+
+
+
+
