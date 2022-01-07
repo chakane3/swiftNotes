@@ -73,16 +73,18 @@ unit4A = Apartment(unit: "4A")
 
 // We can link the 2 instances together so that the person has an apartment and 
 // the apartment has a person. ! is used to force unwrap and access the instances
-// stored inside the optional variables so that the properties of those instances can be set
+// stored inside the optional variables so that the properties of those instances
+// can be set
 john!.apartment = unit4A
 unit4A!.tenant = john
 
 
 // At this point these 2 instances now have a strong reference cycle between them. 
-// Therefore when you set the instances to nil, the instances will not become deallocated by ARC
+// Therefore when you set the instances to nil, the instances will not become 
+// deallocated by ARC.
 
-// This causes a memory leak ***** because the refrence cycle prevents the instances from ever being
-// deallocated from memory. 
+// This causes a memory leak ***** because the refrence cycle prevents the instances 
+// from ever being deallocated from memory. 
 john = nil
 unit4A = nil
 
@@ -99,7 +101,59 @@ In our code example above we will change the "tenant" property to have a weak va
 Now when we set our "john" variable to nil, the deinitializer message will print, meaning there are no more strong references to the Person instance. We can then set "unit4A" to nil (breaking the strong reference) and the deinitializer message will get printed. And now becasue we broke both the strong references of our instances, both of them are deallocated. 
 
 #### Unowned References
+These also dont keep a strong hold on the instance it refers to, however, its used when the other instance has the same lifetime or a longer lifetime. Also, unowned references are always expected to have a value (non-optional value), therefore, ARC never sets and unowned reference's value to nil. We should only use unowned when we are sure that the reference always refer to an instance that hasnt been deallocated.
 
+```swift
+
+// In this data model, a customer may or may not have a credit card but a credit card 
+// will ALWAYS be associated with a customer. To represent this, the Customer class has
+// an optional card property, but the credit card class has an unowned "customer" property. 
+// This ensures that a CreditCard instance will always have a customer instance associated 
+// with it when the CreditCard instance is created. Because a credit card will always have
+// a customer, it has an unowned reference to avoid a strong reference cycle. 
+
+class Customer {
+    let name: String
+    var card: CreditCard?
+    init(name: String) {
+        self.name = name
+    }
+    deinit { print("\(name) is being deinitialized") }
+}
+
+class CreditCard {
+    let number: UInt64
+    unowned let customer: Customer
+    
+    // We use UInt64 to ensure the number property capacity is large enough to
+    // hold a 16-digit card number on both 32 and 64 bit systems
+    init(number: UInt64, customer: Customer) {
+        self.number = number
+        self.customer = customer
+    }
+    deinit { print("Card #\(number) is being deinitialized") }
+}
+
+// Here we define an optional Customer called john which will be used to store a 
+// reference to a speciic customer.
+var john: Customer?
+
+// You can now create a Customer instance and use it to intialize and assign a new 
+// CreditCard instance as that customer's card property. 
+john = Customer(name: "John Appleseed")
+john!.card = CreditCard(number: 1234_5678_9101_1121, customer: john!)
+
+// Now the Customer instance has a strong reference to the CreditCard instance, 
+// and the CreditCard instance has an unowned reference to the Customer instance.
+
+// Becase of the unowned customer reference, when you break the strong reference 
+// held by the john variable there are no more strong references to the Customer instance. 
+
+// Because theres no more strong references to the Customer instance, it's deallocated. 
+// And therefore the CreditCard instance is also deallocated.
+```
+
+#### Strong Referece Cycles for Closures
 
 
 # URLSession
