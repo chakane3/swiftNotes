@@ -408,6 +408,7 @@ class Persistence {
         if FileManager.default.fileExists(atPath: url.path) {
             if let data = FileManager.default.contents(atPath: url.path) {
                 do {
+                    // if it does exist, we try to decode the data thrw it in our dataArr
                     dataArr = try PropertyListDecoder().decode([SettingsModel].self, from: data)
                 } catch {
                     throw DataPersistenceError.decodingError(error)
