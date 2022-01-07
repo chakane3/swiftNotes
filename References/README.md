@@ -2,7 +2,7 @@
 This is a process within iOS that tracks and manage an apps memory useage. ARC automatically frees up the memory used by class instances  when no longer needed. 
 
 ### How it works
-Everytime a new instance of a class is made, ARC allocates a chunk of memory to store info about that instance which holds information for that instance such as: type, values, stored properties, etc. When the instance is no longer needed ARC frees up the memory used by that instance so that the phones memory can be used for other things. We are ensuring here that our instane doesnt take up unesscessary space in memory, which may cause the app to crash. 
+Everytime a new instance of a class is made, ARC allocates a chunk of memory to store info about that instance which holds information for that instance such as: type, values, stored properties, etc. When the instance is no longer needed ARC frees up the memory used by that instance so that the apps memory can be used for other things. We are ensuring here that our instance doesnt take up unesscessary space in memory, which may cause the app to crash. 
 
 ARC will not wipe out instances when theyre still needed. This is because it tracks how many properties, constants, and variables are currently referring to each class instance. ARC will not deallocate an instance as long as at least one active reference to that instance exists. To achieve this, whenever we assign a class instance to a property, it makes a "strong reference" to the instance. This means that the reference to the instance does not allow it to be deallocated as long as the string reference exists. This is all done by default. 
 
@@ -29,8 +29,76 @@ class Person {
 var reference1: Person?
 var reference2: Person?
 var reference3: Person?
+
+// Using one of the properties, we can create a new Person
+reference1 = Person(name: "John Appleseed") // this will print the init message
+// As of now, we have, a strong reference from "reference1" to the "Person" instance. 
+// Because theres a strong reference, ARC will not deallocate the instance from memory
+
+// We can break a strong reference by assgining "nil" to the variable thus 
+// deallocating it from memory.
+refrence1 = nil
 ```
 
+### Strong Reference Cycles Between Class Instances
+A strong reference can be thrown into a cycle if two classes that work on conjunction hold strong references to eachother. Here is how this cycle happens. 
+
+```swift
+class Person {
+    let name: String
+    init(name: String) { self.name = name }
+    
+    // optional bc a person may not always have an apartment
+    var apartment: Apartment?
+    deinit { print("\(name) is being deinitialized") }
+}
+
+class Apartment {
+    let unit: String
+    init(unit: String) { self.unit = unit }
+    
+    // optional bc an apartment may not always have a parson
+    var tenant: Person?
+    deinit { print("Apartment \(unit) is being deinitialized") }
+}
+
+var john: Person?
+var unit4A: Apartment?
+
+// create new instances of our class using the stored property. 
+// Here the "john" variable has a strong reference to the new Person insance
+// and the "unit4A" var has a strong reference to the new Apartment instance
+john = Person(name: "John Appleseed")
+unit4A = Apartment(unit: "4A")
+
+// We can link the 2 instances together so that the person has an apartment and 
+// the apartment has a person. ! is used to force unwrap and access the instances
+// stored inside the optional variables so that the properties of those instances can be set
+john!.apartment = unit4A
+unit4A!.tenant = john
+
+
+// At this point these 2 instances now have a strong reference cycle between them. 
+// Therefore when you set the instances to nil, the instances will not become deallocated by ARC
+
+// This causes a memory leak ***** because the refrence cycle prevents the instances from ever being
+// deallocated from memory. 
+john = nil
+unit4A = nil
+
+```
+
+### The solution for memory leaks
+Theres 2 ways to resolve strong reference cycles: (1) weak references, (2) unowned references. These enable one instance in a reference cycle to refer to the other instance without keeping a "strong" hold on it. By using these, our instances can refer to eachother without creating a strong reference cycle. Weak references are used for instances with a short lifetime (when the other instance can be deallocated first) and unowned references are used with instances that have the same or longer lifetime. 
+
+#### Weak References
+These are a reference that dont keep a strong hold on the instance it refers to, which will allow ARC to dispose of the referenced instance. We do this by adding "weak" before our property keyword. This also aloows for that instance to be deallocated while the weak reference is still referring to it. ARC will automatically set a weak reference to nil when the instance that it refers to is deallocated. 
+
+
+In our code example above we will change the "tenant" property to have a weak var. 
+Now when we set our "john" variable to nil, the deinitializer message will print, meaning there are no more strong references to the Person instance. We can then set "unit4A" to nil (breaking the strong reference) and the deinitializer message will get printed. And now becasue we broke both the strong references of our instances, both of them are deallocated. 
+
+#### Unowned References
 
 
 
