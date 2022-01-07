@@ -236,6 +236,47 @@ This encapsulates 2 properties of a "load request": (1) The URL to load, (2) The
 ## Wrapper class for network requests
 
 ```swift
+public enum AppError: Error, CustomStringConvertible {
+    case badURL(String)
+    case noResponse
+    case networkClientError(Error)
+    case noData
+    case decodingError(Error)
+    case encodingError(Error)
+    case badStatusCode(Int)
+    case badMimeType(String)
+    
+    public var description: String {
+        switch self {
+            case .decodingError(let error):
+                return "\(error)"
+                
+            case .badStatusCode(let code):
+                return "Bad status code of \(code) returned from web API"
+                
+            case .encodingError(let error):
+                return "encoding error: \(error)"
+                
+            case .networkClientError(let error):
+                return "network error: \(error)"
+                
+            case .badURL(let url):
+                return "\(url) is a bad url"
+                
+            case .noData:
+                return "no data was returned from the web API"
+                
+            case .noResponse:
+                return "no response was returned from the web API
+                
+            case badMimeType(let mimeType):
+                return "verify your mime type. Found a \(mimeType) mime type"
+        }
+    }
+}
+```
+
+```swift
 import Foundation
 
 public class NetworkRequest {
@@ -278,45 +319,6 @@ public class NetworkRequest {
         completion(.success(data))
     }
     dataTask.resume()
-}
-
-public enum AppError: Error, CustomStringConvertible {
-    case badURL(String)
-    case noResponse
-    case networkClientError(Error)
-    case noData
-    case decodingError(Error)
-    case encodingError(Error)
-    case badStatusCode(Int)
-    case badMimeType(String)
-    
-    public var description: String {
-        switch self {
-            case .decodingError(let error):
-                return "\(error)"
-                
-            case .badStatusCode(let code):
-                return "Bad status code of \(code) returned from web API"
-                
-            case .encodingError(let error):
-                return "encoding error: \(error)"
-                
-            case .networkClientError(let error):
-                return "network error: \(error)"
-                
-            case .badURL(let url):
-                return "\(url) is a bad url"
-                
-            case .noData:
-                return "no data was returned from the web API"
-                
-            case .noResponse:
-                return "no response was returned from the web API
-                
-            case badMimeType(let mimeType):
-                return "verify your mime type. Found a \(mimeType) mime type"
-        }
-    }
 }
 
 ```
