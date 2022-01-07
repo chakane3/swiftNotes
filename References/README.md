@@ -1,3 +1,39 @@
+# Automatic Reference Counting (ARC memory management)
+This is a process within iOS that tracks and manage an apps memory useage. ARC automatically frees up the memory used by class instances  when no longer needed. 
+
+### How it works
+Everytime a new instance of a class is made, ARC allocates a chunk of memory to store info about that instance which holds information for that instance such as: type, values, stored properties, etc. When the instance is no longer needed ARC frees up the memory used by that instance so that the phones memory can be used for other things. We are ensuring here that our instane doesnt take up unesscessary space in memory, which may cause the app to crash. 
+
+ARC will not wipe out instances when theyre still needed. This is because it tracks how many properties, constants, and variables are currently referring to each class instance. ARC will not deallocate an instance as long as at least one active reference to that instance exists. To achieve this, whenever we assign a class instance to a property, it makes a "strong reference" to the instance. This means that the reference to the instance does not allow it to be deallocated as long as the string reference exists. This is all done by default. 
+
+### ARC example
+```swift
+// The Person class has an initializer that sets the instances "name" property and prints a message to indicate
+// that initialization is underway. Theres also a deinitializer which prints a message when the instance is 
+// being deallocated.
+class Person {
+    let name: String
+    init(name: String) {
+        self.name = name
+        print("\(name) is being initialized")
+    }
+    deinit {
+        print("\(name) is being deinitialized")
+    }
+}
+
+
+// Here we have mutiple references of Person. Because they are optionals
+// theyre automatically initialized with a value of nil and dont *currently 
+// reference a Person instance.
+var reference1: Person?
+var reference2: Person?
+var reference3: Person?
+```
+
+
+
+
 # URLSession
 This is a class that provides functions to us when downloading/uploading data from endpoints. Our app can create 1 or more URLSession instances that corrdinate data-transfer tasks. Tasks within a given URLSession share a common session configuration object which defines connection behavior. URLSession has a singleton we normally call "shared" or "session" for basic requests. We use our "shared" session to access our URLSession.
 
