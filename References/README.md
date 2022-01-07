@@ -113,8 +113,11 @@ Tasks in a session share a common delegate object. Its implemented to provide an
 
 Using URLSession is highly asynchronous. We mainly use completion handlers which are funtions that we run when the data transfer comples. 
 
-# URLRequest
+## URLRequest
 This encapsulates 2 properties of a "load request": (1) The URL to load, (2) The policies used to load it. URLRequest includes HTTP methods and headers.
+
+## Wrapper class for network requests
+
 
 # Persistence
 We use UserDefaults to save a users data onto the app. UserDefaults is a class that provides a programmatic interface for interacting with the defaults system. This will let the user customize their preferences on the app. This class provides convienient methods for accessing common types such as floats, doubles, integers, Bools, and URLs.
