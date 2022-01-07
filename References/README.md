@@ -154,6 +154,69 @@ john!.card = CreditCard(number: 1234_5678_9101_1121, customer: john!)
 ```
 
 #### Strong Referece Cycles for Closures
+Strong Reference Cycles also occur if you assign a closure to a property of a class instance, and the body of that closure captures the instance. This capture may occur because the closures body accesses a property of the instance. These cause the clousre to capture "self", creating a strong reference cycle. These strong reference cycles occur because closures are reference types like classes are. When you assign a cosure to a property, you're assigning a reference to that closure. What happens here is that theres 2 strong references keeping eachother alive. In this particular clase, instead of two class instances being the culprit, this time its a class instance and a closurethat retain 2 strong references. 
+
+To solve this problem, we use a "closure capture list". Heres how a cycle is caused.
+
+```swift
+
+// This example shows how to create a strong reference cycle when using a closure that references self. 
+// We have a class called HTMLElement, which provides a simple model for an individual element within 
+// an HTML document
+class HTMLElement {
+    let name: String
+    let text: String?
+    
+    // This is a lazy property bc its only needed when the element actually needs to be 
+    // rendered as a string value for some HTML output target. The fact that asHTML is a 
+    // lazy property, it means you can refer to self within the default closure, 
+    // because the lazy property will not be accessed until after initialization has been completed
+    // and self is known to exist. 
+    lazy var asHTML: () -> String = {
+        if let text = self.text {
+            return "<\(self.name)>\(text)</\(self.name)>"
+        } else {
+            return "<\(self.name)>"
+        }
+    }
+    
+    init(name: String, text: String? = nil) {
+        self.name = name
+        self.text = text
+    }
+    
+    deinit {
+        print("\(name) is being deinitialized")
+    }
+}
+
+let heading = HTMLElement(name: "h1")
+let defaultText = "some default text"
+heading.asHTML = {
+    return "<\(heading.name)>\(heading.text ?? defaultText)</\(heading.name)>"
+}
+print(heading.asHTML()) // prints "<h1>some default text</h1>"
+
+
+// The HTMLelement class provides a single initializer, which takes a name argument
+// and a text argument to intialize a new element. The class also defines a deinitializer, 
+// which prints a message to show when an HTMLElement instance is deallocated. 
+
+// This creates a strong reference cycle between an HTMLElement instance and the closre
+// used for its default asHTML value.
+var paragraph: HTMLElement? = HTMLElement(name: "p", text: "hello, world")
+print(paragraph!.asHTML()) // prints "<p>hello, world</p>"
+
+// The instance's asHTML property holds a strong reference to its closure. Because the 
+// closure refers to self within its body, the closure captures self, which means that 
+// it holds a strong reference back to the HTMLElement instance. A strong reference 
+// cycle is created between the two. 
+
+// This wont deinitialize this instance which shows that HTMLElement isnt deallocated. 
+paragraph = nil
+```
+
+#### Resolving Strong Reference Cycles for Closures
 
 
 # URLSession
