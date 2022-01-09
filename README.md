@@ -15,3 +15,4 @@ In this repo are all the projects to help me document my learning
 | ™ | ™ |
 | Intermediate topics| Data Persistence, Collection Views, UIImagePickerViewController, Data structures intro, Animation ||
 |<a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part2/Schedules">Schedules</a>|Persist data from table views|
+|<a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part2/PhotoApp">PhotosApp</a>| Explore Custom Delegation and utilizing more in app resources|
