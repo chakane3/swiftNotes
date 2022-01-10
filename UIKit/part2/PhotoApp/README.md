@@ -1,3 +1,123 @@
+# Steps in project
+<ol>
+    <li>Setup ImageObject model</li>
+    <li>Setup DataPersistence + FileManager</li>
+    <li>Setup UI</li>
+    <li>Setup ImageCell</li>
+    <li>Setup ImagesViewController</li>
+</ol>
+
+# ImageObject
+This is our data model for the images we will save. It primarily includes (1) imageData: Data, (2) date: Date
+
+# Data Persistence + FileManager
+This is how we will date data into a PropertyList. This will allow the user to upload data to the plist to have data persist. The main function we use are
+
+```swift
+// encodes our image and writes data to the plist
+private func save() throws {}
+
+// used for reordering
+private func sync(photos: [ImageObject]) {}
+
+// takes an input (ImageObject), appends it to our ImageObject array and then hits save()
+public func create(photo: ImageObject) throws {}
+
+// this function loads items from the documents directory by first checking if the plist file exists, then decoding the data from the plist
+public func loadItems() throws -> [ImageObject] {}
+
+// this function deletes photos from the documents directory
+// we first remove the an element from out ImageObject array, then hit save()
+public func delete(item index: Int) throws {}
+```
+
+# ImageCell - Custom Delegation for longPress
+
+
+
+```swift
+// We define a protocol as such
+protocol ImageCellDelegate: AnyObject {
+    func didLongPress(_ imageCell: ImageCell)
+}
+
+// Here we also bring in an imageView for our CollectionViewCell
+
+// This property will create an instance of UILongPressGestureRecognizer()
+// We use that instance to add a target with an action with a selector to longPressAction(gesture:)
+private lazy var longPressGesure: UILongPressGestureRecognizer = {}()
+
+// This is an objc function which will use our delegate object from out protocol to notify of any updates
+// We will notify the ImgeViewController when the user long presses on the cell
+@objc
+private func longPressAction(gesture: UILongPressGestureRecognizer) {}
+
+public func configureCell(imageObject: ImageObject) {}
+```
+
+# ImageViewController
+
+```swift
+// Heres the properties/outlet used in this file
+@IBOutlet weak var collectionView: UICollectionView!
+private var imageObjects = [ImageObject]()
+private let imagePickerController = UIImagePickerController(). // used for our action sheet
+private let dataPersistence = Persistence(filename: "photos.plist")
+
+private var selectedImage: UIImage? {
+    didSet {
+        appendNewPhotoToCollection()
+    }
+}
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+    collectionView.dataSource = self
+    collectionView.delegate = self
+    imagePickerController.delegate = self
+    loadImageObjects()
+}
+
+// This functions loads photos from the PropertyList via our Persistence file
+private func loadImageObjects() {}
+
+// We bring in our selectedImage and resize it
+// With the resized image we insert it into our ImageObject array
+// Thne we create an IndexPath to insert a new cell in our collection view
+// finally we persist the data using create()
+private func appendNewPhotoToCollection() {}
+
+// This is our toolbar button in which we will use to bring upp the photos library or camera
+// When the user presses this we implement an action sheet with some options for the user
+@IBAction func addPictureButtonPressed(_ sender: UIBarButtonItem) {}
+
+// this function figures out if the user selected the camera or photo library
+private func showImageController(isCameraSelected: Bool) {}
+
+extension ImagesViwController: UICollectionViewDataSource {
+    // we need to implement: numberOfItemsInSection(how many cells?) and cellForItemAt (whats inside the cell?)
+}
+
+extension ImagesViewController: UICollectionViewDelegateFlowLayout { 
+    // implements sizeForItemAt
+}
+
+extension ImagesViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    // implements imagePickerControllerDidCancel
+    // and didFinishPickingMediaWith (asks what the image is)
+}
+
+extension ImagesViewController: ImageCellDelegate {
+    // implements ur custom delegation: didLongPress which also implements an action sheet
+    // and deleteImageObject(indexPath: IndexPath {} -> this helps us delete a photo when the user long pressed the option
+}
+
+// we add in a function called "resizeImage" which takes in a width and a height and returns a UIImage
+extension UIImage {}
+```
+
+
+
 # Photos App
 <img src="https://media.giphy.com/media/TEf2d68zECL82giUuM/giphy.gif" width=250><br>
 
@@ -125,17 +245,3 @@ class SettingsViewController: UIViewController {
 }
  
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
