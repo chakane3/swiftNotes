@@ -87,7 +87,7 @@ class ImagesViewController: UIViewController {
         
         // persist imageObject into collectionView
         do {
-            try dataPersistence.create(photo: imageObject)
+            try dataPersistence.create(photos: imageObject)
         } catch {
             print("saving error: \(error)")
         }

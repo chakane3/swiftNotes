@@ -52,9 +52,9 @@ class Persistence {
     }
     
     // this function will save a photo to the documents directory
-    public func create(photo: ImageObject) throws {
+    public func create(photos: ImageObject) throws {
         // append the new photo to the photos array
-        photos.append(photo)
+        self.photos.append(photos)
         
         do {
             try save()
