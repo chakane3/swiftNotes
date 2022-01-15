@@ -9,12 +9,25 @@ import UIKit
 
 class MainViewController: UIViewController {
     // each of our controllers have a seperate class holding our UI elements
+    // every view controller has a view property
     
+    private let mainView = MainView()
+    
+    // when your doing programmatic UI, implement and setup the view
+    // in loadView() - this gets called before viewDidLoad()
+    // it will setup an initial view of the controller
+    // don't call super when overriding loadView()
+    override func loadView() {
+        view = mainView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBrown
+        view.backgroundColor = .systemGray
         configureNavBar()
+        
+        // add target/action for reset button
+        mainView.resetButton.addTarget(self, action: #selector(resetAppColor(_:)), for: .touchUpInside)
     }
     
     private func configureNavBar() {
@@ -36,7 +49,10 @@ class MainViewController: UIViewController {
         navigationController?.pushViewController(settingsVC, animated: true)
     }
     
-    
+    @objc
+    private func resetAppColor(_ sender: UIButton) {
+        print("reset app color")
+    }
     
     
 }
