@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // window?.rootViewController = SettingsViewController()
         
         // heres how we can emdbed a UIViewController in a navigationController
-        window?.rootViewController = UINavigationController(rootViewController: ViewController())
+        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
         
         window?.makeKeyAndVisible() // render the window onto the screen
     }
