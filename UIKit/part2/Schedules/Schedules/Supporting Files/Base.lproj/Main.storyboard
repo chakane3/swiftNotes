@@ -64,7 +64,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="Qe7-b4-NLO">
                             <connections>
-                                <segue destination="56r-Km-iAs" kind="presentation" id="mdl-OL-Tuk"/>
+                                <action selector="createEventButtonPressed:" destination="BYZ-38-t0r" id="ldk-eg-RNh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -107,24 +107,24 @@
         <!--Create Event Controller-->
         <scene sceneID="V7K-Bz-GfY">
             <objects>
-                <viewController id="56r-Km-iAs" customClass="CreateEventController" customModule="Schedules" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateEventController" id="56r-Km-iAs" customClass="CreateEventController" customModule="Schedules" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TUr-iU-5tb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Cun-dW-Jtg">
-                                <rect key="frame" x="0.0" y="313" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="340" width="414" height="216"/>
                                 <connections>
                                     <action selector="datePickerChanged:" destination="56r-Km-iAs" eventType="valueChanged" id="Non-D8-W8O"/>
                                 </connections>
                             </datePicker>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="create event" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5T3-a4-Eui">
-                                <rect key="frame" x="20" y="271" width="374" height="34"/>
+                                <rect key="frame" x="20" y="298" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okD-T5-XS0">
-                                <rect key="frame" x="154" y="537" width="107" height="31"/>
+                                <rect key="frame" x="154" y="564" width="107" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Create Event"/>
                                 <connections>
@@ -149,20 +149,21 @@
                     </view>
                     <navigationItem key="navigationItem" id="7YQ-ZF-MbC"/>
                     <connections>
-                        <outlet property="createEventTextField" destination="5T3-a4-Eui" id="JzS-TF-C6L"/>
                         <outlet property="datePicker" destination="Cun-dW-Jtg" id="2hP-u6-4nH"/>
+                        <outlet property="eventButton" destination="okD-T5-XS0" id="r8z-d1-s4s"/>
+                        <outlet property="eventNameTextField" destination="5T3-a4-Eui" id="JzS-TF-C6L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPy-eG-LlY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="3rX-4w-NB1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2684.057971014493" y="93.75"/>
+            <point key="canvasLocation" x="2717" y="94"/>
         </scene>
         <!--Item-->
         <scene sceneID="v1a-pJ-U5S">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AOr-pe-e28" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Vdg-Yp-0b3"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="text.badge.plus" catalog="system" selectedImage="text.badge.plus" id="Vdg-Yp-0b3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G62-gr-kvv">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -181,7 +182,7 @@
         <scene sceneID="jW4-Ij-Axd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="r6H-6h-rfH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="tXT-9B-hSy"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="text.badge.checkmark" catalog="system" selectedImage="text.badge.checkmark" id="tXT-9B-hSy"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="u6M-q1-hUs">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -213,11 +214,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7P-NP-BKZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="93.75"/>
+            <point key="canvasLocation" x="-35" y="-273"/>
         </scene>
     </scenes>
     <resources>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="text.badge.checkmark" catalog="system" width="128" height="109"/>
+        <image name="text.badge.plus" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

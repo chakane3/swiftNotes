@@ -12,86 +12,127 @@ enum DataPersistenceError: Error {
     case fileDoesNotExist(String)
     case noData
     case decodingError(Error)
-    case deletingError(Error)
+    case deletingError
+    case noContentsAtPath(String)
+    case writingError(Error)
+    case propertyListDecodingError(Error)
 }
 
-class Persistence {
+
+// define our custom protocol
+protocol DataPersistenceDelegate: AnyObject {
+    func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T)
+}
+
+typealias Writeable = Codable & Equatable
+
+// DataPersistence is now constrained to only work with Codable types
+class DataPersistence<T: Writeable> {
+    private let filename: String
+    private var items: [T]
     
-    // array of events
-    private static var events = [Event]()
+    // definite a reference property that will be registered at the object listening on notifications.
+    // we use "weak" to break a strong reference between the delegate object and the DataPersistenc class
+    weak var delegate: DataPersistenceDelegate?
     
-    // setup the name of the file
-    private static let filename = "schedules.plist"
+    public init(filename: String) {
+        self.filename = filename
+        self.items = []
+    }
     
-    
-    // this function wrties data to the plist file.
-    private static func save() throws {
-        let url = FileManager.pathToDocumentsDirectory(with: filename)
-        
-        // the events array will be the object being converted to a Data array
-        // we'll write the Data object to the documents directory
+    private func saveItemsToDocumentsdirectory() throws {
         do {
-            // convert the events array to Data
-            let data =  try PropertyListEncoder().encode(events)
-            
-            // writes the data to the documents directory
+            let url = FileManager.getPath(with: filename, for: .documentsDirectory)
+            let data = try PropertyListEncoder().encode(items)
             try data.write(to: url, options: .atomic)
         } catch {
-            throw DataPersistenceError.savingError(error)
+            throw DataPersistenceError.writingError(error)
         }
     }
     
-    // reordering
-    public static func reorderEvents(events: [Event]) {
-        self.events = events
-        try? save()
-    }
-    
-    // save item to documents directory
-    // this function help create a new entry in our file
-    static func create(event: Event) throws {
-        // append the new event to the events array
-        events.append(event)
-        
+    public func createItem(_ item: T) throws {
+        _ = try? loadItems()
+        items.append(item)
         do {
-            try save()
+            try saveItemsToDocumentsdirectory()
         } catch {
-            throw DataPersistenceError.savingError(error)
+            throw DataPersistenceError.writingError(error)
         }
     }
     
-    // load items from documents directory
-    static func loadEvents() throws -> [Event] {
-        // we need access to the filename URL that were reading from
-        let url = FileManager.pathToDocumentsDirectory(with: filename)
-        
-        // check if the file exists
-        if FileManager.default.fileExists(atPath: url.path) {
-            if let data = FileManager.default.contents(atPath: url.path) {
+    public func loadItems() throws -> [T] {
+        let path = FileManager.getPath(with: filename, for: .documentsDirectory).path
+        if FileManager.default.fileExists(atPath: path) {
+            if let data = FileManager.default.contents(atPath: path) {
                 do {
-                    events = try PropertyListDecoder().decode([Event].self, from: data)
+                    items = try PropertyListDecoder().decode([T].self, from: data)
                 } catch {
-                    throw DataPersistenceError.decodingError(error)
+                    throw DataPersistenceError.propertyListDecodingError(error)
                 }
-            } else {
-                throw DataPersistenceError.noData
             }
-        } else {
-            throw DataPersistenceError.fileDoesNotExist(filename)
         }
-        return events
+        return items
     }
     
-    // remove item from documents directory
-    static func delete(event index: Int) throws {
-        // remove item from the evens array
-        events.remove(at: index)
-        
-        // save our events array to the documents directory
-        do {
-            try save()
-        } catch {
-            throw DataPersistenceError.deletingError(error)
+    
+    // for reordering
+    public func synchroize(_ items: [T]) {
+        self.items = items
+        try? saveItemsToDocumentsdirectory()
+    }
+    
+    // update
+    @discardableResult // this silences the warning if the return value is not used by the caller
+    public func update(_ oldItem: T, with newItem: T) -> Bool {
+        if let index = items.firstIndex(of: oldItem) {
+            let result = update(newItem, at: index)
+            return result
         }
+        return false
+    }
+    
+    @discardableResult
+    public func update(_ item: T, at index: Int) -> Bool {
+        items[index] = item
+        // save items to the documents directory
+        do {
+            try saveItemsToDocumentsdirectory()
+            return true
+        } catch {
+            return false
+        }
+    }
+    
+    // delete
+    public func deleteItems(at index: Int) throws {
+        let deletedItem = items.remove(at: index)
+        do {
+            try saveItemsToDocumentsdirectory()
+            // use our custom delegate reference to notify observer of deletion
+            delegate?.didDeleteItem(self, item: deletedItem)
+        } catch {
+            throw DataPersistenceError.deletingError
+        }
+    }
+    
+    public func hasBeenSaved(_ item: T) -> Bool {
+        guard let items = try? loadItems() else {
+            return false
+        }
+        self.items = items
+        if let _ = self.items.firstIndex(of: item) {
+            return true
+        }
+        return false
+    }
+    
+    public func removeAll() {
+        guard let loadedItems = try? loadItems()  else {
+            return
+        }
+        items = loadedItems
+        items.removeAll()
+        try? saveItemsToDocumentsdirectory()
     }
 }
+

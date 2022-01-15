@@ -8,16 +8,36 @@
 import UIKit
 
 class CreateEventController: UIViewController {
-    @IBOutlet weak var createEventTextField: UITextField!
+    @IBOutlet weak var eventNameTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var eventButton: UIButton!
     
     // the property we'll use to send back to ScheduleListController
     var event: Event?
     
+    // its public for reading but not public for writing (its read only)
+    public private(set) var eventState = EventState.newEvent
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        createEventTextField.delegate = self
-        event = Event(date: Date(), name: "Swift rocks")
+        eventNameTextField.delegate = self
+        updateUI()
+        
+    }
+    
+    private func updateUI() {
+        if let event = event {
+            self.event = event
+            datePicker.date = event.date
+            eventNameTextField.text = event.name
+            eventButton.setTitle("Update Event", for: .normal)
+            eventState = .existingEvent
+        } else {
+            // instantiate a defult value for event
+            event = Event(date: Date(), name: "Swift rocks")
+            eventState = .newEvent
+            
+        }
     }
     
     

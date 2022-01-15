@@ -34,6 +34,7 @@ class ScheduleListController: UIViewController {
         super.viewDidLoad()
         loadEvents()
         tableView.dataSource = self
+        tableView.delegate = self
         
         // print path to documents directory
         //    print(FileManager.getDocumentsDirectory())
@@ -56,35 +57,74 @@ class ScheduleListController: UIViewController {
         }
     }
     
-    @IBAction func addNewEvent(segue: UIStoryboardSegue) {
+    @IBAction func newEventWillBeAdded(segue: UIStoryboardSegue) {
         // caveman debugging
         
         // get a reference to the CreateEventController instance
-        guard let createEventController = segue.source as? CreateEventController,
-              let createdEvent = createEventController.event else {
-                  fatalError("failed to access CreateEventController")
-              }
-        
-        // persist (save) event to documents directory
-        do {
-            try Persistence.create(event: createdEvent) // adds event at the of array
-        } catch {
-            print("error saving event with error: \(error)")
+        guard let createEventController = segue.source as? CreateEventController, let newEvent = createEventController.event, !newEvent.name.isEmpty else {
+            print("could not create new event")
+            return
         }
         
-        // insert new event into our events array
-        events.append(createdEvent)
+        if createEventController.eventState == .existingEvent {
+            let index = events.firstIndex { $0.identifier == newEvent.identifier }
+            guard let itemIndex = index else { return }
+            let oldEvent = events[itemIndex]
+            update(oldEvent: oldEvent, with: newEvent)
+            
+        } else {
+            createNewEvent(event: newEvent)
+        }
         
-        // create an indexPath to be inserted into the table view
-        let indexPath = IndexPath(row: events.count - 1, section: 0) // will represent top of table view
         
-        // 2. we need to update the table view
-        // use indexPath to insert into table view
-        tableView.insertRows(at: [indexPath], with: .automatic)
+        
+        // MARK: - Old Method
+//        // persist (save) event to documents directory
+//        do {
+//            try Persistence.create(event: newEvent) // adds event at the of array
+//        } catch {
+//            print("error saving event with error: \(error)")
+//        }
+//
+//        // insert new event into our events array
+//        events.append(newEvent)
+//
+//        // create an indexPath to be inserted into the table view
+//        let indexPath = IndexPath(row: events.count - 1, section: 0) // will represent top of table view
+//
+//        // 2. we need to update the table view
+//        // use indexPath to insert into table view
+//        tableView.insertRows(at: [indexPath], with: .automatic)
     }
+    
+    private func update(oldEvent: Event, with newEvent: Event) {
+        // update item in documents directory
+        // call load itmes to update events array
+    }
+    
+    private func createNewEvent(event: Event) {
+        
+    }
+    
+    
     
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
         isEditingTableView.toggle() // changes a boolean value
+    }
+    
+    
+    // presents the creatEventController when the user clicks on this button
+    @IBAction func createEventButtonPressed(_ sender: UIBarButtonItem) {
+        showCreateEventVC()
+    }
+    
+    private func showCreateEventVC(_ event: Event? = nil) {
+        // use the storyboard to get an instance of the CreatEventController
+        guard let createEventController = storyboard?.instantiateViewController(withIdentifier: "CreateEventController") as? CreateEventController else {
+            fatalError("Could not downcase to CreateEventController")
+        }
+        createEventController.event = event
+        present(createEventController, animated: true)
     }
 }
 
@@ -135,5 +175,14 @@ extension ScheduleListController: UITableViewDataSource {
         } catch {
             print("error loading events: \(error)")
         }
+    }
+}
+
+extension ScheduleListController: UITableViewDelegate {
+    
+    // this function gets called when a user selects a tableview cell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let event = events[indexPath.row]
+        showCreateEventVC(event)
     }
 }
