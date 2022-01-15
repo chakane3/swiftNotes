@@ -13,6 +13,8 @@ class ScheduleListController: UIViewController {
     // data - an array of events
     var events = [Event]()
     
+    public let dataPersistence = DataPersistence(filename: "schedules.plist")
+    
     var isEditingTableView = false {
         didSet { // property observer
             // toggle editing mode of table view
@@ -32,18 +34,18 @@ class ScheduleListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadEvents()
         tableView.dataSource = self
         tableView.delegate = self
+        loadItems()
         
         // print path to documents directory
-        //    print(FileManager.getDocumentsDirectory())
+        // print(FileManager.getDocumentsDirectory())
     }
     
-    // run this in VDL
-    private func loadEvents() {
+    private func loadItems() {
         do {
-            events = try Persistence.loadEvents()
+            events = try dataPersistence.loadItems()
+            tableView.reloadData()
         } catch {
             print("error loading events: \(error)")
         }
@@ -51,7 +53,7 @@ class ScheduleListController: UIViewController {
     
     private func deleteEvent(indexPath: IndexPath) {
         do {
-            try Persistence.delete(event: indexPath.row)
+            try dataPersistence.deleteItems(at: indexPath.row)
         } catch {
             print("error deleting event: \(error)")
         }
@@ -61,10 +63,12 @@ class ScheduleListController: UIViewController {
         // caveman debugging
         
         // get a reference to the CreateEventController instance
-        guard let createEventController = segue.source as? CreateEventController, let newEvent = createEventController.event, !newEvent.name.isEmpty else {
-            print("could not create new event")
-            return
-        }
+        guard let createEventController = segue.source as? CreateEventController,
+              let newEvent = createEventController.event,
+              !newEvent.name.isEmpty else {
+                  print("could not create new event")
+                  return
+              }
         
         if createEventController.eventState == .existingEvent {
             let index = events.firstIndex { $0.identifier == newEvent.identifier }
@@ -79,22 +83,22 @@ class ScheduleListController: UIViewController {
         
         
         // MARK: - Old Method
-//        // persist (save) event to documents directory
-//        do {
-//            try Persistence.create(event: newEvent) // adds event at the of array
-//        } catch {
-//            print("error saving event with error: \(error)")
-//        }
-//
-//        // insert new event into our events array
-//        events.append(newEvent)
-//
-//        // create an indexPath to be inserted into the table view
-//        let indexPath = IndexPath(row: events.count - 1, section: 0) // will represent top of table view
-//
-//        // 2. we need to update the table view
-//        // use indexPath to insert into table view
-//        tableView.insertRows(at: [indexPath], with: .automatic)
+        //        // persist (save) event to documents directory
+        //        do {
+        //            try Persistence.create(event: newEvent) // adds event at the of array
+        //        } catch {
+        //            print("error saving event with error: \(error)")
+        //        }
+        //
+        //        // insert new event into our events array
+        //        events.append(newEvent)
+        //
+        //        // create an indexPath to be inserted into the table view
+        //        let indexPath = IndexPath(row: events.count - 1, section: 0) // will represent top of table view
+        //
+        //        // 2. we need to update the table view
+        //        // use indexPath to insert into table view
+        //        tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
     private func update(oldEvent: Event, with newEvent: Event) {
@@ -103,7 +107,17 @@ class ScheduleListController: UIViewController {
     }
     
     private func createNewEvent(event: Event) {
+        // we need to insert a new event into our events array
+        // first we update the data model by using events.insert()
+        events.append(event)
         
+        // create an indexPath to be inserted into the table view
+        let indexPath = IndexPath(row: events.count - 1, section: 0) // this represents the top of the table view
+        
+        // second, we need to update the table view
+        // by uing the indexPath to insert something into the table view
+        tableView.insertRows(at: [indexPath], with: .automatic)
+        try? dataPersistence.createItem(event)
     }
     
     
@@ -168,13 +182,8 @@ extension ScheduleListController: UITableViewDataSource {
         events.insert(eventToMove, at: destinationIndexPath.row)
         
         // re-save array in docuemnts directory
-        Persistence.reorderEvents(events: events)
-        do {
-            events = try Persistence.loadEvents()
-            tableView.reloadData()
-        } catch {
-            print("error loading events: \(error)")
-        }
+        dataPersistence.synchroize(events)
+        loadItems()
     }
 }
 

@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum EventState {
+    case newEvent
+    case existingEvent
+}
+
 class CreateEventController: UIViewController {
     @IBOutlet weak var eventNameTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!

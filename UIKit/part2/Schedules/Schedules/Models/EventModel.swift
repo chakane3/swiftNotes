@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum EventState {
-    case newEvent
-    case existingEvent
-}
-
 struct Event: Codable {
     var date: Date
     var name: String
