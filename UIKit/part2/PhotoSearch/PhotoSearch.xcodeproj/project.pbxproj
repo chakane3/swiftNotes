@@ -13,6 +13,7 @@
 		94B82CFE2793607A009D09C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94B82CFD2793607A009D09C0 /* Assets.xcassets */; };
 		94B82D012793607A009D09C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B82CFF2793607A009D09C0 /* LaunchScreen.storyboard */; };
 		94B82D0B27936148009D09C0 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B82D0A27936148009D09C0 /* NetworkRequest.swift */; };
+		94B82D11279367CD009D09C0 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B82D10279367CD009D09C0 /* SecretKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		94B82D002793607A009D09C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94B82D022793607A009D09C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94B82D0A27936148009D09C0 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		94B82D10279367CD009D09C0 /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		94B82CF327936079009D09C0 /* PhotoSearch */ = {
 			isa = PBXGroup;
 			children = (
+				94B82D0F279367C0009D09C0 /* Secrets */,
 				94B82D0927936139009D09C0 /* Network Services */,
 				94B82D08279360A7009D09C0 /* Supporting Files */,
 				94B82D022793607A009D09C0 /* Info.plist */,
@@ -81,6 +84,14 @@
 				94B82D0A27936148009D09C0 /* NetworkRequest.swift */,
 			);
 			path = "Network Services";
+			sourceTree = "<group>";
+		};
+		94B82D0F279367C0009D09C0 /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				94B82D10279367CD009D09C0 /* SecretKey.swift */,
+			);
+			path = Secrets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94B82CF527936079009D09C0 /* AppDelegate.swift in Sources */,
+				94B82D11279367CD009D09C0 /* SecretKey.swift in Sources */,
 				94B82D0B27936148009D09C0 /* NetworkRequest.swift in Sources */,
 				94B82CF727936079009D09C0 /* SceneDelegate.swift in Sources */,
 			);
