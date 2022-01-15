@@ -45,6 +45,37 @@ struct Event: Codable {
 ## Setup Persistence
  Recall, we need to create a file to store user setting  called "yourFile.plist". Here is where we have our function to perfrom CRUD operations on our .plist file
  
+ ```swift
+ //  We have an enum that aids us in checking for posisble errors in encoding/decoding from the PropertyList. Then we wetup a class called Persistence where we setup an empty array of events and the filename.
+ private static var events = [Event]()
+ private static let filename = "schedules.plist"
+ 
+ 
+ // We will need a function to write data to our PropertyList file. Here we get the url using our FileManager, then inside a do-catch we try to encode our event  and write it to our plist.
+ private static func save() throws {}
+ 
+ 
+ // used for resordering
+ public static func reorderEvents(events: [Event]) {
+    self.events = events
+    try? save()
+ }
+ 
+ 
+ // We also need a function to create a new entry in our plist. Here we append a new element into our events array and then inside a do-catch we try to save it in our plist.
+static func create(event: Event) throws {}
+
+
+// Now we need a function to lod our events from the plist. Here we get the url path to the plist file. Then we check if the file exists, if it does we get the contents of that file and then inside a do-catch we try to decode those contents.
+static func loadEvents() throws -> [Event] {}
+
+
+
+// Lastly, we have a function to delete an item from the documents directory. We use the .remove(at:) on our events array given the index. Thne inside a do-catch we try to save our updated array
+static func delete(event index: Int) throws {}
+ ```
+
+ 
 <details>
   <summary>Persistence Setup</summary>
   
