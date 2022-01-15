@@ -14,5 +14,5 @@ In this repo are all the projects to help me document my learning
 | <a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part1/Recipies">Recipies</a> | Implement topics from previous projects: search bar, network requests, APIKeys, concurrency, etc | [<a href="https://github.com/chakane3/takeHome">takeHome</a>, <a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part1/MusixMatch">MusicxMatch</a>, <a href="https://github.com/chakane3/MetMobile">MetAPI"</a>] |
 | ™ | ™ |
 | Intermediate topics| Data Persistence, Collection Views, UIImagePickerViewController, Data structures intro, Animation ||
-|<a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part2/Schedules">Schedules</a>|Persist data from table views|
+|<a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part2/Schedules-pt1">Schedules</a>|Persist data from table views|
 |<a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part2/PhotoApp">PhotosApp</a>| Explore Custom Delegation and utilizing more in app resources|
