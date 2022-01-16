@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsDetailController: UIViewController {
+class NewsDetail: UIViewController {
     @IBOutlet weak var headlinesImageView: UIImageView!
     @IBOutlet weak var bylineLabel: UILabel!
     @IBOutlet weak var headlineAbstractLabel: UITextView!
@@ -16,6 +16,7 @@ class NewsDetailController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateUI()
     }
     
     func updateUI() {

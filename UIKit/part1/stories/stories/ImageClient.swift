@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct ImageClient {
     // this is an escaping closure, the function will return before the closure gets a value

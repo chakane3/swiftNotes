@@ -12,11 +12,17 @@ enum SearchScope {
     case abstract
 }
 
-class NewsFeedController: UIViewController {
+class NewsFeed: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     var currentScope = SearchScope.title
+    
+    var headlines = [NewsHeadline]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     var searchQuery = "" {
         didSet {
@@ -31,6 +37,9 @@ class NewsFeedController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadData()
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     // run this function in viewDidLoad()
@@ -51,11 +60,31 @@ class NewsFeedController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // get destination view controller
         // get the index path the user selected from the table
-        guard let newsDetailController = segue.destination as? NewsDetailController, let indexPath = tableView.indexPathForSelectedRow else {
+        guard let newsDetailController = segue.destination as? NewsDetail, let indexPath = tableView.indexPathForSelectedRow else {
             fatalError("could not retrieve instance of NDC, verify class name in the identity inspector")
         }
         let headline = headlines[indexPath.row]
         newsDetailController.newsHeadline = headline
     }
+}
+
+extension NewsFeed: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return headlines.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "storyCell", for: indexPath) as? NewsFeedCell else {
+            fatalError("could not dequeue check NewsFeedCell")
+        }
+        let headline = headlines[indexPath.row]
+        cell.configureCell(for: headline)
+        return cell
+    }
+}
+
+extension NewsFeed: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
 }
