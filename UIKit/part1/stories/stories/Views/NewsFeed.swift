@@ -16,35 +16,42 @@ class NewsFeed: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var currentScope = SearchScope.title
+    var currentScope = SearchScope.title {
+        didSet {
+            loadData(for: searchBar.text ?? "")
+        }
+    }
     
     var headlines = [NewsHeadline]() {
         didSet {
             tableView.reloadData()
         }
     }
-    
-    var searchQuery = "" {
-        didSet {
-            switch currentScope {
-            case .title:
-                headlines = HeadlinesData.getHeadlines().filter {$0.title.lowercased().contains(searchQuery.lowercased())}
-            case .abstract:
-                headlines = HeadlinesData.getHeadlines().filter( {$0.abstract.lowercased().contains(searchQuery.lowercased() )})
-            }
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+        loadData(for: "")
         tableView.dataSource = self
         tableView.delegate = self
+        searchBar.delegate = self
     }
     
-    // run this function in viewDidLoad()
-    func loadData() {
-        headlines = HeadlinesData.getHeadlines()
+    // grabs our data based off what the searchText is
+    func loadData(for searchText: String) {
+        
+        // if the user did not search for anything then get all of our data
+        guard !searchText.isEmpty else {
+            headlines = HeadlinesData.getHeadlines()
+            return
+        }
+        
+        // filter our data based off if were searching via title or abstract.
+        switch currentScope {
+        case .title:
+            headlines = HeadlinesData.getHeadlines().filter {$0.title.lowercased().contains(searchText.lowercased())}
+        case .abstract:
+            headlines = HeadlinesData.getHeadlines().filter {$0.abstract.lowercased().contains(searchText.lowercased())}
+        }
     }
     
     // when we search for something in the search bar we'll see if our targets contains anything in our searchQuery
@@ -86,5 +93,35 @@ extension NewsFeed: UITableViewDataSource {
 extension NewsFeed: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+}
+
+extension NewsFeed: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        // dismisses the keyboard when user clicks return
+        searchBar.resignFirstResponder()
+    }
+    
+    // real-time searching as the user types
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        // if our searchText is empty then return all of our data
+        guard !searchText.isEmpty else {
+            loadData(for: "")
+            return
+        }
+        loadData(for: searchText)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        switch selectedScope {
+        case 0:
+            currentScope = .title
+        case 1:
+            currentScope = .abstract
+        default:
+            print("not a valid search scope")
+        }
     }
 }
