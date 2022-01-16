@@ -17,10 +17,10 @@ enum NetworkErrors: Error {
     case noURLReponse
 }
 
-class NetworkRequest {
+public class NetworkRequest {
     
     // we want to use a singleton design pattern on our class so that this shared instance can be used throughout the app without interfering with any other properties inside this class
-    static let shared = NetworkRequest()
+    public static let shared = NetworkRequest()
     private var session: URLSession
     
     // private marks this class to be initiated only in this file
