@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9435EEC6279471B700A9593C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9435EEC5279471B700A9593C /* SettingsView.swift */; };
 		9493ED4C27931EF5006C258B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9493ED4B27931EF5006C258B /* AppDelegate.swift */; };
 		9493ED4E27931EF5006C258B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9493ED4D27931EF5006C258B /* SceneDelegate.swift */; };
 		9493ED5027931EF5006C258B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9493ED4F27931EF5006C258B /* MainViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9435EEC5279471B700A9593C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9493ED4827931EF5006C258B /* ProgramaticUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgramaticUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9493ED4B27931EF5006C258B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9493ED4D27931EF5006C258B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		9493ED4A27931EF5006C258B /* ProgramaticUI */ = {
 			isa = PBXGroup;
 			children = (
+				9435EEC5279471B700A9593C /* SettingsView.swift */,
 				9493ED6027932C4D006C258B /* SettingsViewController.swift */,
 				9493ED4B27931EF5006C258B /* AppDelegate.swift */,
 				9493ED4D27931EF5006C258B /* SceneDelegate.swift */,
@@ -145,6 +148,7 @@
 				9493ED5027931EF5006C258B /* MainViewController.swift in Sources */,
 				9493ED4C27931EF5006C258B /* AppDelegate.swift in Sources */,
 				9493ED4E27931EF5006C258B /* SceneDelegate.swift in Sources */,
+				9435EEC6279471B700A9593C /* SettingsView.swift in Sources */,
 				94B82CE727933776009D09C0 /* MainView.swift in Sources */,
 				9493ED6127932C4E006C258B /* SettingsViewController.swift in Sources */,
 			);

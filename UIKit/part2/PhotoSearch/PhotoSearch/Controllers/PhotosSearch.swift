@@ -24,7 +24,7 @@ class PhotosSearch: UIViewController {
 
         collectionView.dataSource = self
         collectionView.delegate = self
-        searchBar.delegate = self
+//        searchBar.delegate = self
         searchPhotosQuery(for: "all")
     }
     
