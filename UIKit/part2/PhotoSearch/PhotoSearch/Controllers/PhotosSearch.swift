@@ -18,14 +18,19 @@ class PhotosSearch: UIViewController {
             }
         }
     }
+    var searchQuery = "" {
+        didSet {
+            searchPhotosQuery(for: searchQuery)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collectionView.dataSource = self
         collectionView.delegate = self
-//        searchBar.delegate = self
-        searchPhotosQuery(for: "all")
+        searchBar.delegate = self
+        
     }
     
     func searchPhotosQuery(for userQuery: String) {
@@ -38,8 +43,6 @@ class PhotosSearch: UIViewController {
             }
         }
     }
-    
-    
 }
 
 extension PhotosSearch: UICollectionViewDataSource {
@@ -65,5 +68,20 @@ extension PhotosSearch: UICollectionViewDelegateFlowLayout {
         let maxWidth: CGFloat = UIScreen.main.bounds.size.width
         let itemWidth: CGFloat = maxWidth * 0.9
         return CGSize(width: itemWidth, height: itemWidth)
+    }
+}
+
+extension PhotosSearch: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            searchPhotosQuery(for: "")
+            return
+        }
+        searchQuery = searchText
     }
 }

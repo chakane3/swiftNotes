@@ -23,11 +23,26 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray
+        view.backgroundColor = .systemBackground
         configureNavBar()
         
         // add target/action for reset button
         mainView.resetButton.addTarget(self, action: #selector(resetAppColor(_:)), for: .touchUpInside)
+    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        updateAppColor()
+    }
+    
+    private func updateAppColor() {
+        // whenever you extract something from user defaults the type is Any
+        if let colorName = UserDefaults.standard.object(forKey: AppKey.appColorKey) as? String {
+            view.backgroundColor = UIColor(named: colorName)
+        } else {
+            
+        }
     }
     
     private func configureNavBar() {

@@ -7,6 +7,10 @@
 
 import UIKit
 
+struct AppKey {
+    static let appColorKey = "app color"
+}
+
 class SettingsViewController: UIViewController {
     
     // add picker to this view
@@ -56,7 +60,11 @@ extension SettingsViewController: UIPickerViewDelegate {
         let colorName = colors[row]
         view.backgroundColor = UIColor(named: colorName)
         
+        // save color name to user defaults
+        UserDefaults.standard.set(colorName, forKey: AppKey.appColorKey)
+        
     }
+    
     
 }
 
