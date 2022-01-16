@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Photos Search-->
+        <!--Photo Search-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PhotosSearch" customModule="PhotoSearch" customModuleProvider="target" sceneMemberID="viewController">
@@ -86,7 +86,7 @@
                             <constraint firstItem="cMp-Cz-Bb9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hOX-2a-Dvw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="aB3-wj-oWv"/>
+                    <navigationItem key="navigationItem" title="Photo Search" id="aB3-wj-oWv"/>
                     <connections>
                         <outlet property="collectionView" destination="YYS-Zd-AZ9" id="ei5-TO-mdM"/>
                         <outlet property="searchBar" destination="cMp-Cz-Bb9" id="7a9-KV-mPf"/>

@@ -24,7 +24,8 @@ class PhotosSearch: UIViewController {
 
         collectionView.dataSource = self
         collectionView.delegate = self
-        searchPhotosQuery(for: "basketball")
+        searchBar.delegate = self
+        searchPhotosQuery(for: "all")
     }
     
     func searchPhotosQuery(for userQuery: String) {
@@ -37,6 +38,8 @@ class PhotosSearch: UIViewController {
             }
         }
     }
+    
+    
 }
 
 extension PhotosSearch: UICollectionViewDataSource {
