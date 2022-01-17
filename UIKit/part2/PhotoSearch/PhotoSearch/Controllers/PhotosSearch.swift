@@ -26,11 +26,9 @@ class PhotosSearch: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         collectionView.dataSource = self
         collectionView.delegate = self
         searchBar.delegate = self
-        
     }
     
     func searchPhotosQuery(for userQuery: String) {
