@@ -87,14 +87,18 @@ class ScheduleList: UIViewController {
         showCreateEventVC()
     }
     
+    
+    // this function allows us to present out CreateEvent view that we made on storyboard
+    // nil here is used as a default parameter
     private func showCreateEventVC(_ event: Event? = nil) {
         // we need to use the storyboard to get an instance of the createEvent view
         guard let createEvent = storyboard?.instantiateViewController(identifier: "CreateEventController") as? CreateEvent else {
             fatalError("could not downcast to CreateEventController")
         }
-        createEvent.event = event
         
         // for updating an event we will "inject" (dependency injection) the selected event
+        // if something "depends" on something you inject it by initialiing a property
+        createEvent.event = event
         present(createEvent, animated: true)
     }
 }
