@@ -15,6 +15,7 @@ class ScheduleList: UIViewController {
     // property to hold our array of events
     private var events = [Event]()
     
+    
     public var dataPersistence: Persistence<Event>!
     
     

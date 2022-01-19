@@ -20,6 +20,7 @@ protocol DataPersistenceDelegate: AnyObject {
     func didDeleteItem<T>(_ persistenceHelper: Persistence<T>, item: T)
 }
 
+
 typealias Writeable = Codable & Equatable
 
 
