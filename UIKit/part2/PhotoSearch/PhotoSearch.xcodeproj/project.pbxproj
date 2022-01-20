@@ -19,6 +19,7 @@
 		94B82D1927936B56009D09C0 /* PhotosSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B82D1827936B56009D09C0 /* PhotosSearch.swift */; };
 		94B82D1B27938A07009D09C0 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B82D1A27938A07009D09C0 /* PhotoCell.swift */; };
 		94B82D1E27938ACE009D09C0 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B82D1D27938ACE009D09C0 /* UIImageView+Extension.swift */; };
+		94DF53122798C0750051A1D3 /* ImageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DF53112798C0750051A1D3 /* ImageCellDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		94B82D1827936B56009D09C0 /* PhotosSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosSearch.swift; sourceTree = "<group>"; };
 		94B82D1A27938A07009D09C0 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		94B82D1D27938ACE009D09C0 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		94DF53112798C0750051A1D3 /* ImageCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,8 +70,9 @@
 		94B82CF327936079009D09C0 /* PhotoSearch */ = {
 			isa = PBXGroup;
 			children = (
+				94DF530C2798BF340051A1D3 /* Controllers */,
 				94B82D1C27938A66009D09C0 /* Extensions */,
-				94B82D1727936B3F009D09C0 /* Controllers */,
+				94B82D1727936B3F009D09C0 /* Views */,
 				94B82D122793683E009D09C0 /* Models */,
 				94B82D0F279367C0009D09C0 /* Secrets */,
 				94B82D0927936139009D09C0 /* Network Services */,
@@ -116,13 +119,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		94B82D1727936B3F009D09C0 /* Controllers */ = {
+		94B82D1727936B3F009D09C0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				94B82D1827936B56009D09C0 /* PhotosSearch.swift */,
 				94B82D1A27938A07009D09C0 /* PhotoCell.swift */,
 			);
-			path = Controllers;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		94B82D1C27938A66009D09C0 /* Extensions */ = {
@@ -131,6 +134,14 @@
 				94B82D1D27938ACE009D09C0 /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		94DF530C2798BF340051A1D3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				94DF53112798C0750051A1D3 /* ImageCellDelegate.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94DF53122798C0750051A1D3 /* ImageCellDelegate.swift in Sources */,
 				94B82CF527936079009D09C0 /* AppDelegate.swift in Sources */,
 				94B82D11279367CD009D09C0 /* SecretKey.swift in Sources */,
 				94B82D1927936B56009D09C0 /* PhotosSearch.swift in Sources */,

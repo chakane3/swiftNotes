@@ -11,11 +11,33 @@ import AVFoundation
 class PhotoCell: UICollectionViewCell {
     @IBOutlet weak var photosView: UIImageView!
     
+    // define our optional delegate variable
+    weak var delegate: ImageCellDelegate?
+    
+    // setup long press gesture recognizer
+    private lazy var longPressGesture: UILongPressGestureRecognizer = {
+        let gesture = UILongPressGestureRecognizer()
+        gesture.addTarget(self, action: #selector(longPressAction(gesture:)))
+        return gesture
+    }()
+    
     var photo: [Hits]?
     
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = 20.0
+        addGestureRecognizer(longPressGesture)
+    }
+    
+    @objc
+    private func longPressAction(gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            gesture.state = .cancelled
+            return
+        }
+        
+        // use our delegate object to notify the view of any updates (whenever the user presses on the cell)
+        delegate?.didLongPress(self)
     }
     
     func configureCell(for photo: Hits) {
@@ -38,7 +60,6 @@ class PhotoCell: UICollectionViewCell {
             }
         }
     }
-    
 }
 
 extension UIImage {

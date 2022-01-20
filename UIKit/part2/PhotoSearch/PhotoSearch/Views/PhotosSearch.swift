@@ -83,3 +83,39 @@ extension PhotosSearch: UISearchBarDelegate {
         searchQuery = searchText
     }
 }
+
+// MARK: -ImagePickerControllerDelegate & UINNavigationControllerDelegate
+extension PhotosSearch: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            print("image selected not found")
+            return
+        }
+        dismiss(animated: true)
+    }
+}
+
+
+// MARK: - ImageCellDelegate (custom protocol for longPress)
+extension PhotosSearch: ImageCellDelegate {
+    func didLongPress(_ photoCell: PhotoCell) {
+        
+        // grab our index pat for the cell
+//        guard let indexPath = collectionView.indexPath(for: photoCell) else {
+//            return
+//        }
+        
+        // present our action sheet
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let saveAction = UIAlertAction(title: "Save Photo", style: .default)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
+}
+
