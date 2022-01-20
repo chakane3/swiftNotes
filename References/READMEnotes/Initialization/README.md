@@ -79,7 +79,7 @@ Class initialization is a 2 step process. First, each stored property is assigne
     <li>A designated initializer ensures all of the properties introduced by its class are initialized before it delegates up to a superclass initializer. Recall that the memory for an object is fully initalized once the initial state of all its stored properties is known. To ensure this happens, a designated initializer must make sure that all of its own properties are initialized.</li>
     <li>A designated initializer must delegate up to a superclass initializer before assigining a value to an inherited property. If it doesnt, the designated initializer's value will be overwritten by the superclass as part of its own initialization.</li>
     <li>A convenience initializer must delegate to another initializer before assigining a value to any property. If it doesnt , the new value the designated initializer assigns will be overwitten by the superclass as part of its own initialization.</li>
-    <li></li>
+    <li>An initializer cant call any instance methods, read the values of any instance properties, or refer to self as a value until after the first phase of initialization is complete. </li>
 </ul>
 
 
