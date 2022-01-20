@@ -73,6 +73,15 @@ All of a class's stored properties must be assigned an initial value during init
 
 Designated intializers are the primary initializer for a class. It fully initializes all properties introduced by that class and calls an appropriate superclass initializer to continue the initialization process up the superclass chain. Everyclass has at least one of these. Convenience initializers are supporting initializers for a class
 
+## Two Phase Initialization
+Class initialization is a 2 step process. First, each stored property is assigned an initial value by the class that introduced it. Once the initial state for every stored property has been determined, the second phase happens where each class can customize its stored properties before the new instance is ready for use. This is similar to initialization in Objective-C (except that Obj-C assigns 0 or null to every property in phase 1). Swift's compilier does 4 "safety-checks" to enture theres no error.
+<ul>
+    <li>A designated initializer ensures all of the properties introduced by its class are initialized before it delegates up to a superclass initializer. Recall that the memory for an object is fully initalized once the initial state of all its stored properties is known. To ensure this happens, a designated initializer must make sure that all of its own properties are initialized.</li>
+    <li>A designated initializer must delegate up to a superclass initializer before assigining a value to an inherited property. If it doesnt, the designated initializer's value will be overwritten by the superclass as part of its own initialization.</li>
+    <li>A convenience initializer must delegate to another initializer before assigining a value to any property. If it doesnt , the new value the designated initializer assigns will be overwitten by the superclass as part of its own initialization.</li>
+    <li>An initializer cant call any instance methods, read the values of any instance properties, or refer to self as a value until after the first phase of initialization is complete. </li>
+</ul>
+
 
 
 
