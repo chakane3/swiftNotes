@@ -1,4 +1,4 @@
-# Closures
+# Closures (intro)
 
 These are functions that can be passed around. They capture and store references to any constants and variables from the content in which their defined. This is known as closing over those constants and variables. We typically use these to make our network requests or and some other specific functionality of our code. For example the network requesr wrapper mainly used in this repo is:
 
@@ -25,6 +25,23 @@ reversedNums = names.sorted(by: {$0 > $1} ) // shorthand
 
 ```
 
+# Trailing Closures
+ Heres a piece of code:
+ 
+```swift
+func aFunctionThatTakesAClosure(closure: () -> Void) {
+    // magic
+}
 
+// heres how you call this function without a trailing closure
+aFunctionThatTakesAClosure(closure: { 
+    // more magic
+})
+
+// heres how you implement a trailing closure
+aFunctionThatTakesAClosure() {
+    // alot of magic
+} 
+```
 
 
