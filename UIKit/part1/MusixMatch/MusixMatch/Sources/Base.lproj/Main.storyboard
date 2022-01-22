@@ -59,7 +59,9 @@
                             <constraint firstItem="U4F-Or-nWa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rD7-AH-75p"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Artist Search" id="3tf-qd-XyD"/>
+                    <navigationItem key="navigationItem" title="Artist Search" id="3tf-qd-XyD">
+                        <barButtonItem key="rightBarButtonItem" title="Charts" id="8ZP-16-vWp"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="U4F-Or-nWa" id="kCL-Aq-SrG"/>
                         <outlet property="tableView" destination="zIW-bZ-rvU" id="UyR-6D-XI3"/>
