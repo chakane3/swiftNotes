@@ -19,8 +19,11 @@ class NewsFeedController: UIViewController {
         view.backgroundColor = .systemBackground
         
         // setting up collectionview data source and delegate
-        newsFeedView.collectionView = self
-//        newsFeedView.searchBar = self
+        newsFeedView.collectionView.dataSource = self
+        newsFeedView.collectionView.delegate = self
+        
+        // register a collection view cell
+        newsFeedView.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "articleCell")
     }
 }
 
@@ -31,6 +34,7 @@ extension NewsFeedController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "articleCell", for: indexPath)
+        cell.backgroundColor = .white
         return cell
     }
     
@@ -42,6 +46,9 @@ extension NewsFeedController: UICollectionViewDelegateFlowLayout {
     // itemWidth ~ 100% of width of device
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxsize: CGSize = UIScreen.main.bounds.size
+        let itemWidth: CGFloat = maxsize.width
+        let itemHeight: CGFloat = maxsize.height * 0.30 // 30%
+        return CGSize(width: itemWidth, height: itemHeight)
     }
     
 }
