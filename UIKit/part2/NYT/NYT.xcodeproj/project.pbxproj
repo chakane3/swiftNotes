@@ -21,6 +21,8 @@
 		94351F9A279DF3C900431B89 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351F99279DF3C900431B89 /* SettingsController.swift */; };
 		94351F9C279DF71C00431B89 /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351F9B279DF71C00431B89 /* NewsFeed.swift */; };
 		94351F9F279E07B700431B89 /* TopStories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351F9E279E07B700431B89 /* TopStories.swift */; };
+		94351FA2279E0A0C00431B89 /* NYTTopStoriesAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351FA1279E0A0C00431B89 /* NYTTopStoriesAPIClient.swift */; };
+		94351FA4279E107C00431B89 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351FA3279E107C00431B89 /* NetworkRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		94351F99279DF3C900431B89 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		94351F9B279DF71C00431B89 /* NewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
 		94351F9E279E07B700431B89 /* TopStories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStories.swift; sourceTree = "<group>"; };
+		94351FA1279E0A0C00431B89 /* NYTTopStoriesAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTTopStoriesAPIClient.swift; sourceTree = "<group>"; };
+		94351FA3279E107C00431B89 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		94351F5F279DF20A00431B89 /* NYT */ = {
 			isa = PBXGroup;
 			children = (
+				94351FA0279E09DB00431B89 /* Network Services */,
 				94351F9D279E07A000431B89 /* Models */,
 				94351F96279DF39100431B89 /* Views */,
 				94351F93279DF36E00431B89 /* Controllers */,
@@ -172,6 +177,15 @@
 				94351F9E279E07B700431B89 /* TopStories.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		94351FA0279E09DB00431B89 /* Network Services */ = {
+			isa = PBXGroup;
+			children = (
+				94351FA1279E0A0C00431B89 /* NYTTopStoriesAPIClient.swift */,
+				94351FA3279E107C00431B89 /* NetworkRequest.swift */,
+			);
+			name = "Network Services";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,7 +323,9 @@
 				94351F61279DF20A00431B89 /* AppDelegate.swift in Sources */,
 				94351F91279DF2D300431B89 /* TopStoriesTabBarController.swift in Sources */,
 				94351F98279DF3AE00431B89 /* SavedArticlesController.swift in Sources */,
+				94351FA4279E107C00431B89 /* NetworkRequest.swift in Sources */,
 				94351F95279DF38A00431B89 /* NewsFeedController.swift in Sources */,
+				94351FA2279E0A0C00431B89 /* NYTTopStoriesAPIClient.swift in Sources */,
 				94351F63279DF20A00431B89 /* SceneDelegate.swift in Sources */,
 				94351F9C279DF71C00431B89 /* NewsFeed.swift in Sources */,
 				94351F9F279E07B700431B89 /* TopStories.swift in Sources */,
