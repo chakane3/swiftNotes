@@ -17,6 +17,9 @@
 		9464616F279B4EE00076F650 /* UserHoroscopeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464616E279B4EE00076F650 /* UserHoroscopeUITestsLaunchTests.swift */; };
 		9464617E279B4F4D0076F650 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464617D279B4F4D0076F650 /* NetworkRequest.swift */; };
 		94646184279B8B630076F650 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94646183279B8B630076F650 /* FileManager+Extensions.swift */; };
+		94B513E7279DE357002E28C8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B513E6279DE357002E28C8 /* Persistence.swift */; };
+		94B513E9279DE41F002E28C8 /* UserBirthday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B513E8279DE41F002E28C8 /* UserBirthday.swift */; };
+		94B513ED279DE905002E28C8 /* HoroscopeReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B513EC279DE905002E28C8 /* HoroscopeReading.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		9464616E279B4EE00076F650 /* UserHoroscopeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHoroscopeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9464617D279B4F4D0076F650 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		94646183279B8B630076F650 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
+		94B513E6279DE357002E28C8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		94B513E8279DE41F002E28C8 /* UserBirthday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBirthday.swift; sourceTree = "<group>"; };
+		94B513EC279DE905002E28C8 /* HoroscopeReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoroscopeReading.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,8 @@
 		9464614A279B4EDE0076F650 /* UserHoroscope */ = {
 			isa = PBXGroup;
 			children = (
+				94B513EB279DE8E7002E28C8 /* Views */,
+				94B513EA279DE469002E28C8 /* Model */,
 				94646182279B8B4A0076F650 /* Data Persistence */,
 				9464617C279B4F3F0076F650 /* Network Services */,
 				9464617B279B4F210076F650 /* Supporting Files */,
@@ -150,8 +158,25 @@
 			isa = PBXGroup;
 			children = (
 				94646183279B8B630076F650 /* FileManager+Extensions.swift */,
+				94B513E6279DE357002E28C8 /* Persistence.swift */,
 			);
 			path = "Data Persistence";
+			sourceTree = "<group>";
+		};
+		94B513EA279DE469002E28C8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				94B513E8279DE41F002E28C8 /* UserBirthday.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		94B513EB279DE8E7002E28C8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				94B513EC279DE905002E28C8 /* HoroscopeReading.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,7 +313,10 @@
 				9464614C279B4EDE0076F650 /* AppDelegate.swift in Sources */,
 				94646184279B8B630076F650 /* FileManager+Extensions.swift in Sources */,
 				9464617E279B4F4D0076F650 /* NetworkRequest.swift in Sources */,
+				94B513E9279DE41F002E28C8 /* UserBirthday.swift in Sources */,
 				9464614E279B4EDE0076F650 /* SceneDelegate.swift in Sources */,
+				94B513E7279DE357002E28C8 /* Persistence.swift in Sources */,
+				94B513ED279DE905002E28C8 /* HoroscopeReading.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
