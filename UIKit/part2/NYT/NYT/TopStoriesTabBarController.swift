@@ -8,20 +8,20 @@
 import UIKit
 
 class TopStoriesTabBarController: UITabBarController {
-    private lazy var newsFeedVC: NewsFeed = {
-        let viewController = NewsFeed()
+    private lazy var newsFeedVC: NewsFeedController = {
+        let viewController = NewsFeedController()
         viewController.tabBarItem = UITabBarItem(title: "News Feed", image: UIImage(systemName: "eyeglasses"), tag: 0)
         return viewController
     }()
     
-    private lazy var savedArticlesVC: SavedArticles = {
-        let viewController = SavedArticles()
+    private lazy var savedArticlesVC: SavedArticlesController = {
+        let viewController = SavedArticlesController()
         viewController.tabBarItem = UITabBarItem(title: "Saved Articles", image: UIImage(systemName: "folder"), tag: 1)
         return viewController
     }()
     
-    private lazy var settingsVC: Settings = {
-        let viewController = Settings()
+    private lazy var settingsVC: SettingsController = {
+        let viewController = SettingsController()
         viewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), tag: 2)
         return viewController
     }()

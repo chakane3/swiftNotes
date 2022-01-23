@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SavedArticles: UIViewController {
+class SavedArticlesController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
