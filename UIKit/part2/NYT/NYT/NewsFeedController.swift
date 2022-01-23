@@ -37,7 +37,6 @@ extension NewsFeedController: UICollectionViewDataSource {
         cell.backgroundColor = .white
         return cell
     }
-    
 }
 
 extension NewsFeedController: UICollectionViewDelegateFlowLayout {
