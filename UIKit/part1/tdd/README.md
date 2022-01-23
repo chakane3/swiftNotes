@@ -152,56 +152,48 @@ Theres 3 parts to a unit test
 	<summary>Tests</summary>
 	
 ```swift
-import Foundation
+//
+//  tddTests.swift
+//  tddTests
+//
+//  Created by Chakane Shegog on 12/20/21.
+//
+import XCTest
+@testable import tdd
 
-struct WeatherWrapper: Codable {
-    let list: [Weather]
-}
+class tddTests: XCTestCase {
 
-struct Weather: Codable {
-    let name: String
-    let mainInformation: MainWeatherInformation
-    let windInformation: WindInformation
-    let weatherDescriptions: [WeatherDescription]
-    
-    //    var farenheitTemperature: Double {
-    //        return mainInformation.temperatureInKelvin * 1.8 - 459.67
-    //    }
-    
-    static func getAllWeathers(from JSONData: Data) throws -> [Weather] {
+    func testLoadWeather() {
+        // Arrange
+        let weatherData = getTestWeatherJSONData()
+
+        // Act
+        var allWeathers = [Weather]()
+
         do {
-            let allWeathers = try JSONDecoder().decode(WeatherWrapper.self, from: JSONData)
-            return allWeathers.list
-            
+            allWeathers = try Weather.getAllWeathers(from: weatherData)
         } catch {
-            throw error
+            print(error)
+        }
+
+        // Assert
+        XCTAssertTrue(allWeathers.count == 3, "Was expecting 3 weather structs, but received \(allWeathers.count)")
+    }
+
+    // function to get our local json data using app Bundle
+    private func getTestWeatherJSONData() -> Data {
+        guard let pathToData = Bundle.main.path(forResource: "testWeather", ofType: "json") else {
+            fatalError("testWeather.json file not found")
+        }
+        let internalUrl = URL(fileURLWithPath: pathToData)
+        do {
+            let data = try Data(contentsOf: internalUrl)
+            return data
+        } catch {
+            fatalError("An error occurred: \(error)")
         }
     }
-    
-    private enum CodingKeys: String, CodingKey {
-        case name
-        case mainInformation = "main"
-        case windInformation = "wind"
-        case weatherDescriptions = "weather"
-    }
 }
-
-struct MainWeatherInformation: Codable {
-    let temperatureInKelvin: Double
-    
-    private enum CodingKeys: String, CodingKey {
-        case temperatureInKelvin = "temp"
-    }
-}
-
-struct WindInformation: Codable {
-    let speed: Double
-    let deg: Int
-}
-
-struct WeatherDescription: Codable {
-    let description: String
-}	
 ```
 	
 </details>
