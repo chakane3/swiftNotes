@@ -10,7 +10,7 @@ import Foundation
 struct NYTTopStoriesAPIClient {
     
     static func fetchTopStories(for section: String, completion: @escaping (Result<[Article], NetworkError>) -> ()) {
-        let endpointURLString = "https://api.nytimes.com/svc/topstories/v2/arts.json?api-key="
+        let endpointURLString = "https://api.nytimes.com/svc/topstories/v2/arts.json?api-key=\(Keys.key)"
         guard let url = URL(string: endpointURLString) else {
             completion(.failure(.badURL(endpointURLString)))
             return
