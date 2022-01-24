@@ -27,6 +27,7 @@
 		94351FA9279E19B000431B89 /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351FA8279E19B000431B89 /* DataPersistence.swift */; };
 		94351FAC279E1E9C00431B89 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351FAB279E1E9C00431B89 /* UIImage+Extensions.swift */; };
 		943C4833279EEE6400E60508 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943C4832279EEE6400E60508 /* Config.swift */; };
+		943C4836279EF26400E60508 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943C4835279EF26400E60508 /* NewsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		94351FA8279E19B000431B89 /* DataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistence.swift; sourceTree = "<group>"; };
 		94351FAB279E1E9C00431B89 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		943C4832279EEE6400E60508 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		943C4835279EF26400E60508 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		94351F5F279DF20A00431B89 /* NYT */ = {
 			isa = PBXGroup;
 			children = (
+				943C4834279EF24200E60508 /* Cells */,
 				94351FAA279E1E6A00431B89 /* Extensions */,
 				94351FA5279E18BF00431B89 /* Data Persistence */,
 				94351FA0279E09DB00431B89 /* Network Services */,
@@ -214,6 +217,14 @@
 				94351FAB279E1E9C00431B89 /* UIImage+Extensions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		943C4834279EF24200E60508 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				943C4835279EF26400E60508 /* NewsCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,6 +362,7 @@
 				94351F9A279DF3C900431B89 /* SettingsController.swift in Sources */,
 				94351F61279DF20A00431B89 /* AppDelegate.swift in Sources */,
 				943C4833279EEE6400E60508 /* Config.swift in Sources */,
+				943C4836279EF26400E60508 /* NewsCell.swift in Sources */,
 				94351FA9279E19B000431B89 /* DataPersistence.swift in Sources */,
 				94351F91279DF2D300431B89 /* TopStoriesTabBarController.swift in Sources */,
 				94351F98279DF3AE00431B89 /* SavedArticlesController.swift in Sources */,

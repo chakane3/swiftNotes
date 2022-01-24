@@ -23,7 +23,19 @@ class NewsFeedController: UIViewController {
         newsFeedView.collectionView.delegate = self
         
         // register a collection view cell
-        newsFeedView.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "articleCell")
+        newsFeedView.collectionView.register(NewsCell.self, forCellWithReuseIdentifier: "articleCell")
+        fetchStories()
+    }
+    
+    private func fetchStories(for section: String = "Technology") {
+        NYTTopStoriesAPIClient.fetchTopStories(for: section) { (result) in
+            switch result {
+            case .failure(let networkError):
+                print("error fetching stories: \(networkError)")
+            case .success(let data):
+                print("found: \(data.count)")
+            }
+        }
     }
 }
 
@@ -49,5 +61,4 @@ extension NewsFeedController: UICollectionViewDelegateFlowLayout {
         let itemHeight: CGFloat = maxsize.height * 0.30 // 30%
         return CGSize(width: itemWidth, height: itemHeight)
     }
-    
 }
