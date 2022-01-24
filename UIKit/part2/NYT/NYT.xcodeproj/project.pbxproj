@@ -26,6 +26,7 @@
 		94351FA7279E18E200431B89 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351FA6279E18E200431B89 /* FileManager+Extension.swift */; };
 		94351FA9279E19B000431B89 /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351FA8279E19B000431B89 /* DataPersistence.swift */; };
 		94351FAC279E1E9C00431B89 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351FAB279E1E9C00431B89 /* UIImage+Extensions.swift */; };
+		943C4833279EEE6400E60508 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943C4832279EEE6400E60508 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		94351FA6279E18E200431B89 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		94351FA8279E19B000431B89 /* DataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistence.swift; sourceTree = "<group>"; };
 		94351FAB279E1E9C00431B89 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		943C4832279EEE6400E60508 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 				94351F93279DF36E00431B89 /* Controllers */,
 				94351F92279DF35D00431B89 /* Supporting Files */,
 				94351F6E279DF20C00431B89 /* Info.plist */,
+				943C4832279EEE6400E60508 /* Config.swift */,
 			);
 			path = NYT;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				94351FA7279E18E200431B89 /* FileManager+Extension.swift in Sources */,
 				94351F9A279DF3C900431B89 /* SettingsController.swift in Sources */,
 				94351F61279DF20A00431B89 /* AppDelegate.swift in Sources */,
+				943C4833279EEE6400E60508 /* Config.swift in Sources */,
 				94351FA9279E19B000431B89 /* DataPersistence.swift in Sources */,
 				94351F91279DF2D300431B89 /* TopStoriesTabBarController.swift in Sources */,
 				94351F98279DF3AE00431B89 /* SavedArticlesController.swift in Sources */,
