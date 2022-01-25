@@ -43,3 +43,13 @@ struct MultiMedia: Codable {
     let width: Double
     let caption: String
 }
+
+extension Article {
+    func getArticleImageURL(for imageFormat: ImageFormat) -> String {
+        let results = multimedia.filter {$0.format == imageFormat.rawValue}
+        
+        guard results.first else {
+            
+        }
+    }
+}

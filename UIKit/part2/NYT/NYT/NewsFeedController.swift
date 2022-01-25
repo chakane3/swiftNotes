@@ -10,6 +10,15 @@ import UIKit
 class NewsFeedController: UIViewController {
     private let newsFeedView = NewsFeed()
     
+    // data for our collection view
+    private var newsArticles = [Article]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.newsFeedView.collectionView.reloadData()
+            }
+        }
+    }
+    
     override func loadView() {
         view = newsFeedView
     }
@@ -33,7 +42,7 @@ class NewsFeedController: UIViewController {
             case .failure(let networkError):
                 print("error fetching stories: \(networkError)")
             case .success(let data):
-                print("found: \(data.count)")
+                self.newsArticles = data
             }
         }
     }
@@ -41,7 +50,7 @@ class NewsFeedController: UIViewController {
 
 extension NewsFeedController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return newsArticles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

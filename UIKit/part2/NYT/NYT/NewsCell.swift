@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum ImageFormat: String {
+    case superJumbo = "superJumbo"
+    case thumbLarge = "thumbLarge"
+    case normal = "standard"
+    case standard = "normal"
+}
 class NewsCell: UICollectionViewCell {
     // articles image view
     public lazy var newsImageView: UIImageView = {
@@ -83,5 +89,13 @@ class NewsCell: UICollectionViewCell {
             abstractHeadline.trailingAnchor.constraint(equalTo: articleTitle.trailingAnchor),
             abstractHeadline.topAnchor.constraint(equalTo: articleTitle.bottomAnchor, constant: 8)
         ])
+    }
+    
+    public func configureCell(with article: Article) {
+        articleTitle.text = article.title
+        abstractHeadline.text = article.abstract
+        
+        // we have different image sizes (superJumbo -> 2048 x 1365), (thumbLarge -> 150 x 150)
+        
     }
 }
