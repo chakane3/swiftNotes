@@ -33,7 +33,7 @@ class NewsFeedController: UIViewController {
         
         // register a collection view cell
         newsFeedView.collectionView.register(NewsCell.self, forCellWithReuseIdentifier: "articleCell")
-        fetchStories()
+        fetchStories(for: "Technology")
     }
     
     private func fetchStories(for section: String = "Technology") {
@@ -54,8 +54,14 @@ extension NewsFeedController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "articleCell", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "articleCell", for: indexPath) as? NewsCell else {
+            fatalError("coult not downcase to NewsCell")
+        }
+        
         cell.backgroundColor = .white
+        let article = newsArticles[indexPath.row]
+        cell.configureCell(with: article)
+        cell.backgroundColor = .systemBackground
         return cell
     }
 }

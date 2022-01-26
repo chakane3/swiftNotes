@@ -7,12 +7,6 @@
 
 import UIKit
 
-enum ImageFormat: String {
-    case superJumbo = "superJumbo"
-    case thumbLarge = "thumbLarge"
-    case normal = "standard"
-    case standard = "normal"
-}
 class NewsCell: UICollectionViewCell {
     // articles image view
     public lazy var newsImageView: UIImageView = {
@@ -96,6 +90,17 @@ class NewsCell: UICollectionViewCell {
         abstractHeadline.text = article.abstract
         
         // we have different image sizes (superJumbo -> 2048 x 1365), (thumbLarge -> 150 x 150)
-        
+        newsImageView.getImage(with: article.getArticleImageURL(for: .thumbLarge)) { [weak self] (result) in
+            switch result {
+            case .failure:
+                DispatchQueue.main.async {
+                    self?.newsImageView.image = UIImage(systemName: "exclamationmark-octagon")
+                }
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self?.newsImageView.image = image
+                }
+            }
+        }
     }
 }
