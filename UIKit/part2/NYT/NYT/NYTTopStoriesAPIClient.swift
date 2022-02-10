@@ -15,6 +15,7 @@ struct NYTTopStoriesAPIClient {
             completion(.failure(.badURL(endpointURLString)))
             return
         }
+        
         let request = URLRequest(url: url)
         NetworkRequest.shared.performDataTask(with: request) { (result) in
             switch result {
