@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94A1F68527B4C79600BB1CE3 /* MetAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A1F68427B4C79600BB1CE3 /* MetAPIClient.swift */; };
+		94A1F68827B4DFF500BB1CE3 /* ArtCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A1F68727B4DFF500BB1CE3 /* ArtCollection.swift */; };
+		94A1F68B27B4E03A00BB1CE3 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A1F68A27B4E03A00BB1CE3 /* UIImage+Extensions.swift */; };
+		94A1F68E27B4E30900BB1CE3 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A1F68D27B4E30900BB1CE3 /* FileManager+Extension.swift */; };
 		94F9834527A631AB006545DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F9834427A631AB006545DF /* AppDelegate.swift */; };
 		94F9834727A631AB006545DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F9834627A631AB006545DF /* SceneDelegate.swift */; };
 		94F9834927A631AB006545DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F9834827A631AB006545DF /* ViewController.swift */; };
@@ -40,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		94A1F68427B4C79600BB1CE3 /* MetAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetAPIClient.swift; sourceTree = "<group>"; };
+		94A1F68727B4DFF500BB1CE3 /* ArtCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCollection.swift; sourceTree = "<group>"; };
+		94A1F68A27B4E03A00BB1CE3 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		94A1F68D27B4E30900BB1CE3 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		94F9834127A631AB006545DF /* MetV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F9834427A631AB006545DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94F9834627A631AB006545DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +92,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		94A1F68627B4DFE900BB1CE3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				94A1F68727B4DFF500BB1CE3 /* ArtCollection.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		94A1F68927B4E02100BB1CE3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				94A1F68A27B4E03A00BB1CE3 /* UIImage+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		94A1F68C27B4E2F900BB1CE3 /* Data Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				94A1F68D27B4E30900BB1CE3 /* FileManager+Extension.swift */,
+			);
+			path = "Data Persistence";
+			sourceTree = "<group>";
+		};
 		94F9833827A631AB006545DF = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +139,9 @@
 		94F9834327A631AB006545DF /* MetV2 */ = {
 			isa = PBXGroup;
 			children = (
+				94A1F68C27B4E2F900BB1CE3 /* Data Persistence */,
+				94A1F68927B4E02100BB1CE3 /* Extensions */,
+				94A1F68627B4DFE900BB1CE3 /* Models */,
 				94F9837427A63279006545DF /* Supporting Files */,
 				94F9835227A631AD006545DF /* Info.plist */,
 			);
@@ -159,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				94F9837D27A6359F006545DF /* NetworkRequest.swift */,
+				94A1F68427B4C79600BB1CE3 /* MetAPIClient.swift */,
 			);
 			path = "Network Services";
 			sourceTree = "<group>";
@@ -294,11 +330,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94A1F68E27B4E30900BB1CE3 /* FileManager+Extension.swift in Sources */,
 				94F9837E27A6359F006545DF /* NetworkRequest.swift in Sources */,
 				94F9834927A631AB006545DF /* ViewController.swift in Sources */,
 				94F9834527A631AB006545DF /* AppDelegate.swift in Sources */,
 				94F9837727A633E8006545DF /* MetTabBarController.swift in Sources */,
+				94A1F68527B4C79600BB1CE3 /* MetAPIClient.swift in Sources */,
 				94F9837B27A6355D006545DF /* SavedArtController.swift in Sources */,
+				94A1F68827B4DFF500BB1CE3 /* ArtCollection.swift in Sources */,
+				94A1F68B27B4E03A00BB1CE3 /* UIImage+Extensions.swift in Sources */,
 				94F9837927A63528006545DF /* ArtFeedController.swift in Sources */,
 				94F9834727A631AB006545DF /* SceneDelegate.swift in Sources */,
 			);

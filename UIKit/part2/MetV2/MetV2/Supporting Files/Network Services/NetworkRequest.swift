@@ -59,6 +59,13 @@ public class NetworkRequest {
     
     /* Perform network request
      1. Check if the cache should be cleared based on x amount of days since the last
+     
+     2. Setup URLSessions dataTask()
+     3. Downcast URLResponse to HTTPURLResponse for stausCode property
+     4. Unwrap the data object
+     5. Validate that the status code is in the 200 range
+     6. Save the last modified cache date
+     7. capture our network data
      */
     public func performDataTask(with request: URLRequest, maxCacheDays: Int = 0, completion: @escaping (Result<Data, NetworkError>) -> ()) {
         
@@ -76,7 +83,7 @@ public class NetworkRequest {
             }
         }
         
-        // setup URLSessions dataTask()
+        // 2
         let dataTask = urlSession.dataTask(with: request) { (data, response, error) in
             // check for network client errors
             if let error = error {
@@ -84,19 +91,19 @@ public class NetworkRequest {
                 return
             }
             
-            // downcast URLResponse to HTTPURLResponse for stausCode property
+            // 3
             guard let urlResponse = response as? HTTPURLResponse else {
                 completion(.failure(.noResponse))
                 return
             }
             
-            // unwrap the data object
+            // 4
             guard let data = data else {
                 completion(.failure(.noData))
                 return
             }
             
-            // validate that the status code is in the 200 range
+            // 5
             switch urlResponse.statusCode {
             case 200...299: break
             default:
@@ -104,11 +111,11 @@ public class NetworkRequest {
                 return
             }
             
-            // save the last modified cache date
+            // 6
             let cachedDate = Date().timeIntervalSince1970
             UserDefaults.standard.set(cachedDate, forKey: CacheKey.lastModifiedDate)
             
-            // capture our network data
+            // 7
             completion(.success(data))
         }
         dataTask.resume()
