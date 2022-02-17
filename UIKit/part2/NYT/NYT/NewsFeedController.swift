@@ -76,4 +76,14 @@ extension NewsFeedController: UICollectionViewDelegateFlowLayout {
         let itemHeight: CGFloat = maxsize.height * 0.30 // 30%
         return CGSize(width: itemWidth, height: itemHeight)
     }
+    
+    
+    // setup our segue to detail controller
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let article = newsArticles[indexPath.row]
+        let articleDVC = ArticleDetailViewController()
+        // TODO: we will use initializers as dependency injection mechanisms
+        articleDVC.article = article
+        navigationController?.pushViewController(articleDVC, animated: true)
+    }
 }

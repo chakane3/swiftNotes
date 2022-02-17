@@ -8,9 +8,9 @@
 import Foundation
 
 enum ImageFormat: String {
-    case superJumbo = "superJumbo"
-    case thumbLarge = "thumbLarge"
-    case standardThumbnail = "Standard Thumbnail"
+    case superJumbo = "Super Jumbo"
+    case thumbLarge = "Large Thumbnail"
+    case standardThumbnail = "threeByTwoSmallAt2X"
     case normal = "Normal"
 }
 

@@ -115,7 +115,7 @@ class MetV2Tests: XCTestCase {
                 self.country = try container.decodeIfPresent(String.self, forKey: .country) ?? ""
                 self.period = try container.decodeIfPresent(String.self, forKey: .period) ?? ""
                 self.artistDisplayName = try container.decodeIfPresent(String.self, forKey: .artistDisplayName) ?? ""
-                self.objectDate = try container.decodeIfPresent(Int.self, forKey: .objectDate) ?? -1
+//                self.objectDate = try container.decodeIfPresent(Int.self, forKey: .objectDate) ?? -1
             }
         }
         

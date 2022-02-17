@@ -8,8 +8,16 @@
 import UIKit
 
 class ArtFeedController: UIViewController {
+    private let artFeedView = ArtFeed()
+    
+    override func loadView() {
+        view = artFeedView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
     }
+    
+    
 }

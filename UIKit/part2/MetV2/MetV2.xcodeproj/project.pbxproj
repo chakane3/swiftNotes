@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		942382E427BCE5D40028010C /* ArtFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942382E327BCE5D40028010C /* ArtFeed.swift */; };
+		942382E627BCE8610028010C /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942382E527BCE8610028010C /* SettingsController.swift */; };
 		94A1F68527B4C79600BB1CE3 /* MetAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A1F68427B4C79600BB1CE3 /* MetAPIClient.swift */; };
 		94A1F68827B4DFF500BB1CE3 /* ArtCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A1F68727B4DFF500BB1CE3 /* ArtCollection.swift */; };
 		94A1F68B27B4E03A00BB1CE3 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A1F68A27B4E03A00BB1CE3 /* UIImage+Extensions.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		942382E327BCE5D40028010C /* ArtFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtFeed.swift; sourceTree = "<group>"; };
+		942382E527BCE8610028010C /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		94A1F68427B4C79600BB1CE3 /* MetAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetAPIClient.swift; sourceTree = "<group>"; };
 		94A1F68727B4DFF500BB1CE3 /* ArtCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtCollection.swift; sourceTree = "<group>"; };
 		94A1F68A27B4E03A00BB1CE3 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -92,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		942382E227BCE5AE0028010C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				942382E327BCE5D40028010C /* ArtFeed.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		94A1F68627B4DFE900BB1CE3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,9 +151,12 @@
 		94F9834327A631AB006545DF /* MetV2 */ = {
 			isa = PBXGroup;
 			children = (
+				942382E227BCE5AE0028010C /* Views */,
 				94A1F68C27B4E2F900BB1CE3 /* Data Persistence */,
 				94A1F68927B4E02100BB1CE3 /* Extensions */,
 				94A1F68627B4DFE900BB1CE3 /* Models */,
+				94F9837C27A63586006545DF /* Network Services */,
+				94F9837527A632CA006545DF /* Controllers */,
 				94F9837427A63279006545DF /* Supporting Files */,
 				94F9835227A631AD006545DF /* Info.plist */,
 			);
@@ -168,8 +183,6 @@
 		94F9837427A63279006545DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				94F9837C27A63586006545DF /* Network Services */,
-				94F9837527A632CA006545DF /* Controllers */,
 				94F9834427A631AB006545DF /* AppDelegate.swift */,
 				94F9834627A631AB006545DF /* SceneDelegate.swift */,
 				94F9834827A631AB006545DF /* ViewController.swift */,
@@ -186,6 +199,7 @@
 				94F9837627A633E8006545DF /* MetTabBarController.swift */,
 				94F9837827A63528006545DF /* ArtFeedController.swift */,
 				94F9837A27A6355D006545DF /* SavedArtController.swift */,
+				942382E527BCE8610028010C /* SettingsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -340,7 +354,9 @@
 				94A1F68827B4DFF500BB1CE3 /* ArtCollection.swift in Sources */,
 				94A1F68B27B4E03A00BB1CE3 /* UIImage+Extensions.swift in Sources */,
 				94F9837927A63528006545DF /* ArtFeedController.swift in Sources */,
+				942382E627BCE8610028010C /* SettingsController.swift in Sources */,
 				94F9834727A631AB006545DF /* SceneDelegate.swift in Sources */,
+				942382E427BCE5D40028010C /* ArtFeed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

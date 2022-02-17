@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		942382E827BDBF390028010C /* ArticleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942382E727BDBF390028010C /* ArticleDetailViewController.swift */; };
+		942382EA27BE30FE0028010C /* ArticleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942382E927BE30FE0028010C /* ArticleDetailView.swift */; };
 		94351F61279DF20A00431B89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351F60279DF20A00431B89 /* AppDelegate.swift */; };
 		94351F63279DF20A00431B89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94351F62279DF20A00431B89 /* SceneDelegate.swift */; };
 		94351F68279DF20A00431B89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94351F66279DF20A00431B89 /* Main.storyboard */; };
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		942382E727BDBF390028010C /* ArticleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewController.swift; sourceTree = "<group>"; };
+		942382E927BE30FE0028010C /* ArticleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailView.swift; sourceTree = "<group>"; };
 		94351F5D279DF20A00431B89 /* NYT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94351F60279DF20A00431B89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94351F62279DF20A00431B89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				94351F99279DF3C900431B89 /* SettingsController.swift */,
 				94351F97279DF3AE00431B89 /* SavedArticlesController.swift */,
 				94351F94279DF38A00431B89 /* NewsFeedController.swift */,
+				942382E727BDBF390028010C /* ArticleDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				94351F9B279DF71C00431B89 /* NewsFeed.swift */,
+				942382E927BE30FE0028010C /* ArticleDetailView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -364,9 +370,11 @@
 				943C4833279EEE6400E60508 /* Config.swift in Sources */,
 				943C4836279EF26400E60508 /* NewsCell.swift in Sources */,
 				94351FA9279E19B000431B89 /* DataPersistence.swift in Sources */,
+				942382E827BDBF390028010C /* ArticleDetailViewController.swift in Sources */,
 				94351F91279DF2D300431B89 /* TopStoriesTabBarController.swift in Sources */,
 				94351F98279DF3AE00431B89 /* SavedArticlesController.swift in Sources */,
 				94351FA4279E107C00431B89 /* NetworkRequest.swift in Sources */,
+				942382EA27BE30FE0028010C /* ArticleDetailView.swift in Sources */,
 				94351F95279DF38A00431B89 /* NewsFeedController.swift in Sources */,
 				94351FA2279E0A0C00431B89 /* NYTTopStoriesAPIClient.swift in Sources */,
 				94351F63279DF20A00431B89 /* SceneDelegate.swift in Sources */,
