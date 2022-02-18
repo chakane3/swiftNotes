@@ -10,6 +10,9 @@
 import UIKit
 
 class TopStoriesTabBarController: UITabBarController {
+    private var dataPersistence = DataPersistence<Article>(filename: "savedArticles.plist")
+    
+    
     private lazy var newsFeedVC: NewsFeedController = {
         let viewController = NewsFeedController()
         viewController.tabBarItem = UITabBarItem(title: "News Feed", image: UIImage(systemName: "eyeglasses"), tag: 0)
