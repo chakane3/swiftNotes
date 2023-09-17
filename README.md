@@ -23,4 +23,4 @@ This repo is to document anything i learn while programming ios apps. I've split
 | Project | Summary | original | Readings |
 | ----------------------------- | --- | --- | --- |
 | Basics | | | |
-| <a href="SwiftUI/Memorize">Memorize</a>||||
+| <a href="SwiftUI/Memorize">Memorize</a>|||
