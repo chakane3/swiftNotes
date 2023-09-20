@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CountriesViewController: UIViewController {
     // MARK: - outlets and properties
     @IBOutlet weak var tableView: UITableView!
 //    private var countries = Country.countries // data for the tableview [Country]
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
 // Step 2: Conform to UITableViewDataSource
 // Theres 2 requires methods we'll need to implement:
 // cellForRow and numberOfRowsInSection
-extension ViewController: UITableViewDataSource {
+extension CountriesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countries.count
