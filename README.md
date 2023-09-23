@@ -6,18 +6,8 @@ This repo is to document anything i learn while programming ios apps. I've split
 | Project | Summary | original | Readings |
 | ----------------------------- | --- | --- | --- |
 | Basics of building an app | Learn how to use tableviews, buttons, pass data, protocols, delegation, other built-in UI functions, images, etc.<br> This also goes over json parsing, using an API, URLSession, closuures, wrapper classes, handling requests, and other UI implementations|<ul> <li><a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part1/TableViewz">TableViews (Countries App)</a></li><li>[<a href="https://github.com/chakane3/takeHome">takeHome</a>, <a href="https://github.com/chakane3z/swiftNotes/tree/main/UIKit/part1/MusixMatch">MusicxMatch</a>, <a href="https://github.com/chakane3/MetMobile">MetAPI"</a>] </li></ul>| Important<a href="https://github.com/chakane3/swiftNotes/tree/main/References"> documentation</a> |
-|<a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part1/zooAnimals">zooAnimals</a> | Create an app to view our zoo animal data in 3 different ways. One in a basic tableview subtitle cell, another, in a custom tableview cell, and lastly a tableview with custom cells that are in sections. We also create a detail view controller and use a segue to pass data from one file to another. |
-| <a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part1/appLifeCycle">appLifeCycle</a>  | Create an app that demonstrates app lifecycle methods. We also implement a slider, stepper, and switch. |
-| <a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part1/scheduler">Modifying table views/Data Persistence</a> | Create an app to have a user create a new entry on our TV and be able to exit the app and go back in to see the data the user saved. |
-| <a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part1/stories">topstories</a> | Create an app to parse local JSON, more on tableViews and searchbar methods; filtering, segues | 
-| <a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part1/tdd">Unit Testing</a> | test driven development |
-|<a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part1/getR">network requests pt1</a> | singleton design pattern, closures, URLSession and creating a wrapper class for it. Example app is to fetch jokes from an api |
-| <a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part1/concurrency">concurrency-GCD</a> | Intro to combine framework, concurrency, granf central dispatch. App to load images |
-| <a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part1/Recipies">Recipies</a> | Implement topics from previous projects: search bar, network requests, APIKeys, concurrency, etc | |
-| ™ | ™ |
-| Intermediate topics| Data Persistence, Collection Views, UIImagePickerViewController, Data structures intro, Animation | yo |
-|<a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part2/Scheduler-2">Schedules</a>|Persist data from table views|
-|<a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part2/PhotoApp">PhotosApp</a>| Explore Custom Delegation and utilizing more in app resources|
+| Intermediate topics| Data Persistence, Collection Views, UIImagePickerViewController, Data structures intro, Animation | <ul><li><a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part2/Scheduler-2">Schedules</a></li><li><a href="https://github.com/chakane3/swiftNotes/tree/main/UIKit/part2/PhotoApp">PhotosApp</a></li></ul>|
+
 
 ## SwiftUI
 | Project | Summary | original | Readings |
